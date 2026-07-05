@@ -13,6 +13,11 @@ function App() {
       <Countdown />
       <Ceremony />
       <Reception />
+      <Program />
+      <Organization />
+      <Transport />
+      <Accommodation />
+      <Gifts />
       <RsvpForm />
       <Footer />
     </div>
@@ -23,16 +28,47 @@ function App() {
 function Hero() {
   return (
     <section className="hero" id="hero">
-      <div className="hero-decoration top-left"></div>
-      <div className="hero-decoration top-right"></div>
-      <div className="hero-decoration bottom-left"></div>
-      <div className="hero-decoration bottom-right"></div>
       <div className="hero-content">
-        <h1 className="names">Evka & Michal</h1>
+        <div className="hero-photo">
+          <img
+            src="/nasa-fotka.jpeg"
+            alt="Eva a Michal"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        </div>
+        <h1 className="names">Eva & Michal</h1>
         <p className="date">30. októbra 2026</p>
         <div className="ornament"></div>
       </div>
+      <Mountains />
     </section>
+  );
+}
+
+/* ─── Hory (abstraktná silueta) ─── */
+function Mountains() {
+  return (
+    <svg
+      className="mountains"
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        className="mtn mtn-back"
+        d="M0,220 L200,120 L380,205 L560,95 L760,190 L960,110 L1180,200 L1440,130 L1440,320 L0,320 Z"
+      />
+      <path
+        className="mtn mtn-mid"
+        d="M0,258 L260,180 L480,250 L700,160 L920,242 L1160,172 L1440,240 L1440,320 L0,320 Z"
+      />
+      <path
+        className="mtn mtn-front"
+        d="M0,300 L240,252 L520,300 L780,244 L1040,300 L1320,254 L1440,292 L1440,320 L0,320 Z"
+      />
+    </svg>
   );
 }
 
@@ -112,16 +148,102 @@ function Reception() {
         <h2>Hostina</h2>
         <p className="info-time">od 16:00 hod.</p>
         <p className="info-place">
-          Hotel Park, Aleja slobody 1702/6, 026 01 Dolný Kubín
+          Hotel Park, Radlinského 21, 026 01 Dolný Kubín
         </p>
         <a
-          href="https://maps.google.com/?q=Hotel+Park+Aleja+slobody+1702/6+Dolný+Kubín"
+          href="https://maps.google.com/?q=Hotel+Park+Radlinského+21+Dolný+Kubín"
           target="_blank"
           rel="noopener noreferrer"
           className="btn"
         >
           Zobraziť na mape
         </a>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ─── Program ─── */
+function Program() {
+  return (
+    <section className="info-section" id="program">
+      <FadeIn>
+        <h2>Program</h2>
+        <p className="info-text">
+          Podrobný program dňa ešte pripravujeme – doplníme ho sem čoskoro.
+        </p>
+        <p className="info-note">(text doladíme)</p>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ─── Doprava / autobus ─── */
+function Transport() {
+  return (
+    <section className="info-section" id="doprava">
+      <FadeIn>
+        <h2>Doprava</h2>
+        <p className="info-text">
+          Autobusovú dopravu medzi kostolom a hostinou zabezpečíme – časy
+          odchodov a ďalšie detaily ešte ladíme.
+        </p>
+        <p className="info-note">(text doladíme)</p>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ─── Organizácia ─── */
+function Organization() {
+  return (
+    <section className="info-section" id="organizacia">
+      <FadeIn>
+        <h2>Organizácia</h2>
+        <p className="info-text">
+          Obrad a hostina sa konajú na dvoch rozdielnych miestach, vzdialených
+          od seba približne 15 minút cesty. Pre tých, ktorí nebudú mať vlastný
+          odvoz, bude zabezpečená autobusová doprava. Pri hoteli je parkovanie k
+          dispozícii, no pri kostole sú miesta obmedzené, preto odporúčame prísť
+          s predstihom alebo využiť spoločný odvoz.
+        </p>
+        <p className="info-text">
+          Keďže sa naša svadba koná na sklonku jesene, v kostole aj vonku môže
+          byť chladnejšie – oblečte sa elegantne, ale nezabudnite aj na niečo
+          teplé navyše.
+        </p>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ─── Ubytovanie ─── */
+function Accommodation() {
+  return (
+    <section className="info-section" id="ubytovanie">
+      <FadeIn>
+        <h2>Ubytovanie</h2>
+        <p className="info-text">
+          Ubytovať sa môžete priamo v Hoteli Park, kde sa koná hostina, alebo aj
+          v okolí. Radi vám pomôžeme s výberom – neváhajte nás kontaktovať.
+        </p>
+      </FadeIn>
+    </section>
+  );
+}
+
+/* ─── Dary ─── */
+function Gifts() {
+  return (
+    <section className="info-section" id="dary">
+      <FadeIn>
+        <h2>Dary</h2>
+        <p className="info-text">
+          Najväčším darom bude, keď sa náš veľký deň rozhodnete stráviť s nami.
+          Pokiaľ si ale aj napriek tomu budete lámať hlavu s tým, čo by nám
+          urobilo radosť, oceníme akýkoľvek finančný príspevok namiesto darov či
+          kytíc.
+        </p>
       </FadeIn>
     </section>
   );
@@ -257,8 +379,8 @@ function RsvpForm() {
                 >
                   <option value="">— Vyberte —</option>
                   <option value="Mäsová klasika">Mäsová klasika</option>
-                  <option value="Vegetariánske delikatesy">
-                    Vegetariánske delikatesy
+                  <option value="Vegetariánske jedlo">
+                    Vegetariánske jedlo
                   </option>
                 </select>
               </div>
@@ -289,21 +411,14 @@ function RsvpForm() {
                 <label htmlFor={`drink-${index}`}>
                   Čo vám môžeme naliať? *
                 </label>
-                <select
+                <textarea
                   id={`drink-${index}`}
                   value={guest.drink}
                   onChange={(e) => updateGuest(index, "drink", e.target.value)}
+                  placeholder="Napr. víno – červené, prosecco, pivo, slivovica, gin, nealko..."
+                  rows="2"
                   required
-                >
-                  <option value="">— Vyberte —</option>
-                  <option value="Víno – červené">Najskôr víno – červené</option>
-                  <option value="Víno – biele">Najskôr víno – biele</option>
-                  <option value="Prosecco">Prosecco</option>
-                  <option value="Pivo">Pivo</option>
-                  <option value="Vodka">Vodka</option>
-                  <option value="Gin">Gin</option>
-                  <option value="Nealko">Nealko</option>
-                </select>
+                />
               </div>
 
               <div className="form-group">
@@ -349,7 +464,7 @@ function Footer() {
         </a>
       </p>
       <p className="footer-deadline">
-        Prosíme o potvrdenie účasti do 30. 9. 2026
+        Prosíme o potvrdenie účasti do 1. 9. 2026
       </p>
       <p className="footer-copy">© 2026 Evka & Michal</p>
     </footer>
