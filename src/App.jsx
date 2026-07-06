@@ -11,13 +11,11 @@ function App() {
     <div className="app">
       <Hero />
       <Countdown />
-      <Ceremony />
-      <Reception />
+      <Venues />
       <Program />
       <Organization />
       <Transport />
       <Accommodation />
-      <Gifts />
       <RsvpForm />
       <Footer />
     </div>
@@ -119,45 +117,43 @@ function Countdown() {
   );
 }
 
-/* ─── Ceremony ─── */
-function Ceremony() {
+/* ─── Miesta (Obrad + Hostina vedľa seba) ─── */
+function Venues() {
   return (
-    <section className="info-section" id="obrad">
+    <section className="info-section" id="miesta">
       <FadeIn>
-        <h2>Obrad</h2>
-        <p className="info-time">o 14:00 hod.</p>
-        <p className="info-place">Artikulárny drevený kostolík, Leštiny</p>
-        <a
-          href="https://maps.google.com/?q=Artikulárny+drevený+kostolík+Leštiny"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Zobraziť na mape
-        </a>
-      </FadeIn>
-    </section>
-  );
-}
-
-/* ─── Reception ─── */
-function Reception() {
-  return (
-    <section className="info-section" id="hostina">
-      <FadeIn>
-        <h2>Hostina</h2>
-        <p className="info-time">od 16:00 hod.</p>
-        <p className="info-place">
-          Hotel Park, Radlinského 21, 026 01 Dolný Kubín
-        </p>
-        <a
-          href="https://maps.google.com/?q=Hotel+Park+Radlinského+21+Dolný+Kubín"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Zobraziť na mape
-        </a>
+        <div className="venue-grid">
+          <div className="venue">
+            <h2>Obrad</h2>
+            <p className="info-time">o 14:00 hod.</p>
+            <p className="info-place">
+              Artikulárny drevený kostolík, Leštiny
+            </p>
+            <a
+              href="https://maps.google.com/?q=Artikulárny+drevený+kostolík+Leštiny"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+            >
+              📍 Zobraziť na mape
+            </a>
+          </div>
+          <div className="venue">
+            <h2>Hostina</h2>
+            <p className="info-time">od 16:00 hod.</p>
+            <p className="info-place">
+              Hotel Park, Radlinského 21, 026 01 Dolný Kubín
+            </p>
+            <a
+              href="https://maps.google.com/?q=Hotel+Park+Radlinského+21+Dolný+Kubín"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+            >
+              📍 Zobraziť na mape
+            </a>
+          </div>
+        </div>
       </FadeIn>
     </section>
   );
@@ -226,23 +222,6 @@ function Accommodation() {
         <p className="info-text">
           Ubytovať sa môžete priamo v Hoteli Park, kde sa koná hostina, alebo aj
           v okolí. Radi vám pomôžeme s výberom – neváhajte nás kontaktovať.
-        </p>
-      </FadeIn>
-    </section>
-  );
-}
-
-/* ─── Dary ─── */
-function Gifts() {
-  return (
-    <section className="info-section" id="dary">
-      <FadeIn>
-        <h2>Dary</h2>
-        <p className="info-text">
-          Najväčším darom bude, keď sa náš veľký deň rozhodnete stráviť s nami.
-          Pokiaľ si ale aj napriek tomu budete lámať hlavu s tým, čo by nám
-          urobilo radosť, oceníme akýkoľvek finančný príspevok namiesto darov či
-          kytíc.
         </p>
       </FadeIn>
     </section>
