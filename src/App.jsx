@@ -174,19 +174,124 @@ function Program() {
   );
 }
 
-/* ─── Doprava / autobus ─── */
+/* ─── Doprava / autobus + parkovanie ─── */
 function Transport() {
+  const [lightbox, setLightbox] = useState(null);
+
   return (
     <section className="info-section" id="doprava">
       <FadeIn>
         <h2>Doprava</h2>
         <p className="info-text">
-          Autobusovú dopravu medzi kostolom a hostinou zabezpečíme – časy
-          odchodov a ďalšie detaily ešte ladíme.
+          Pre hostí bude pripravený autobus. Vyráža z Kubínskej hole, okolo
+          13:30 zastaví pri Hoteli Park v Dolnom Kubíne a odtiaľ pokračuje ku
+          kostolíku v Leštinách tak, aby sme všetci boli na mieste pred obradom
+          o 14:00. Po obrade autobus zabezpečí odvoz ku Hotelu Park.
         </p>
-        <p className="info-note">(text doladíme)</p>
+        <div className="transport-block">
+          <h3 className="transport-title">Parkovanie pri hoteli</h3>
+          <p className="info-text">
+            Ak prídete autom, nechajte ho pokojne pri Hoteli Park a ku kostolu
+            sa odvezte autobusom. Auto tam môže bez obáv zostať aj cez noc.
+            K dispozícii sú dve parkoviská:
+          </p>
+          <ul className="parking-list">
+            <li>
+              <span className="parking-tag">P1</span> priamo pri Hoteli Park
+            </li>
+            <li>
+              <span className="parking-tag">P2</span> väčšie parkovisko pri
+              Daňovom úrade, cca 2 minúty pešo
+            </li>
+          </ul>
+          <p className="parking-note">
+            Ak sa už pri hoteli nezmestíte, využite parkovisko pri Daňovom
+            úrade. Prvá hodina je tam zdarma a od 16:00 sa neplatí počas celého
+            víkendu – ak teda prídete skôr, doplatíte si len čas do 16:00
+            (0,60 € za hodinu).
+          </p>
+          <figure className="parking-map">
+            <button
+              type="button"
+              className="parking-map-btn"
+              onClick={() => setLightbox("/parkovanie-hotel.jpeg")}
+            >
+              <img
+                src="/parkovanie-hotel.jpeg"
+                alt="Mapa parkovania pri Hoteli Park v Dolnom Kubíne"
+                loading="lazy"
+              />
+            </button>
+          </figure>
+        </div>
+
+        <div className="transport-block">
+          <h3 className="transport-title">Parkovanie pri kostole</h3>
+          <p className="info-text">
+            Kapacita autobusu je obmedzená, takže časť hostí pôjde ku kostolíku
+            vlastným autom. Priamo pri kostole sa dá zaparkovať len ťažko, no v
+            obci je niekoľko možností – všetky sú pár minút pešo od kostolíka:
+          </p>
+          <ul className="parking-list">
+            <li>
+              <span className="parking-tag">P1</span> pri evanjelickom farskom
+              úrade
+            </li>
+            <li>
+              <span className="parking-tag">P2</span> pri obecnom úrade
+            </li>
+            <li>
+              <span className="parking-tag">P3</span> pri hlavnej ceste, smerom
+              na Leštiny 83
+            </li>
+            <li>
+              <span className="parking-tag">P4</span> pri firme Plastiks
+            </li>
+          </ul>
+          <figure className="parking-map">
+            <button
+              type="button"
+              className="parking-map-btn"
+              onClick={() => setLightbox("/parkovanie-kostol.jpeg")}
+            >
+              <img
+                src="/parkovanie-kostol.jpeg"
+                alt="Mapa parkovania pri drevenom artikulárnom kostolíku v Leštinách"
+                loading="lazy"
+              />
+            </button>
+          </figure>
+        </div>
       </FadeIn>
+
+      {lightbox && (
+        <Lightbox src={lightbox} onClose={() => setLightbox(null)} />
+      )}
     </section>
+  );
+}
+
+/* ─── Lightbox (zväčšená mapa) ─── */
+function Lightbox({ src, onClose }) {
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true">
+      <button type="button" className="lightbox-close" aria-label="Zavrieť">
+        ×
+      </button>
+      <img src={src} alt="" onClick={(e) => e.stopPropagation()} />
+    </div>
   );
 }
 
