@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Tajnicka from "./Tajnicka.jsx";
+import Dovolenka from "./Dovolenka.jsx";
 
 // Sem vlož URL z Apps Script deployu (Deploy → New deployment → Web app).
 // Vyzerá takto: https://script.google.com/macros/s/AKfyc.../exec
@@ -17,6 +18,8 @@ function App() {
 
   // Skrytá stránka s tajničkou do svadobných novín: /#tajnicka
   if (hash === "#tajnicka") return <Tajnicka />;
+  // Skrytá stránka so svadobnou cestou do Peru: /#dovolenka
+  if (hash === "#dovolenka") return <Dovolenka />;
 
   return (
     <div className="app">

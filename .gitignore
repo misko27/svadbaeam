@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Doklady k dovolenke (letenky, pasy…) – repo je verejné, nikdy necommitovať
+public/dovolenka/*
+!public/dovolenka/README.md

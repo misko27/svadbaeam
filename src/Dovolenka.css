@@ -1,0 +1,505 @@
+/* ─── Dovolenka (skrytá stránka #dovolenka – svadobná cesta Peru) ─── */
+.dov {
+  --dov-card: #FFFDF9;
+  --dov-line: #E4D6C6;
+  --dov-muted: #8A7666;
+  --dov-green: #6E8B5E;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+/* Hero */
+.dov-hero {
+  position: relative;
+  text-align: center;
+  padding: 4.5rem 1rem 6.5rem;
+  background: linear-gradient(160deg, #F5EDE3 0%, #EFD9C4 55%, #E6C3A5 100%);
+  overflow: hidden;
+}
+.dov-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dov-title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(4.5rem, 16vw, 8rem);
+  line-height: 1.05;
+  margin: 0.2rem 0 0.4rem;
+}
+.dov-dates {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+}
+.dov-route {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--dov-muted);
+}
+.dov-badge {
+  display: inline-block;
+  margin-top: 1.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.dov-mtn {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+}
+.dov-mtn path:first-child { fill: #C4956A; opacity: 0.35; }
+.dov-mtn path:last-child { fill: var(--bg); }
+
+/* Navigácia */
+.dov-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  overflow-x: auto;
+  background: rgba(245, 237, 227, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--dov-line);
+  scrollbar-width: none;
+}
+.dov-nav::-webkit-scrollbar { display: none; }
+.dov-nav button {
+  flex: none;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--dov-line);
+  background: var(--dov-card);
+  color: var(--text);
+  cursor: pointer;
+}
+.dov-nav button:hover { border-color: var(--accent); color: var(--accent); }
+
+.dov-main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+.dov-section {
+  padding-top: 2.8rem;
+  scroll-margin-top: 3.2rem;
+}
+.dov-h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.dov-h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 1.2rem 0 0.6rem;
+}
+.dov-intro {
+  color: var(--dov-muted);
+  margin-bottom: 1rem;
+  max-width: 62ch;
+}
+.dov-k {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dov-muted);
+}
+.dov-list {
+  margin: 1rem 0 0 1.1rem;
+}
+.dov-list li { margin: 0.3rem 0; }
+
+.dov-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+.dov-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: #F1E1D2;
+  color: #7A4028;
+  white-space: nowrap;
+}
+
+/* Dnes */
+.dov-today {
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.3rem;
+  border-radius: 14px;
+  background: var(--text);
+  color: var(--white);
+}
+.dov-today-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+.dov-today h3 {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+.dov-today .dov-tag { background: rgba(255, 253, 249, 0.14); color: var(--white); }
+
+/* Trasa */
+.dov-route-list {
+  list-style: none;
+  counter-reset: stop;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.6rem;
+}
+.dov-route-list li {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.8rem 0.9rem;
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  border-radius: 12px;
+  counter-increment: stop;
+}
+.dov-route-dot {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+.dov-route-dot::before { content: counter(stop); }
+.dov-route-sub { color: var(--dov-muted); font-size: 0.85rem; }
+.dov-route-meta { font-size: 0.82rem; color: var(--dov-muted); }
+.dov-hotel {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--dov-line);
+  font-size: 0.8rem;
+}
+.dov-hotel span { color: var(--dov-muted); }
+.dov-hotel a { color: var(--accent); }
+
+/* Doklady */
+.dov-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.6rem;
+}
+.dov-doc {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+a.dov-doc:hover { border-color: var(--accent); transform: translateY(-1px); }
+.dov-doc.missing {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.7;
+}
+.dov-doc-icon {
+  flex: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 8px;
+  background: #F1E1D2;
+  display: grid;
+  place-items: center;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+.dov-doc-text { display: flex; flex-direction: column; min-width: 0; }
+.dov-doc-text strong { font-weight: 600; font-size: 0.95rem; }
+.dov-doc-text span { font-size: 0.8rem; color: var(--dov-muted); }
+
+.dov-drive {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  border-radius: 14px;
+  background: var(--text);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+.dov-drive > span:last-child { display: flex; flex-direction: column; font-size: 0.95rem; }
+.dov-drive > span:last-child span { font-size: 0.8rem; opacity: 0.7; }
+.dov-drive:hover { background: var(--accent); }
+
+/* Lety – ako palubný lístok */
+.dov-flights {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.9rem;
+}
+.dov-ticket {
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  position: relative;
+}
+.dov-ticket.todo { border-style: dashed; background: transparent; }
+.dov-ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.dov-pill {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.dov-pill.done { background: #E3EBDC; color: #4C6440; }
+.dov-pill.todo { background: #F6DCCF; color: #9A4524; }
+.dov-ticket-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.7rem 0;
+  padding-bottom: 0.8rem;
+  border-bottom: 1.5px dashed var(--dov-line);
+}
+.dov-ticket-route .right { text-align: right; }
+.dov-iata {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.dov-city { font-size: 0.82rem; color: var(--dov-muted); }
+.dov-plane { color: var(--accent); font-size: 1.4rem; }
+.dov-ticket-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  font-size: 0.9rem;
+}
+.dov-ticket-note {
+  margin-top: 0.7rem;
+  font-size: 0.83rem;
+  color: #7A4028;
+  background: #F8EADF;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+}
+
+/* Deň po dni */
+.dov-days { list-style: none; }
+.dov-day {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--dov-line);
+}
+.dov-day-date {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding-top: 0.2rem;
+}
+.dov-day-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.dov-day-body p { font-size: 0.95rem; }
+.dov-day.is-past { opacity: 0.5; }
+.dov-day.is-highlight .dov-day-body h3::after { content: " ✦"; color: var(--accent); }
+.dov-day.is-today {
+  background: var(--dov-card);
+  border: 1.5px solid var(--accent);
+  border-radius: 12px;
+  padding: 0.9rem;
+  margin: 0.4rem -0.9rem;
+}
+
+/* Machu Picchu */
+.dov-mp-card {
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+}
+.dov-mp-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.8rem;
+  font-size: 0.92rem;
+}
+.dov-mp-times .dov-k { color: var(--accent); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em; }
+.dov-callout {
+  margin-top: 1rem;
+  padding: 0.7rem 0.9rem;
+  border-left: 3px solid var(--accent);
+  background: #F8EADF;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.92rem;
+}
+.dov-details {
+  margin-top: 0.9rem;
+  border: 1px solid var(--dov-line);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+}
+.dov-details summary { cursor: pointer; font-weight: 600; }
+.dov-circuits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+.dov-circuits p { margin: 0.2rem 0 0.4rem; color: var(--dov-muted); }
+
+/* Treba vybaviť */
+.dov-progress {
+  position: relative;
+  height: 1.8rem;
+  border-radius: 999px;
+  background: #EADCCD;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.dov-progress-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--dov-green);
+}
+.dov-progress span {
+  position: relative;
+  display: block;
+  text-align: center;
+  line-height: 1.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--white);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+}
+.dov-todo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0 1.6rem;
+}
+.dov-todo-group ul { list-style: none; }
+.dov-todo-group li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.35rem 0;
+  font-size: 0.94rem;
+}
+.dov-check {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  border-radius: 5px;
+  border: 1.5px solid var(--accent-light);
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  color: var(--white);
+}
+.dov-todo-group li.done .dov-check { background: var(--dov-green); border-color: var(--dov-green); }
+.dov-todo-group li.done > span:last-child { color: var(--dov-muted); text-decoration: line-through; }
+.dov-todo-note { color: var(--dov-muted); font-size: 0.85rem; }
+
+/* Počasie */
+.dov-weather {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.6rem;
+}
+.dov-weather-card {
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  border-radius: 12px;
+  padding: 0.9rem;
+  font-size: 0.88rem;
+}
+.dov-weather-icon { font-size: 1.5rem; display: block; margin-bottom: 0.3rem; }
+.dov-weather-card strong { display: block; line-height: 1.3; }
+.dov-weather-card p { margin: 0.4rem 0; color: var(--dov-muted); }
+.dov-weather-temp { font-weight: 600; color: var(--accent); }
+
+/* Linky */
+.dov-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.6rem;
+}
+.dov-link {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  background: var(--dov-card);
+  border: 1px solid var(--dov-line);
+  color: inherit;
+  text-decoration: none;
+}
+.dov-link:hover { border-color: var(--accent); }
+.dov-link span { font-size: 0.82rem; color: var(--accent); }
+
+.dov-back {
+  display: inline-block;
+  margin-top: 3rem;
+  color: var(--dov-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 520px) {
+  .dov-day { grid-template-columns: 1fr; gap: 0.2rem; }
+  .dov-flights, .dov-todo-grid { grid-template-columns: 1fr; }
+  .dov-day.is-today { margin: 0.4rem 0; }
+}
+
+@media print {
+  .dov-nav, .dov-back { display: none; }
+  .dov-hero { padding: 1.5rem 1rem 2rem; }
+  .dov-mtn { display: none; }
+}
