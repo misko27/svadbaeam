@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
+import Tajnicka from "./Tajnicka.jsx";
 
 // Sem vlož URL z Apps Script deployu (Deploy → New deployment → Web app).
 // Vyzerá takto: https://script.google.com/macros/s/AKfyc.../exec
@@ -7,6 +8,16 @@ const FORM_URL =
   "https://script.google.com/macros/s/AKfycbxS1iUD7cwccDRbaMxPQvN9yGFYPtGf7aWABF9QJRs4Ayvkc3MSh3QKqZgYO6HBLwnD/exec";
 
 function App() {
+  const [hash, setHash] = useState(window.location.hash);
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  // Skrytá stránka s tajničkou do svadobných novín: /#tajnicka
+  if (hash === "#tajnicka") return <Tajnicka />;
+
   return (
     <div className="app">
       <Hero />
