@@ -1,0 +1,332 @@
+/* ─── Zasadací poriadok (skrytá stránka #zasadaci – prehľad pre nás a hotel) ─── */
+.zs {
+  --zs-card: #FFFDF9;
+  --zs-line: #E4D6C6;
+  --zs-muted: #8A7666;
+  --zs-wood: #EAD9C3;
+  --zs-wood-2: #E1CCB1;
+  --zs-kid: #6E8BB5;
+  --zs-high: #3E5F8F;
+  --zs-diet: #6E8B5E;
+  --zs-over: #B8423E;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  padding: 1rem 1rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.zs-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.25rem;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.5rem 0 1rem;
+}
+.zs-toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+.zs-toolbar button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--zs-line);
+  border-radius: 999px;
+  background: var(--zs-card);
+  color: var(--text);
+  cursor: pointer;
+}
+.zs-toolbar button:hover {
+  border-color: var(--accent-light);
+}
+
+.zs-head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.zs-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.zs-head h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin: 0.3rem 0 1rem;
+}
+.zs-totals {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.9rem;
+  color: var(--zs-muted);
+}
+.zs-totals b {
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.zs-section {
+  margin-bottom: 3rem;
+}
+.zs-section h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid var(--zs-line);
+  padding-bottom: 0.3rem;
+}
+
+/* ─── Pôdorys ─── */
+.zs-plan {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--zs-card);
+  border: 1px solid var(--zs-line);
+  border-radius: 10px;
+  touch-action: none;
+  user-select: none;
+}
+.zs-hall {
+  fill: #FBF6EF;
+  stroke: var(--text);
+  stroke-width: 0.08;
+}
+.zs-parket-a { fill: var(--zs-wood); }
+.zs-parket-b { fill: var(--zs-wood-2); }
+.zs-floor {
+  stroke: #C9AE8D;
+  stroke-width: 0.04;
+}
+.zs-area-label {
+  font-family: var(--font-heading);
+  font-size: 0.9px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  fill: #9C7F5E;
+}
+.zs-dj {
+  fill: #3D2B1F;
+}
+.zs-dj-label {
+  font-size: 0.42px;
+  fill: #F5EDE3;
+  font-weight: 600;
+}
+
+.zs-table.editing {
+  cursor: grab;
+}
+.zs-table.editing:active {
+  cursor: grabbing;
+}
+.zs-top {
+  fill: #fff;
+  stroke: var(--text);
+  stroke-width: 0.05;
+}
+.zs-table.over .zs-top {
+  stroke: var(--zs-over);
+  stroke-width: 0.09;
+}
+.zs-table.crew .zs-top {
+  fill: #F1E7DA;
+  stroke-dasharray: 0.12 0.08;
+}
+.zs-chair {
+  fill: #C4956A;
+  stroke: #8E6844;
+  stroke-width: 0.03;
+}
+.zs-chair.kid { fill: var(--zs-kid); stroke: #48638a; }
+.zs-chair.high { fill: var(--zs-high); stroke: #243c60; }
+.zs-chair.diet { stroke: var(--zs-diet); stroke-width: 0.1; }
+.zs-num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.7px;
+  font-variant-numeric: lining-nums;
+  fill: var(--text);
+}
+.zs-count {
+  font-size: 0.3px;
+  font-weight: 600;
+  fill: var(--zs-muted);
+}
+.zs-chip rect { stroke-width: 0.03; }
+.zs-chip text {
+  font-size: 0.3px;
+  font-weight: 700;
+  fill: #fff;
+}
+.zs-chip.kid rect { fill: var(--zs-kid); stroke: #48638a; }
+.zs-chip.high rect { fill: var(--zs-high); stroke: #243c60; }
+.zs-chip.veg rect { fill: #fff; stroke: var(--zs-diet); stroke-width: 0.06; }
+.zs-chip.veg text { fill: var(--zs-diet); }
+.zs-crew-label {
+  font-size: 0.26px;
+  fill: var(--zs-muted);
+}
+.zs-name {
+  font-size: 0.24px;
+  fill: var(--text);
+  paint-order: stroke;
+  stroke: #FBF6EF;
+  stroke-width: 0.08;
+}
+
+.zs-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  color: var(--zs-muted);
+  margin-top: 0.6rem;
+}
+.zs-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.sw {
+  display: inline-block;
+  width: 14px;
+  height: 12px;
+  border-radius: 3px;
+}
+.sw.chair { background: #C4956A; }
+.sw.kid { background: var(--zs-kid); }
+.sw.high { background: var(--zs-high); }
+.sw.diet { background: #C4956A; outline: 2px solid var(--zs-diet); }
+
+/* ─── Karty stolov ─── */
+.zs-legend-inline {
+  font-size: 0.85rem;
+  color: var(--zs-muted);
+  margin-bottom: 1rem;
+}
+.zs-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.zs-card {
+  background: var(--zs-card);
+  border: 1px solid var(--zs-line);
+  border-radius: 10px;
+  padding: 1rem;
+  break-inside: avoid;
+}
+.zs-card.over {
+  border-color: var(--zs-over);
+}
+.zs-card header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.zs-card-num {
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.zs-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+.zs-card-meta {
+  font-size: 0.8rem;
+  color: var(--zs-muted);
+}
+.zs-warn {
+  font-size: 0.8rem;
+  color: var(--zs-over);
+  font-weight: 600;
+}
+.zs-mini {
+  display: block;
+  width: 190px;
+  height: 190px;
+  margin: 0.6rem auto;
+}
+.zs-mini.wide {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+}
+.zs-mini .zs-num { font-size: 0.9px; }
+.zs-mini .zs-count,
+.zs-mini .zs-chips { display: none; }
+.zs-mini-name {
+  font-size: 0.32px;
+  fill: var(--zs-muted);
+  font-weight: 600;
+}
+.zs-list {
+  font-size: 0.9rem;
+  padding-left: 1.6rem;
+}
+.zs-list li {
+  padding: 0.1rem 0;
+  border-bottom: 1px dotted var(--zs-line);
+}
+.zs-list li:last-child {
+  border-bottom: none;
+}
+.zs-list li.kid .zs-list-name {
+  color: var(--zs-high);
+}
+.zs-list-flags {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+}
+.zs-pill {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  background: #E3EAF3;
+  color: var(--zs-high);
+}
+.zs-pill.none {
+  background: #EFE6DC;
+  color: var(--zs-muted);
+}
+.zs-list-flags em {
+  color: var(--zs-muted);
+}
+
+/* ─── Tlač pre hotel ─── */
+@media print {
+  .no-print { display: none !important; }
+  .zs { background: #fff; padding: 0; max-width: none; }
+  .zs-section:first-of-type { break-after: page; }
+  .zs-cards { grid-template-columns: repeat(3, 1fr); }
+  .zs-card { border-color: #bbb; }
+}
