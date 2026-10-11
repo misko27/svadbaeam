@@ -281,7 +281,8 @@
 }
 .zs-mini .zs-num { font-size: 0.9px; }
 .zs-mini .zs-count,
-.zs-mini .zs-chips { display: none; }
+.zs-mini .zs-chips,
+.zs-mini .zs-crew-label { display: none; }
 .zs-mini-name {
   font-size: 0.32px;
   fill: var(--zs-muted);
