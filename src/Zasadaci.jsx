@@ -23,36 +23,36 @@ const TABLES = [
     x: PARKET_X / 2,
     y: 0.9,
     len: 5, // dĺžka stola (m), sedí sa len z jednej strany – tvárou do sály
-    vysluzky: 0,
+   
     guests: ["Mama nevesty", "Nevesta", { name: "Ženích", veg: true }, "Mama ženícha", "Otec ženícha"],
   },
-  { id: 2, x: 4.55, y: 4.9, vysluzky: 0,
+  { id: 2, x: 4.55, y: 4.9,
     guests: ["Igor", "Martina", "Danko", "Janka", "Andrea", "Dušan", "Ivet", "Majo",
       { name: "Sárka", kid: true, meal: "kid" }, { name: "Sofia", kid: true, meal: "kid" },
       { name: "Dominik", kid: true, meal: "kid" }] },
-  { id: 3, x: 8.65, y: 4.9, vysluzky: 0,
+  { id: 3, x: 8.65, y: 4.9,
     guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", "Majka",
-      { name: "Petko", veg: true }, "Majka",
-      { name: "Petko", kid: true, meal: "kid" }, { name: "Davidko", kid: true, meal: "kid" },
-      { name: "Simonko", kid: true, highChair: true, meal: "none" }] },
-  { id: 4, x: 12.75, y: 4.9, vysluzky: 0,
+      { name: "Peťko", veg: true }, "Majka",
+      { name: "Peťko", kid: true, meal: "kid" }, { name: "Davidko", kid: true, meal: "kid" },
+      { name: "Šimonko", kid: true, highChair: true, meal: "kid" }] },
+  { id: 4, x: 12.75, y: 4.9,
     guests: ["Litka", "Maroš", "Ingrid", { name: "Emka", kid: true, meal: "kid" }, "Janka", "Janko",
       { name: "Sonja", kid: true, meal: "kid" }, { name: "Janko", kid: true, meal: "kid" }] },
-  { id: 5, x: 2.5, y: 8.6, vysluzky: 4,
+  { id: 5, x: 2.5, y: 8.6,
     guests: ["Róbert", "Eva", "Michal", "teta Žofia", "Julka", "Miro",
       { name: "Emma", kid: true, meal: "kid" }, { name: "Dominik", kid: true, meal: "kid" }, "Lenka", "Peťo"] },
-  { id: 6, x: 6.6, y: 8.6, vysluzky: 5,
+  { id: 6, x: 6.6, y: 8.6,
     guests: ["Krstná", "Krstný", "Vlado", "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka"] },
-  { id: 7, x: 10.7, y: 8.6, vysluzky: 5,
+  { id: 7, x: 10.7, y: 8.6,
     guests: [{ name: "Lila", diet: "bezlepková" }, "Tomáš", { name: "Janka", veg: true }, "Ado", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baša", veg: true }] },
-  { id: 8, x: 14.8, y: 8.6, vysluzky: 6,
+  { id: 8, x: 14.8, y: 8.6,
     guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", "Dávid", "Nika", "Rado", "Patrik", "Nelka"] },
-  { id: 9, x: 4.55, y: 12.3, vysluzky: 5,
+  { id: 9, x: 4.55, y: 12.3,
     guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Michal", "Dada", "Paťka", "Andrej", "Viki", { name: "Evka", diet: "bezlepková" }, "Richard"] },
-  { id: 10, x: 8.65, y: 12.3, vysluzky: 5,
+  { id: 10, x: 8.65, y: 12.3,
     guests: [{ name: "Lucia", veg: true }, "Lukáš", "Mery", { name: "Mára", diet: "bezlepková" }, "Sima", { name: "Lenka", veg: true }, "Igor", { name: "Veru", diet: "bezlepková" }, "Lukáš",
       { name: "Alžbetka", kid: true, highChair: true, meal: "none" }] },
-  { id: 11, x: 12.75, y: 12.3, vysluzky: 3,
+  { id: 11, x: 12.75, y: 12.3,
     guests: ["Cygo", "Tina", "Laco", "Marta", "Tomáš", "Julka", "Sandra", "Danka", "Veronika", "Jambi"] },
 ];
 
@@ -322,7 +322,6 @@ function TableCard({ t }) {
             {diet > 0 && ` · ${diet} ${diet === 1 ? "diéta" : diet < 5 ? "diéty" : "diét"}`}
             {kidMeal > 0 && ` · ${kidMeal} ${kidMeal === 1 ? "detská porcia" : "detské porcie"}`}
             {noMeal > 0 && ` · ${noMeal} bez jedla`}
-            {t.vysluzky > 0 && ` · ${t.vysluzky} výslužky`}
           </p>
           {over > 0 && <p className="zs-warn">⚠ preplnené o {over}</p>}
         </div>
@@ -401,10 +400,12 @@ export default function Zasadaci() {
     kids: all.filter((g) => g.kid).length,
     high: all.filter((g) => g.highChair).length,
     veg: all.filter((g) => g.veg).length,
-    diet: [...all, ...crew].filter((g) => g.diet).length,
+    // Diéty podľa druhu, napr. { bezlepková: 5, špeciál: 1 }
+    diets: [...all, ...crew]
+      .filter((g) => g.diet)
+      .reduce((acc, g) => ({ ...acc, [g.diet]: (acc[g.diet] ?? 0) + 1 }), {}),
     kidMeal: all.filter((g) => g.meal === "kid").length,
     noMeal: all.filter((g) => g.meal === "none").length,
-    vysluzky: TABLES.reduce((s, t) => s + (t.vysluzky ?? 0), 0),
   };
 
   const copyPositions = async () => {
@@ -448,10 +449,11 @@ export default function Zasadaci() {
           <li><b>{totals.kids}</b> deti</li>
           <li><b>{totals.high}</b> detské stoličky</li>
           <li><b>{totals.veg}</b> vege</li>
-          <li><b>{totals.diet}</b> diéty</li>
+          {Object.entries(totals.diets).map(([d, n]) => (
+            <li key={d}><b>{n}</b> {d}{d === "špeciál" && " (DJ)"}</li>
+          ))}
           <li><b>{totals.kidMeal}</b> detské porcie</li>
           <li><b>{totals.noMeal}</b> bez jedla</li>
-          <li><b>{totals.vysluzky}</b> výslužky</li>
           <li><b>{TABLES.length}</b> stolov + stôl DJ/foto/kamera</li>
         </ul>
       </header>
