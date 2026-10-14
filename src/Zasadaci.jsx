@@ -12,6 +12,7 @@ const CHAIR_GAP = 0.45; // o koľko sú stoličky odsadené od hrany stola
 /* ─── Stoly ─── */
 // Hosť môže byť len meno (string) alebo objekt:
 //   { name: "Ema", kid: true, highChair: true, veg: true, diet: "bezlepková", note: "..." }
+//   nealko: true = nepije alkohol (deti automaticky)
 //   meal: "kid" = detská porcia, "none" = bez jedla (napr. bábätko v detskej stoličke)
 // Meno začínajúce na "dieta" sa automaticky berie ako dieťa.
 // x, y = stred stola v metroch; "Upraviť rozloženie" ich dovolí ťahať myšou.
@@ -31,29 +32,29 @@ const TABLES = [
       { name: "Sárka", kid: true, meal: "kid" }, { name: "Sofia", kid: true, meal: "kid" },
       { name: "Dominik", kid: true, meal: "kid" }] },
   { id: 3, x: 8.65, y: 4.9,
-    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", "Majka",
-      { name: "Peťko", veg: true }, "Majka",
+    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", { name: "Majka", nealko: true },
+      { name: "Peťko", veg: true, nealko: true }, "Majka",
       { name: "Peťko", kid: true, meal: "kid" }, { name: "Davidko", kid: true, meal: "kid" },
       { name: "Šimonko", kid: true, highChair: true, meal: "kid" }] },
   { id: 4, x: 12.75, y: 4.9,
     guests: ["Litka", "Maroš", "Ingrid", { name: "Emka", kid: true, meal: "kid" }, "Janka", "Janko",
       { name: "Sonja", kid: true, meal: "kid" }, { name: "Janko", kid: true, meal: "kid" }] },
   { id: 5, x: 2.5, y: 8.6,
-    guests: ["Róbert", "Eva", "Michal", "teta Žofia", "Julka", "Miro",
+    guests: ["Róbert", "Eva", "Michal", "teta Žofia", { name: "Julka", nealko: true }, "Miro",
       { name: "Emma", kid: true, meal: "kid" }, { name: "Dominik", kid: true, meal: "kid" }, "Lenka", "Peťo"] },
   { id: 6, x: 6.6, y: 8.6,
-    guests: ["Krstná", "Krstný", "Vlado", "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka"] },
+    guests: ["Krstná", "Krstný", { name: "Vlado", nealko: true }, "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka"] },
   { id: 7, x: 10.7, y: 8.6,
-    guests: [{ name: "Lila", diet: "bezlepková" }, "Tomáš", { name: "Janka", veg: true }, "Ado", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baša", veg: true }] },
+    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Ado", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baša", veg: true, nealko: true }] },
   { id: 8, x: 14.8, y: 8.6,
-    guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", "Dávid", "Nika", "Rado", "Patrik", "Nelka"] },
+    guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", { name: "Dávid", nealko: true }, { name: "Nika", nealko: true }, "Rado", "Patrik", "Nelka"] },
   { id: 9, x: 4.55, y: 12.3,
-    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Michal", "Dada", "Paťka", "Andrej", "Viki", { name: "Evka", diet: "bezlepková" }, "Richard"] },
+    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Michal", "Dada", "Paťka", "Andrej", { name: "Viki", nealko: true }, { name: "Evka", diet: "bezlepková", nealko: true }, { name: "Richard", nealko: true }] },
   { id: 10, x: 8.65, y: 12.3,
-    guests: [{ name: "Lucia", veg: true }, "Lukáš", "Mery", { name: "Mára", diet: "bezlepková" }, "Sima", { name: "Lenka", veg: true }, "Igor", { name: "Veru", diet: "bezlepková" }, "Lukáš",
+    guests: [{ name: "Lucia", veg: true, nealko: true }, { name: "Lukáš", nealko: true }, "Mery", { name: "Mára", diet: "bezlepková", nealko: true }, "Sima", { name: "Lenka", veg: true }, "Igor", { name: "Veru", diet: "bezlepková" }, "Lukáš",
       { name: "Alžbetka", kid: true, highChair: true, meal: "none" }] },
   { id: 11, x: 12.75, y: 12.3,
-    guests: ["Cygo", "Tina", "Laco", "Marta", "Tomáš", "Julka", "Sandra", "Danka", "Veronika", "Jambi"] },
+    guests: ["Juraj", "Tina", { name: "Laco", nealko: true }, "Marta", { name: "Tomáš", nealko: true }, { name: "Julka", nealko: true }, "Sandra", "Danka", "Veronika", "Jambi"] },
 ];
 
 // Malý stôl pre dodávateľov – hore pri parkete, oproti hlavnému stolu.
@@ -78,7 +79,7 @@ const STORAGE_KEY = "zasadaci-pozicie-v2";
 const normGuest = (g) => {
   const o = typeof g === "string" ? { name: g } : g;
   const kid = o.kid ?? /^die(ť|t)a/i.test(o.name);
-  return { ...o, kid };
+  return { ...o, kid, nealko: o.nealko ?? kid };
 };
 
 // Pozície stoličiek okolo stola (v metroch, relatívne k stredu stola).
@@ -294,7 +295,7 @@ function FloorPlan({ tables, setPos, editing, showNames }) {
 }
 
 const flagIcons = (g) =>
-  [g.kid && "👶", g.highChair && "🪑", g.veg && "🌱", g.diet && "⚠️"].filter(Boolean).join(" ");
+  [g.kid && "👶", g.highChair && "🪑", g.veg && "🌱", g.diet && "⚠️", g.nealko && !g.kid && "🧃"].filter(Boolean).join(" ");
 
 function TableCard({ t }) {
   const guests = t.guests.map(normGuest);
@@ -307,6 +308,7 @@ function TableCard({ t }) {
   const diet = guests.filter((g) => g.diet).length;
   const kidMeal = guests.filter((g) => g.meal === "kid").length;
   const noMeal = guests.filter((g) => g.meal === "none").length;
+  const nealko = guests.filter((g) => g.nealko).length;
 
   return (
     <article className={`zs-card ${over > 0 ? "over" : ""}`}>
@@ -322,6 +324,7 @@ function TableCard({ t }) {
             {diet > 0 && ` · ${diet} ${diet === 1 ? "diéta" : diet < 5 ? "diéty" : "diét"}`}
             {kidMeal > 0 && ` · ${kidMeal} ${kidMeal === 1 ? "detská porcia" : "detské porcie"}`}
             {noMeal > 0 && ` · ${noMeal} bez jedla`}
+            {nealko > 0 && ` · ${nealko} nealko`}
           </p>
           {over > 0 && <p className="zs-warn">⚠ preplnené o {over}</p>}
         </div>
@@ -406,6 +409,8 @@ export default function Zasadaci() {
       .reduce((acc, g) => ({ ...acc, [g.diet]: (acc[g.diet] ?? 0) + 1 }), {}),
     kidMeal: all.filter((g) => g.meal === "kid").length,
     noMeal: all.filter((g) => g.meal === "none").length,
+    nealko: all.filter((g) => g.nealko).length,
+    nealkoAdults: all.filter((g) => g.nealko && !g.kid).length,
   };
 
   const copyPositions = async () => {
@@ -454,6 +459,7 @@ export default function Zasadaci() {
           ))}
           <li><b>{totals.kidMeal}</b> detské porcie</li>
           <li><b>{totals.noMeal}</b> bez jedla</li>
+          <li><b>{totals.nealko}</b> nealko ({totals.nealkoAdults} dospelí + {totals.nealko - totals.nealkoAdults} deti)</li>
           <li><b>{TABLES.length}</b> stolov + stôl DJ/foto/kamera</li>
         </ul>
       </header>
@@ -473,7 +479,7 @@ export default function Zasadaci() {
       <section className="zs-section">
         <h2>2 · Stoly a menovky</h2>
         <p className="zs-legend-inline">
-          👶 dieťa · 🪑 detská stolička · 🌱 vegetarián · ⚠️ diéta / alergia
+          👶 dieťa (vždy nealko) · 🪑 detská stolička · 🌱 vegetarián · ⚠️ diéta / alergia · 🧃 nealko
         </p>
         <div className="zs-cards">
           {[...tables, CREW].map((t) => (
