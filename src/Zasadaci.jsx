@@ -12,7 +12,7 @@ const CHAIR_GAP = 0.45; // o koľko sú stoličky odsadené od hrany stola
 /* ─── Stoly ─── */
 // Hosť môže byť len meno (string) alebo objekt:
 //   { name: "Ema", kid: true, highChair: true, veg: true, diet: "bezlepková", note: "..." }
-//   nealko: true = nepije alkohol (deti automaticky)
+//   nealko: true = nepije alkohol (deti automaticky, okrem bábätiek bez jedla)
 //   meal: "kid" = detská porcia, "none" = bez jedla (napr. bábätko v detskej stoličke)
 // Meno začínajúce na "dieta" sa automaticky berie ako dieťa.
 // x, y = stred stola v metroch; "Upraviť rozloženie" ich dovolí ťahať myšou.
@@ -28,28 +28,28 @@ const TABLES = [
     guests: ["Mama nevesty", { name: "Nevesta", veg: true }, { name: "Ženích", veg: true }, "Mama ženícha", "Otec ženícha"],
   },
   { id: 2, x: 4.55, y: 4.9,
-    guests: ["Róbert", "Eva", "Michal", "teta Žofia", { name: "Julka", nealko: true }, "Miro",
+    guests: ["Róbert", "Eva", "Michal", "Žofka", { name: "Julka", nealko: true }, "Miro",
       { name: "Emma", kid: true, meal: "kid" }, { name: "Dominik", kid: true, meal: "kid" }, "Lenka", "Peťo"] },
   { id: 3, x: 8.65, y: 4.9,
     guests: ["Igor", "Martina", "Danko", "Janka", "Andrea", "Dušan", "Ivet", "Majo",
       { name: "Sárka", kid: true, meal: "kid" }, { name: "Sofia", kid: true, meal: "kid" },
       { name: "Dominik", kid: true, meal: "kid" }] },
   { id: 4, x: 12.75, y: 4.9,
-    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", { name: "Majka", nealko: true },
-      { name: "Peťko", veg: true, nealko: true }, "Majka",
+    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", "Majka",
+      { name: "Peťko", veg: true, nealko: true }, { name: "Majka", nealko: true },
       { name: "Peťko", kid: true, meal: "kid" }, { name: "Davidko", kid: true, meal: "kid" },
       { name: "Šimonko", kid: true, highChair: true, meal: "kid" }] },
   { id: 5, x: 2.5, y: 8.6,
     guests: ["Krstná", "Krstný", { name: "Vlado", nealko: true }, "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka"] },
   { id: 6, x: 6.6, y: 8.6,
-    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Ado", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baša", veg: true, nealko: true }] },
+    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Ado s Mačkanom", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baška", veg: true, nealko: true }] },
   { id: 7, x: 10.7, y: 8.6,
     guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", { name: "Dávid", nealko: true }, { name: "Nika", nealko: true }, "Rado", "Patrik", "Nelka"] },
   { id: 8, x: 14.8, y: 8.6,
     guests: ["Litka", "Maroš", "Ingrid", { name: "Emka", kid: true, meal: "kid" }, "Janka", "Janko",
       { name: "Sonja", kid: true, meal: "kid" }, { name: "Janko", kid: true, meal: "kid" }] },
   { id: 9, x: 4.55, y: 12.3,
-    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Michal", "Dada", "Paťka", "Andrej", { name: "Viki", nealko: true }, { name: "Evka", diet: "bezlepková", nealko: true }, { name: "Richard", nealko: true }] },
+    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Mišo", "Dada", "Paťka", "Andrej", { name: "Viki", nealko: true }, { name: "Evka", diet: "bezlepková", nealko: true }, { name: "Richard", nealko: true }] },
   { id: 10, x: 8.65, y: 12.3,
     guests: ["Juraj", "Tina", { name: "Laco", nealko: true }, "Marta", { name: "Tomáš", nealko: true }, { name: "Julka", nealko: true }, "Sandra", "Danka", "Veronika", "Jambi"] },
   { id: 11, x: 12.75, y: 12.3,
@@ -79,7 +79,7 @@ const STORAGE_KEY = "zasadaci-pozicie-v2";
 const normGuest = (g) => {
   const o = typeof g === "string" ? { name: g } : g;
   const kid = o.kid ?? /^die(ť|t)a/i.test(o.name);
-  return { ...o, kid, nealko: o.nealko ?? kid };
+  return { ...o, kid, nealko: o.nealko ?? (kid && o.meal !== "none") };
 };
 
 // Pozície stoličiek okolo stola (v metroch, relatívne k stredu stola).
@@ -459,7 +459,7 @@ export default function Zasadaci() {
           ))}
           <li><b>{totals.kidMeal}</b> detské porcie</li>
           <li><b>{totals.noMeal}</b> bez jedla</li>
-          <li><b>{totals.nealko}</b> nealko ({totals.nealkoAdults} dospelí + {totals.nealko - totals.nealkoAdults} deti)</li>
+          <li><b>{totals.nealko}</b> nealko nápoj ({totals.nealkoAdults} dospelí + {totals.nealko - totals.nealkoAdults} deti)</li>
           <li><b>{TABLES.length}</b> stolov + stôl DJ/foto/kamera</li>
         </ul>
       </header>
@@ -479,7 +479,7 @@ export default function Zasadaci() {
       <section className="zs-section">
         <h2>2 · Stoly a menovky</h2>
         <p className="zs-legend-inline">
-          👶 dieťa (vždy nealko) · 🪑 detská stolička · 🌱 vegetarián · ⚠️ diéta / alergia · 🧃 nealko
+          👶 dieťa (nealko) · 🪑 detská stolička · 🌱 vegetarián · ⚠️ diéta / alergia · 🧃 nealko
         </p>
         <div className="zs-cards">
           {[...tables, CREW].map((t) => (
