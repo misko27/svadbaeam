@@ -42,7 +42,7 @@ const TABLES = [
   { id: 5, x: 2.5, y: 8.6,
     guests: ["Krstná", "Krstný", { name: "Vlado", nealko: true }, "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka"] },
   { id: 6, x: 6.6, y: 8.6,
-    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Ado s Mačkanom", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baška", veg: true, nealko: true }] },
+    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Aďo", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baška", veg: true, nealko: true }] },
   { id: 7, x: 10.7, y: 8.6,
     guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", { name: "Dávid", nealko: true }, { name: "Nika", nealko: true }, "Rado", "Patrik", "Nelka"] },
   { id: 8, x: 14.8, y: 8.6,
