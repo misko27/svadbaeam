@@ -25,7 +25,7 @@ const TABLES = [
     y: 0.9,
     len: 5, // dĺžka stola (m), sedí sa len z jednej strany – tvárou do sály
    
-    guests: ["Mama nevesty", "Nevesta", { name: "Ženích", veg: true }, "Mama ženícha", "Otec ženícha"],
+    guests: ["Mama nevesty", { name: "Nevesta", veg: true }, { name: "Ženích", veg: true }, "Mama ženícha", "Otec ženícha"],
   },
   { id: 2, x: 4.55, y: 4.9,
     guests: ["Igor", "Martina", "Danko", "Janka", "Andrea", "Dušan", "Ivet", "Majo",
