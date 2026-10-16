@@ -434,11 +434,9 @@ function planDays(w) {
 
   const days = [
     { type: "gym", title: `Fitko · ${gym.mon.min}`, text: "Nohy + core.", gym: gym.mon },
-    { type: "run", km: tue, title: `Ľahký beh ${fmtKm(tue)} km`, text: easyText + (w.n > 1 && base ? " Na konci 4 × 20 s svižné zrýchlenia (strides)." : "") },
+    { type: "run", km: tue, title: `Ľahký beh ${fmtKm(tue)} km`, text: easyText + (w.n > 1 && base ? " Na konci 4 × 20 s strides (krátke uvoľnené zrýchlenia, popis pri štvrtkovom tréningu)." : "") },
     { type: "swim", title: "Plávanie alebo voľno", text: "30–40 min voľne, regenerácia. Pri únave voľno." },
-    quality
-      ? { type: "quality", km: thu, title: `${quality} · ${fmtKm(thu)} km`, text: `Rozklus 2 km ľahko, potom ${quality.toLowerCase()}, na záver vyklus. Tempá a tepy sú v sekcii Tempá.` }
-      : { type: "run", km: thu, title: `Ľahký beh ${fmtKm(thu)} km`, text: easyText },
+    quality ? qualityDay(quality, thu) : { type: "run", km: thu, title: `Ľahký beh ${fmtKm(thu)} km`, text: easyText },
     { type: "gym", title: `Fitko ľahšie · ${gym.fri.min}`, text: "Celé telo, nohy šetri. Ak sú nohy ťažké, daj voľno.", gym: gym.fri },
     sat
       ? { type: "run", km: satKm, title: `Ľahký krátky beh ${fmtKm(satKm)} km`, text: easyText }
@@ -494,6 +492,33 @@ function plannedOn(iso) {
 }
 
 const TYPE_ICON = { run: "🏃", long: "🏃", quality: "⚡", gym: "🏋", swim: "🏊", rest: "·", race: "🏅" };
+
+// Popis kvalitného tréningu podľa typu – čo presne bežať a akým tempom.
+const STRIDES_TEXT = "Strides = krátke zrýchlenia na 15–20 s: plynulo sa rozbehni na rýchle, ale uvoľnené tempo (asi 4:00–4:30/km, nie šprint), potom 60–90 s pomaly vyklusaj alebo choď, kým nie si úplne oddýchnutý. Tep pri nich nesleduj, sú príliš krátke. Cieľ je technika a ľahký krok, nie únava.";
+
+function qualityDay(key, km) {
+  const k = key.toLowerCase();
+  const mp = `${fmtPace(PACES[1].from)}–${fmtPace(PACES[1].to)}`;
+  const tempo = `${fmtPace(PACES[2].from)}–${fmtPace(PACES[2].to)}`;
+  const intv = `${fmtPace(PACES[3].from)}–${fmtPace(PACES[3].to)}`;
+  let title = `${key} · ${fmtKm(km)} km`;
+  let text;
+  if (k.includes("strides")) {
+    title = `Ľahký beh ${fmtKm(km)} km + 4 × 20 s strides`;
+    text = `Celý beh ľahko, tep do ${EASY_HR}. Na konci pridaj 4 strides. ${STRIDES_TEXT}`;
+  } else if (k.includes("fartlek")) {
+    text = `Rozklus 2 km ľahko. Potom ${key.replace(/fartlek\s*/i, "").replace(/\s*svižne/i, "")} svižne (asi ${tempo}/km, „komfortne ťažko“), medzi úsekmi rovnako dlho pomaly klus. Zvyšok ľahko, posledný km vyklus.`;
+  } else if (k.includes("interval")) {
+    text = `Rozklus 2–3 km ľahko a 4 strides. Úseky v tempe ${intv}/km (tep 92 % a viac), medzi nimi 2–3 min pomalý klus. Potom vyklus do celkových ${fmtKm(km)} km.`;
+  } else if (/\bmp\b/.test(k)) {
+    text = `Rozklus 2 km ľahko, potom ${key.replace(/\s*v MP/, "")} v maratónskom tempe ${mp}/km (medzi úsekmi 1–2 min klus), zvyšok ľahko. Tempo drž rovnomerne, nezrýchľuj.`;
+  } else if (k.includes("tempo")) {
+    text = `Rozklus 2 km ľahko. ${key} v tempe ${tempo}/km („komfortne ťažko“, dá sa povedať pár slov, nie celá veta), pri viacerých úsekoch 2 min klus medzi nimi. Zvyšok ľahko.`;
+  } else {
+    text = `Rozklus 2 km ľahko, potom ${k}, na záver vyklus.`;
+  }
+  return { type: "quality", km, title, text };
+}
 
 /* ─── Karta týždňa (hore na stránke) ─── */
 function WeekCard({ today, current }) {
