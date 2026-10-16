@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import "./App.css";
 import Tajnicka from "./Tajnicka.jsx";
 import Dovolenka from "./Dovolenka.jsx";
@@ -6,6 +6,9 @@ import Zasadaci from "./Zasadaci.jsx";
 
 // Sem vlož URL z Apps Script deployu (Deploy → New deployment → Web app).
 // Vyzerá takto: https://script.google.com/macros/s/AKfyc.../exec
+// Stránka s maratónom aj s dátami z hodiniek sa načíta až pri otvorení #maraton.
+const Maraton = lazy(() => import("./Maraton.jsx"));
+
 const FORM_URL =
   "https://script.google.com/macros/s/AKfycbxS1iUD7cwccDRbaMxPQvN9yGFYPtGf7aWABF9QJRs4Ayvkc3MSh3QKqZgYO6HBLwnD/exec";
 
@@ -23,6 +26,13 @@ function App() {
   if (hash === "#dovolenka") return <Dovolenka />;
   // Skrytá stránka so zasadacím poriadkom (pre nás a hotel): /#zasadaci
   if (hash === "#zasadaci") return <Zasadaci />;
+  // Skrytá stránka s tréningovým plánom na maratón: /#maraton
+  if (hash === "#maraton")
+    return (
+      <Suspense fallback={null}>
+        <Maraton />
+      </Suspense>
+    );
 
   return (
     <div className="app">
