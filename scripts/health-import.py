@@ -124,6 +124,14 @@ def main(path):
         other[week][kind] += w["min"]
     other = [{"w": k, **{s: round(m) for s, m in v.items()}} for k, v in sorted(other.items())]
 
+    # ostatné tréningy po dňoch za posledný rok – aby stránka vedela, čo sa v ktorý deň odtrénovalo
+    year_ago = (date.today() - timedelta(days=365)).isoformat()
+    acts = [
+        {"d": w["t"].date().isoformat(), "t": SPORTS.get(w["type"], "other"), "min": round(w["min"])}
+        for w in uniq
+        if w["type"] != "Running" and w["t"].date().isoformat() >= year_ago
+    ]
+
     def daily(key):
         by_day = defaultdict(list)
         for d, v in metrics[key]:
@@ -140,6 +148,7 @@ def main(path):
         "hrMax": hr_max,
         "runs": runs,
         "other": other,
+        "acts": acts,
         "vo2": daily("vo2"),
         "rhr": daily("rhr"),
         "hrv": daily("hrv"),

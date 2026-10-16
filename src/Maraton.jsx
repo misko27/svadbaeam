@@ -142,7 +142,7 @@ const WEEK1 = [
   { date: "2026-10-15", title: "Ľahký beh 5 km", text: "Rovnaké tempo ako v utorok. Posledný kilometer môže byť živší (cca 6:00–6:10)." },
   { date: "2026-10-16", title: "Fitko 30–40 min alebo voľno", text: "Celé telo bez zaťaženia nôh: tlaky, ťahy, core, stabilizácia bokov. Ak sú nohy ťažké, nohy vynechaj." },
   { date: "2026-10-17", title: "Voľno alebo prechádzka", text: "V základnej fáze sobota bez behu. Prechádzka alebo ľahká turistika 45–60 min je v poriadku." },
-  { date: "2026-10-18", title: "Dlhý beh 8 km", text: "Veľmi pomaly (6:30–6:50). Po 2 km skontroluj, že sa dá rozprávať. Potom 10 min chôdze, jedlo a pitie do hodiny." },
+  { date: "2026-10-18", title: "Dlhý beh 10 km", text: "Veľmi pomaly (6:30–6:50). Po 2 km skontroluj, že sa dá rozprávať. Potom 10 min chôdze, jedlo a pitie do hodiny." },
 ];
 
 const RULES = [
@@ -163,15 +163,16 @@ const HISTORY_SECTIONS = [
 ];
 
 const SECTIONS = [
-  ["teraz", "Teraz"],
+  ["teraz", "Týždeň"],
+  ["hodnotenie", "Ako sa darí"],
+  ["plan", "Plán"],
+  ["tempa", "Tempá"],
+  ["tyzden", "Štruktúra"],
+  ["den-d", "Deň D"],
+  ["zasady", "Zásady"],
   ["forma", "Forma"],
   ["objem", "Objem"],
   ["fazy", "Fázy"],
-  ["tempa", "Tempá"],
-  ["tyzden", "Týždeň"],
-  ["plan", "Plán"],
-  ["den-d", "Deň D"],
-  ["zasady", "Zásady"],
 ];
 
 /* ─── Pomocné ─── */
@@ -291,15 +292,16 @@ export default function Maraton() {
       <main className="mar-main">
         {mode === "prep" ? (
           <>
-            <Now today={today} current={current} />
+            <WeekCard today={today} current={current} />
+            <Feedback today={today} />
+            <Plan current={current} />
+            <Paces />
+            <WeekStructure today={today} current={current} />
+            <RaceDay />
+            <Rules />
             <Form />
             <Volume current={current} selected={selected} onSelect={setSelected} />
             <Phases />
-            <Paces />
-            <WeekStructure today={today} current={current} />
-            <Plan current={current} />
-            <RaceDay />
-            <Rules />
           </>
         ) : (
           <History />
@@ -398,141 +400,339 @@ function paceAtHr(hr, asOf) {
   return my + b * (hr - mx);
 }
 
-function buildAdvice(today, current) {
-  if (!DATA || !current) return { items: [], target: current?.km };
-  const asOf = DATA.generated;
-  const items = [];
-  let target = current.km;
+/* ─── Plán po dňoch ─── */
+const LONG_HR = Math.round(HR_MAX * 0.8);
+const ACTS = DATA?.acts ?? [];
+const ACT_LABEL = { swim: "Plávanie", bike: "Bicykel", hike: "Turistika", walk: "Chôdza", gym: "Fitko", ski: "Lyže", tri: "Triatlon", other: "Šport" };
+const half = (x) => Math.max(3, Math.round(x * 2) / 2);
+const easyText = `Ľahko, tep do ${EASY_HR} (zhruba 6:10–6:40/km). Ak tep ujde hore, spomaľ alebo krátko choď.`;
 
-  const age = daysBetween(DATA.lastWorkout, today);
-  if (age > 7) {
-    items.push({ level: "warn", title: "Staršie dáta", text: `Posledný tréning v dátach je z ${fmtDate(DATA.lastWorkout)}. Exportuj Zdravie znova a spusti import, nech odporúčania sedia.` });
-  }
-
-  // pripravenosť: posledných 7 dní vs. predchádzajúce 4 týždne
-  if (daysBetween(asOf, today) <= 3) {
-    const rhr7 = metricAvg(DATA.rhr, addDays(asOf, -6), addDays(asOf, 1));
-    const rhrBase = metricAvg(DATA.rhr, addDays(asOf, -35), addDays(asOf, -6));
-    const hrv7 = metricAvg(DATA.hrv, addDays(asOf, -6), addDays(asOf, 1));
-    const hrvBase = metricAvg(DATA.hrv, addDays(asOf, -35), addDays(asOf, -6));
-    if (rhr7 && rhrBase && hrv7 && hrvBase) {
-      const dRhr = rhr7 - rhrBase;
-      const rHrv = hrv7 / hrvBase;
-      const nums = `Pokojový tep ${Math.round(rhr7)} (bežne ${Math.round(rhrBase)}), HRV ${Math.round(hrv7)} ms (bežne ${Math.round(hrvBase)}).`;
-      if (dRhr >= 5 || rHrv < 0.8) {
-        items.push({ level: "alert", title: "Telo je unavené", text: `${nums} Dnes len ľahko alebo voľno, kvalitný tréning presuň o deň–dva.` });
-        target = Math.round(target * 0.85);
-      } else if (dRhr >= 3 || rHrv < 0.9) {
-        items.push({ level: "warn", title: "Mierna únava", text: `${nums} Ľahké behy drž naozaj ľahko, plávanie a piatkové fitko pokojne vynechaj.` });
-      } else {
-        items.push({ level: "ok", title: "Zotavený", text: `${nums} Môžeš trénovať podľa plánu.` });
-      }
-    }
-  }
-
-  // objem minulého týždňa vs. plán
-  const prevStart = addDays(current.start, -7);
-  const prevRuns = RUNS.filter((r) => r.d >= prevStart && r.d < current.start);
-  const prevKm = prevRuns.reduce((s, r) => s + r.km, 0);
-  const prevPlan = WEEKS[current.n - 2]?.km ?? current.km;
-  const ratio = prevKm / prevPlan;
-  if (ratio < 0.8) {
-    target = Math.min(target, Math.max(10, Math.round((prevKm * 1.15) / 2) * 2));
-    items.push({ level: "warn", title: "Objem pod plánom", text: `Minulý týždeň ${fmtKm(prevKm)} km z ${prevPlan}. Nedobiehaj, tento týždeň stačí ~${target} km a plán sa dorovná postupne.` });
-  } else if (ratio > 1.2) {
-    items.push({ level: "warn", title: "Nad plánom", text: `Minulý týždeň ${fmtKm(prevKm)} km, plán bol ${prevPlan}. Nepridávaj ďalej, šľachy si zvykajú pomalšie ako srdce.` });
-  } else {
-    items.push({ level: "ok", title: "Objem sedí", text: `Minulý týždeň ${fmtKm(prevKm)} km (plán ${prevPlan}).` });
-  }
-
-  // intenzita ľahkých behov
-  const easyRuns = RUNS.filter((r) => r.hr && isRoadRun(r) && r.km < 12 && r.d >= addDays(asOf, -21) && r.d <= asOf);
-  if (easyRuns.length >= 2) {
-    const hot = easyRuns.filter((r) => r.hr > EASY_HR + 3);
-    if (hot.length / easyRuns.length >= 0.5) {
-      const p = paceAtHr(EASY_HR, asOf) ?? PACES[0].from;
-      items.push({
-        level: "warn",
-        title: "Ľahké behy sú rýchle",
-        text: `${hot.length} z ${easyRuns.length} kratších behov za 3 týždne bolo nad ${EASY_HR} tepov (priemer ${Math.round(avg(easyRuns.map((r) => r.hr)))}, tempo ${fmtPace(avg(easyRuns.map((r) => r.pace)))}). Ľahký beh drž do ${EASY_HR}, to je zhruba ${fmtPace(p)}–${fmtPace(p + 25)}/km. Spočiatku to bude pôsobiť smiešne pomaly, ale práve tu sa buduje vytrvalosť na maratón.`,
-      });
-    } else {
-      items.push({ level: "ok", title: "Ľahké behy sú ľahké", text: `Priemerný tep kratších behov ${Math.round(avg(easyRuns.map((r) => r.hr)))}, cieľ do ${EASY_HR}.` });
-    }
-  }
-
-  // ostatné športy minulý týždeň
-  const other = DATA.other?.find((o) => o.w === prevStart);
-  const otherMin = other ? Object.entries(other).filter(([k]) => k !== "w").reduce((s, [, v]) => s + v, 0) : 0;
-  if (otherMin >= 180) {
-    items.push({ level: "info", title: "Ďalšie športy", text: `Minulý týždeň ${Math.round(otherMin / 60)} h iných športov. Ráta sa to do únavy. Keď treba uberať, uber najprv z nich, nie z behov.` });
-  }
-
-  return { items, target };
+function dowOf(iso) {
+  return (new Date(iso + "T12:00:00").getDay() + 6) % 7;
 }
 
-/* ─── Teraz ─── */
-function Now({ today, current }) {
-  if (!current) return null;
-  const dow = (new Date(today + "T12:00:00").getDay() + 6) % 7;
-  const detail = WEEK1.find((d) => d.date === today);
-  const structure = current.phase.id === "base" ? WEEK_BASE : WEEK_BUILD;
-  const day = detail || { title: structure[dow].text };
-  const gym = dow === 0 ? GYM[current.phase.id].mon : dow === 4 ? GYM[current.phase.id].fri : null;
-  const todayRuns = RUNS.filter((r) => r.d === today);
-  const { items, target } = buildAdvice(today, current);
-  const weekPct = current.actual != null ? Math.min(100, Math.round((current.actual / target) * 100)) : null;
+function eventOn(iso) {
+  return EVENTS.find((e) => e.label !== "Polmaratón" && iso >= e.from && iso <= e.to);
+}
+
+// Rozpíše týždeň z WEEKS na 7 dní: typ, km a popis. Výsledok sa dá meniť len v dátach hore.
+function planDays(w) {
+  const base = w.phase.id === "base";
+  const sat = !(base && w.n < 5) && w.n !== 29 && w.long != null;
+  const longOnThu = /vo štvrtok/.test(w.key);
+  const longIsKey = /dlh|Najdlhší|polmarat|generálka/i.test(w.key);
+  // keď je kľúčový tréning v dlhom behu, vo štvrtok je kratšia kvalita
+  const thuSide = w.phase.id === "spec" ? "3 × 2 km v MP" : w.phase.id === "build" ? "Tempo 20 min" : null;
+  const quality = w.easy || w.n === 1 || w.n === 29 ? null : longIsKey ? thuSide : w.key;
+  const long = w.long;
+  const rest = w.km - (long ?? 0);
+  const shares = long == null ? [1 / 3, 1 / 3, 0, 1 / 3] : sat ? [0.33, 0.4, 0.27] : [0.5, 0.5];
+  const tue = half(rest * shares[0]);
+  const thu = half(rest * shares[1]);
+  const satKm = sat ? half(long == null ? 0 : rest - tue - thu) : 0;
+  const gym = GYM[w.phase.id];
+
+  const days = [
+    { type: "gym", title: `Fitko · ${gym.mon.min}`, text: "Nohy + core.", gym: gym.mon },
+    { type: "run", km: tue, title: `Ľahký beh ${fmtKm(tue)} km`, text: easyText + (w.n > 1 && base ? " Na konci 4 × 20 s svižné zrýchlenia (strides)." : "") },
+    { type: "swim", title: "Plávanie alebo voľno", text: "30–40 min voľne, regenerácia. Pri únave voľno." },
+    quality
+      ? { type: "quality", km: thu, title: `${quality} · ${fmtKm(thu)} km`, text: `Rozklus 2 km ľahko, potom ${quality.toLowerCase()}, na záver vyklus. Tempá a tepy sú v sekcii Tempá.` }
+      : { type: "run", km: thu, title: `Ľahký beh ${fmtKm(thu)} km`, text: easyText },
+    { type: "gym", title: `Fitko ľahšie · ${gym.fri.min}`, text: "Celé telo, nohy šetri. Ak sú nohy ťažké, daj voľno.", gym: gym.fri },
+    sat
+      ? { type: "run", km: satKm, title: `Ľahký krátky beh ${fmtKm(satKm)} km`, text: easyText }
+      : { type: "rest", title: "Voľno alebo prechádzka", text: "Prechádzka alebo ľahká turistika je v poriadku." },
+    long
+      ? { type: "long", km: long, title: longIsKey ? `${w.key} · ${long} km` : `Dlhý beh ${long} km`, text: `Pomaly, tep do ${LONG_HR}, prvé kilometre ešte pomalšie. Pri behu nad 90 min skúšaj gély (40–60 g sacharidov za hodinu).` }
+      : { type: "run", km: half(rest / 3), title: `Ľahký beh ${fmtKm(half(rest / 3))} km`, text: easyText },
+  ];
+
+  if (longOnThu) {
+    days[3] = { ...days[6], title: `Dlhý beh ${long} km (pred odletom)` };
+    days[1] = { ...days[1], km: half(rest * 0.6), title: `Ľahký beh ${fmtKm(half(rest * 0.6))} km` };
+    days[2] = { type: "run", km: half(rest * 0.4), title: `Ľahký beh ${fmtKm(half(rest * 0.4))} km`, text: easyText };
+    days[5] = { type: "rest", title: "Balenie, voľno", text: "Zajtra odlet." };
+    days[6] = { type: "rest", title: "Peru: voľno alebo prechádzka", text: "Prvé dni vo výške bez behu." };
+  }
+  if (w.n === 23) {
+    days[3] = { type: "run", km: thu, title: `Ľahký beh ${fmtKm(thu)} km so 4 × 20 s strides`, text: easyText };
+    days[6] = { type: "race", km: 21.1, title: "Testovací polmaratón", text: "Preteky alebo samostatne. Prvé 3 km pokojne, potom tempo, ktoré udržíš do konca. Výsledok zadaj do plánu, spresníme cieľ." };
+  }
+  if (w.n === 29) {
+    days[0] = { type: "rest", title: "Voľno", text: "Posledný týždeň bez fitka." };
+    days[1] = { type: "run", km: 7, title: "Ľahký beh 7 km so strides", text: easyText };
+    days[3] = { type: "run", km: 6, title: "6 km, z toho 2 km v MP", text: "Len pripomenúť si tempo, nič navyše." };
+    days[4] = { type: "rest", title: "Voľno", text: "Viac sacharidov, nič nové v jedle." };
+    days[5] = { type: "run", km: 3, title: "Uvoľnenie 3 km", text: "Veľmi ľahko, pár strides." };
+    days[6] = { type: "race", km: 42.2, title: "Maratón Praha 🏃", text: "Prvých 5–10 km pomalšie ako cieľ, úsilie pod kontrolou do 30. km. Gél každých ~40 min od 5. km." };
+  }
+  if (w.n === 28) days[4] = { type: "rest", title: "Voľno alebo mobilita", text: gym.note };
+
+  return days.map((d, i) => {
+    const date = addDays(w.start, i);
+    const ev = eventOn(date);
+    let day = { ...d, date, dow: i };
+    if (ev?.label === "Svadba" && date === ev.from) day = { ...day, type: "rest", km: 0, title: "Svadba ♥", text: "Dnes sa nebehá." };
+    else if (ev?.label === "Peru" && (d.type === "gym" || d.type === "swim")) day = { ...day, type: "rest", title: "Peru: výlety a turistika", text: "Fitko nie, turistika sa ráta ako tréning." };
+    if (ev && day.type !== "rest") day.note = ev.note;
+    return day;
+  });
+}
+
+function doneOn(iso) {
+  return {
+    runs: RUNS.filter((r) => r.d === iso),
+    acts: ACTS.filter((a) => a.d === iso),
+  };
+}
+
+// Plánovaný typ dňa pre konkrétny dátum (mimo plánu null)
+function plannedOn(iso) {
+  const w = weekOf(iso);
+  return w ? planDays(w)[dowOf(iso)] : null;
+}
+
+const TYPE_ICON = { run: "🏃", long: "🏃", quality: "⚡", gym: "🏋", swim: "🏊", rest: "·", race: "🏅" };
+
+/* ─── Karta týždňa (hore na stránke) ─── */
+function WeekCard({ today, current }) {
+  const startN = current?.n ?? 1;
+  const [n, setN] = useState(startN);
+  const [pick, setPick] = useState(null);
+  const w = WEEKS[n - 1];
+  const days = planDays(w);
+  const isCurrent = current && n === current.n;
+  const sel = days[pick ?? (isCurrent ? dowOf(today) : 0)];
+  const planKm = days.reduce((s, d) => s + (d.km ?? 0), 0);
+  const done = doneOn(sel.date);
+  const past = sel.date < today;
+  const go = (k) => {
+    setN(Math.min(WEEKS.length, Math.max(1, n + k)));
+    setPick(null);
+  };
 
   return (
     <section className="mar-now" id="teraz">
-      <span className="mar-now-label">
-        Týždeň {current.n} · {fmtDate(current.start)} – {fmtDate(addDays(current.start, 6))} · {current.phase.name} fáza
-      </span>
-      <h3>{current.key}</h3>
-      <div className="mar-now-stats">
-        <div><strong>{target}</strong><span>{target !== current.km ? `km (plán ${current.km})` : "km za týždeň"}</span></div>
-        <div><strong>{current.long ?? "–"}</strong><span>km dlhý beh</span></div>
-        {current.easy && <div><strong>↓</strong><span>ľahší týždeň</span></div>}
+      <div className="mar-week-nav">
+        <button type="button" onClick={() => go(-1)} disabled={n === 1} aria-label="Predchádzajúci týždeň">‹</button>
+        <span className="mar-now-label">
+          Týždeň {w.n} · {fmtDate(w.start)} – {fmtDate(addDays(w.start, 6))} · {w.phase.name}
+          {isCurrent ? " · teraz" : ""}
+        </span>
+        <button type="button" onClick={() => go(1)} disabled={n === WEEKS.length} aria-label="Ďalší týždeň">›</button>
       </div>
-
-      {weekPct != null && (
-        <div className="mar-progress">
-          <div className="mar-progress-bar"><span style={{ width: `${weekPct}%` }} /></div>
-          <span>Tento týždeň zatiaľ {fmtKm(current.actual)} z {target} km</span>
-          {current.runs.length > 0 && (
-            <div className="mar-now-runs">
-              {current.runs.map((r) => (
-                <span key={r.d + r.km}>
-                  {DAY_NAMES[(new Date(r.d + "T12:00:00").getDay() + 6) % 7]} {fmtKm(r.km)} km · {fmtPace(r.pace)}{r.hr ? ` · ♥ ${r.hr}` : ""}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="mar-now-today">
-        <span className="mar-k">Dnes · {DAY_NAMES[dow]} {fmtDate(today)}</span>
-        <strong>{todayRuns.length ? `✓ Odbehnuté ${todayRuns.map((r) => `${fmtKm(r.km)} km`).join(" + ")}` : day.title}</strong>
-        {day.text && !todayRuns.length && <p>{day.text}</p>}
-        {gym && (
-          <div className="mar-now-gym">
-            <span>Fitko · {gym.min}</span>
-            <ul>{gym.items.map((g) => <li key={g}>{g}</li>)}</ul>
-          </div>
+      <h3>{w.key}</h3>
+      <div className="mar-now-stats">
+        <div><strong>{fmtKm(planKm)}</strong><span>km plán</span></div>
+        <div><strong>{w.long ?? "–"}</strong><span>km dlhý beh</span></div>
+        {w.actual != null && <div><strong>{fmtKm(w.actual)}</strong><span>km odbehnuté</span></div>}
+        {!isCurrent && current && (
+          <button type="button" className="mar-today-btn" onClick={() => { setN(current.n); setPick(null); }}>späť na dnes</button>
         )}
       </div>
 
-      {items.length > 0 && (
-        <ul className="mar-advice">
-          {items.map((a) => (
-            <li key={a.title} className={`is-${a.level}`}>
-              <strong>{a.title}</strong> {a.text}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="mar-days" role="tablist" aria-label="Dni týždňa">
+        {days.map((d) => {
+          const dd = doneOn(d.date);
+          const did = dd.runs.length > 0 || dd.acts.length > 0;
+          const missed = d.date < today && !did && d.type !== "rest" && d.type !== "swim";
+          return (
+            <button
+              key={d.date}
+              type="button"
+              role="tab"
+              aria-selected={d === sel}
+              className={`mar-dd mar-t-${d.type}${d === sel ? " is-sel" : ""}${d.date === today ? " is-today" : ""}`}
+              onClick={() => setPick(d.dow)}
+            >
+              <span className="mar-dd-name">{DAY_NAMES[d.dow]}</span>
+              <span className="mar-dd-icon" aria-hidden="true">{TYPE_ICON[d.type]}</span>
+              <span className="mar-dd-km">{d.km ? fmtKm(d.km) : ""}</span>
+              <span className={`mar-dd-dot${did ? " is-done" : missed ? " is-missed" : ""}`} />
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mar-now-today">
+        <span className="mar-k">
+          {sel.date === today ? "Dnes" : past ? "Bolo" : "Plán"} · {DAY_NAMES[sel.dow]} {fmtDate(sel.date)} · {TYPE_LABEL[sel.type]}
+        </span>
+        <strong>{sel.title}</strong>
+        {sel.text && <p>{sel.text}</p>}
+        {sel.note && <p className="mar-now-note">{sel.note}</p>}
+        {sel.gym && (
+          <div className="mar-now-gym">
+            <ul>{sel.gym.items.map((g) => <li key={g}>{g}</li>)}</ul>
+          </div>
+        )}
+        {(done.runs.length > 0 || done.acts.length > 0) && (
+          <div className="mar-now-runs">
+            {done.runs.map((r) => (
+              <span key={r.km + r.min}>✓ Beh {fmtKm(r.km)} km · {fmtPace(r.pace)}/km{r.hr ? ` · ♥ ${r.hr}` : ""}</span>
+            ))}
+            {done.acts.map((a) => (
+              <span key={a.t + a.min}>✓ {ACT_LABEL[a.t] ?? a.t} {a.min} min</span>
+            ))}
+          </div>
+        )}
+        {past && !done.runs.length && !done.acts.length && sel.type !== "rest" && DATA && sel.date <= DATA.lastWorkout && (
+          <p className="mar-now-note">Nič zaznamenané. Nevadí, nedobiehaj, pokračuj podľa plánu.</p>
+        )}
+      </div>
+      <p className="mar-now-hint">Dni sa dajú preklikať, šípkami prejdeš na iný týždeň. Keď niečo nevyjde v plánovaný deň, posuň si to, dôležitý je týždeň ako celok.</p>
     </section>
+  );
+}
+
+/* ─── Hodnotenie posledných tréningov ─── */
+function analyze(today) {
+  const ref = DATA.generated;
+  const notes = [];
+  const add = (level, title, text) => notes.push({ level, title, text });
+
+  // 1. objem tohto týždňa do dnes
+  const w = weekOf(ref);
+  let volume = "ok";
+  if (w) {
+    const days = planDays(w);
+    const upTo = dowOf(ref);
+    const planToDate = days.slice(0, upTo + 1).reduce((s, d) => s + (d.km ?? 0), 0);
+    const planWeek = days.reduce((s, d) => s + (d.km ?? 0), 0);
+    const actual = w.actual ?? 0;
+    const left = days.slice(upTo + 1).filter((d) => d.km);
+    const leftText = left.length ? ` Ešte ťa čaká: ${left.map((d) => `${DAY_NAMES[d.dow]} ${d.title.toLowerCase()}`).join(", ")}.` : "";
+    if (planToDate >= 5 && actual < planToDate * 0.7) {
+      volume = "low";
+      add("warn", "Zatiaľ menej kilometrov", `Tento týždeň ${fmtKm(actual)} km, do dnes bolo v pláne ${fmtKm(planToDate)} (celý týždeň ${fmtKm(planWeek)}). Nedobiehaj všetko naraz.${leftText} Ak stihneš dlhý beh, týždeň je v poriadku.`);
+    } else if (actual > planWeek * 1.2) {
+      volume = "high";
+      add("warn", "Viac, ako je v pláne", `Tento týždeň už ${fmtKm(actual)} km z plánovaných ${fmtKm(planWeek)}. Zvyšok týždňa už len ľahko alebo voľno.`);
+    } else {
+      add("ok", "Objem sedí", `Tento týždeň ${fmtKm(actual)} km, do dnes plán ${fmtKm(planToDate)} km z ${fmtKm(planWeek)}.${leftText}`);
+    }
+  }
+
+  // 2. posledných 5 behov: intenzita podľa toho, čo malo byť
+  const last = RUNS.filter((r) => r.d <= ref).slice(-5).map((r) => {
+    const p = plannedOn(r.d);
+    const kind = p?.type === "quality" || p?.type === "race" ? "quality" : r.km >= 12 || p?.type === "long" ? "long" : "easy";
+    const cap = kind === "easy" ? EASY_HR : kind === "long" ? LONG_HR : null;
+    // kopcovitý beh (viac ako 20 m stúpania na km) má tep vyšší prirodzene
+    const hilly = r.elev && r.elev / r.km > 20;
+    const verdict = !r.hr ? "–" : cap == null ? "ok" : r.hr <= cap + 3 ? "ok" : hilly ? "hills" : r.hr > cap + 8 ? "high" : "fast";
+    return { ...r, kind, cap, verdict };
+  });
+  const checked = last.filter((r) => r.hr && r.cap);
+  const hot = checked.filter((r) => r.verdict === "fast" || r.verdict === "high");
+  let intensity = "ok";
+  if (checked.length && hot.length / checked.length >= 0.5) {
+    intensity = "hot";
+    const avgHr = Math.round(avg(hot.map((r) => r.hr)));
+    const p = paceAtHr(EASY_HR, ref) ?? PACES[0].from;
+    add("warn", "Behávaš príliš rýchlo", `${hot.length} z ${checked.length} ľahkých a dlhých behov malo vyšší tep, ako mali mať (priemer ${avgHr}). Ľahký beh do ${EASY_HR}, to je u teba zhruba ${fmtPace(p)}–${fmtPace(p + 25)}/km, dlhý do ${LONG_HR}. Rýchlosť príde sama z objemu, nie z toho, že každý beh ide naplno.`);
+  } else if (checked.length) {
+    add("ok", "Tepy sú v poriadku", `Ľahké behy držíš v pásme (priemer ${Math.round(avg(checked.map((r) => r.hr)))}).`);
+  }
+  const veryHigh = last.filter((r) => r.hr && r.kind !== "quality" && r.verdict !== "hills" && r.hr >= HR_MAX * 0.88);
+  if (veryHigh.length) {
+    add("alert", "Vysoký tep", `${veryHigh.map((r) => `${fmtDate(r.d)} ♥ ${r.hr}`).join(", ")}: to je už tempo prahu, hoci deň mal byť ľahký. Ak to nebol zámer (kopce, teplo), pribrzdi.`);
+  }
+
+  // 3. dlhý beh za posledných 8 dní
+  if (w && w.n > 1) {
+    const prev = WEEKS[w.n - 2];
+    const longest = Math.max(0, ...RUNS.filter((r) => r.d > addDays(ref, -8) && r.d <= ref).map((r) => r.km));
+    if (prev.long && longest < prev.long * 0.8) {
+      add("warn", "Chýba dlhý beh", `Za posledný týždeň najdlhší beh ${fmtKm(longest)} km, plán bol ${prev.long} km. Dlhý beh je pre maratón najdôležitejší, daj ho v najbližší voľný deň.`);
+    }
+  }
+
+  // 4. regenerácia
+  let tired = false;
+  if (daysBetween(ref, today) <= 3) {
+    const rhr7 = metricAvg(DATA.rhr, addDays(ref, -6), addDays(ref, 1));
+    const rhrBase = metricAvg(DATA.rhr, addDays(ref, -35), addDays(ref, -6));
+    const hrv7 = metricAvg(DATA.hrv, addDays(ref, -6), addDays(ref, 1));
+    const hrvBase = metricAvg(DATA.hrv, addDays(ref, -35), addDays(ref, -6));
+    if (rhr7 && rhrBase && hrv7 && hrvBase) {
+      const nums = `Pokojový tep ${Math.round(rhr7)} (bežne ${Math.round(rhrBase)}), HRV ${Math.round(hrv7)} ms (bežne ${Math.round(hrvBase)}).`;
+      if (rhr7 - rhrBase >= 5 || hrv7 / hrvBase < 0.8) {
+        tired = true;
+        add("alert", "Telo je unavené", `${nums} Dnes a zajtra len ľahko alebo voľno, kvalitný tréning presuň.`);
+      } else if (rhr7 - rhrBase >= 3 || hrv7 / hrvBase < 0.9) {
+        tired = true;
+        add("warn", "Mierna únava", `${nums} Vynechaj plávanie a piatkové fitko, behy drž ľahko.`);
+      } else {
+        add("ok", "Zotavený", nums);
+      }
+    }
+  } else {
+    add("info", "Staršie dáta", `Posledný import je z ${fmtDate(ref)} Pre aktuálne hodnotenie exportuj Zdravie a spusti import.`);
+  }
+
+  // 5. iné športy za posledných 7 dní
+  const otherMin = ACTS.filter((a) => a.d > addDays(ref, -7) && a.d <= ref).reduce((s, a) => s + a.min, 0);
+  if (otherMin >= 180) {
+    add("info", "Veľa iných športov", `Za posledných 7 dní ${Math.round(otherMin / 60)} h mimo behu. Ráta sa to do únavy, pri uberaní uber najprv z nich.`);
+  }
+
+  // 6. predchádzajúci celý týždeň → či je priestor pridať
+  const prevW = w && w.n > 1 ? WEEKS[w.n - 2] : null;
+  const prevOk = prevW && prevW.actual != null && prevW.actual >= prevW.km * 0.9 && prevW.actual <= prevW.km * 1.15;
+
+  let verdict;
+  if (tired && notes.some((x) => x.level === "alert")) verdict = { level: "alert", title: "Uber", text: "Telo hlási únavu. Pár dní ľahko, plán počká." };
+  else if (veryHigh.length || volume === "high") verdict = { level: "warn", title: "Pribrzdi", text: "Robíš viac, než treba. Ďalšie dni drž ľahko, nech sa nezraníš." };
+  else if (intensity === "hot")
+    verdict = {
+      level: "warn",
+      title: "Spomaľ",
+      text: `Behy sú príliš rýchle. Najbližšie ľahké behy daj naozaj pomaly, do ${EASY_HR} tepov.${volume === "low" ? " A nevynechaj dlhý beh, kilometre netreba dobiehať inak." : ""}`,
+    };
+  else if (volume === "low") verdict = { level: "warn", title: "Pridaj, ale rozumne", text: "Kilometrov je zatiaľ menej. Hlavne nevynechaj dlhý beh, ostatné netreba dobiehať." };
+  else if (prevOk && !tired) verdict = { level: "ok", title: "Ide to výborne", text: "Objem aj tepy sedia a si zotavený. Pokračuj podľa plánu. Ak sa to udrží aj tento týždeň, môžeš dlhý beh predĺžiť o 1–2 km alebo pridať strides." };
+  else verdict = { level: "ok", title: "Podľa plánu", text: "Nič nehorí, pokračuj podľa plánu." };
+
+  return { verdict, notes, last };
+}
+
+function Feedback({ today }) {
+  if (!DATA) return null;
+  const { verdict, notes, last } = analyze(today);
+  const KIND = { easy: "ľahký", long: "dlhý", quality: "kvalita" };
+  const MARK = { ok: "✓", fast: "rýchlo", high: "vysoký tep", hills: "kopce", "–": "" };
+
+  return (
+    <Section id="hodnotenie" title="Ako sa darí" intro={`Hodnotenie posledných tréningov podľa plánu, tepu a regenerácie. Dáta k ${fmtDate(DATA.generated)}`}>
+      <div className={`mar-verdict is-${verdict.level}`}>
+        <strong>{verdict.title}</strong>
+        <p>{verdict.text}</p>
+      </div>
+      <ul className="mar-notes">
+        {notes.map((a) => (
+          <li key={a.title} className={`is-${a.level}`}>
+            <strong>{a.title}</strong> {a.text}
+          </li>
+        ))}
+      </ul>
+      {last.length > 0 && (
+        <div className="mar-card mar-last">
+          <h3 className="mar-h3">Posledných {last.length} behov</h3>
+          {[...last].reverse().map((r) => (
+            <div key={r.d + r.km} className={`mar-lastrow is-${r.verdict}`}>
+              <span>{DAY_NAMES[dowOf(r.d)]} {fmtDate(r.d)}</span>
+              <b>{fmtKm(r.km)} km</b>
+              <span>{fmtPace(r.pace)}/km</span>
+              <span>{r.hr ? `♥ ${r.hr}` : "–"}{r.cap ? <small> / {r.cap}</small> : null}</span>
+              <span className="mar-lastrow-kind">{KIND[r.kind]}</span>
+              <span className="mar-lastrow-mark">{MARK[r.verdict]}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </Section>
   );
 }
 
@@ -1174,7 +1374,7 @@ function WeekStructure({ today, current }) {
 function Plan({ current }) {
   const max = Math.max(...WEEKS.map((w) => w.km));
   return (
-    <Section id="plan" title="Plán po týždňoch" intro="V týždňoch 1–8 sú 3 behy (ut, št, ne), potom 4. Ak sa necítiš dobre, objem radšej zníž, než aby si dobiehal.">
+    <Section id="plan" title="Plán po týždňoch" intro="V týždňoch 1–4 sú 3 behy (ut, št, ne), potom 4. Rozpis po dňoch je hore v karte týždňa. Ak sa necítiš dobre, objem radšej zníž, než aby si dobiehal.">
       <div className="mar-table">
         {WEEKS.map((w) => (
           <div key={w.n} className={`mar-row${current && w.n === current.n ? " is-current" : ""}${current && w.n < current.n ? " is-past" : ""}`}>

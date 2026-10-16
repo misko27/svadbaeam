@@ -370,6 +370,115 @@
 .mar-logrow span:last-child { color: var(--mar-muted); }
 .mar-logrow.is-race { background: #F1E1D2; }
 
+/* Karta týždňa */
+.mar-week-nav { display: flex; align-items: center; gap: 0.5rem; }
+.mar-week-nav .mar-now-label { flex: 1; text-align: center; }
+.mar-week-nav button {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 253, 249, 0.25);
+  background: none;
+  color: var(--white);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.mar-week-nav button:disabled { opacity: 0.25; cursor: default; }
+.mar-now h3 { text-align: center; }
+.mar-now .mar-now-stats { justify-content: center; align-items: center; }
+.mar-today-btn {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: var(--white);
+  cursor: pointer;
+}
+.mar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+.mar-dd {
+  --c: rgba(255, 253, 249, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.1rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 253, 249, 0.12);
+  border-top: 3px solid var(--c);
+  background: rgba(255, 253, 249, 0.05);
+  color: var(--white);
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.mar-dd.mar-t-run { --c: #A9C59A; }
+.mar-dd.mar-t-long { --c: #E8B07A; }
+.mar-dd.mar-t-quality { --c: #F08A6A; }
+.mar-dd.mar-t-race { --c: #F08A6A; }
+.mar-dd.mar-t-gym { --c: #CDBBA8; }
+.mar-dd.mar-t-swim { --c: #A9C2D6; }
+.mar-dd.is-sel { background: rgba(255, 253, 249, 0.16); border-color: rgba(255, 253, 249, 0.45); }
+.mar-dd.is-today .mar-dd-name { color: var(--accent-light); }
+.mar-dd-name { font-size: 0.75rem; font-weight: 600; }
+.mar-dd-icon { font-size: 1rem; line-height: 1.2; }
+.mar-dd-km { font-size: 0.72rem; min-height: 1em; opacity: 0.85; }
+.mar-dd-dot { width: 6px; height: 6px; border-radius: 50%; background: transparent; }
+.mar-dd-dot.is-done { background: #A9C59A; }
+.mar-dd-dot.is-missed { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(255, 253, 249, 0.35); }
+.mar-now-note { color: #E8B07A; font-size: 0.85rem; }
+.mar-now-hint { font-size: 0.75rem; opacity: 0.55; margin-top: 0.7rem; }
+
+/* Ako sa darí */
+.mar-verdict {
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  color: var(--white);
+  background: var(--mar-green);
+  margin-bottom: 0.7rem;
+}
+.mar-verdict.is-warn { background: #C98A4B; }
+.mar-verdict.is-alert { background: #A8452E; }
+.mar-verdict strong { font-family: var(--font-heading); font-size: 1.7rem; line-height: 1.1; }
+.mar-notes { list-style: none; display: grid; gap: 0.4rem; margin-bottom: 0.8rem; }
+.mar-notes li {
+  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem 0.6rem 2.1rem;
+  border-radius: 10px;
+  background: var(--mar-card);
+  border: 1px solid var(--mar-line);
+  position: relative;
+}
+.mar-notes li::before { position: absolute; left: 0.8rem; top: 0.6rem; font-weight: 700; }
+.mar-notes li.is-ok::before { content: "✓"; color: var(--mar-green); }
+.mar-notes li.is-warn::before { content: "!"; color: #C98A4B; }
+.mar-notes li.is-alert::before { content: "!!"; color: #A8452E; left: 0.65rem; }
+.mar-notes li.is-info::before { content: "i"; color: var(--mar-blue); }
+.mar-last { padding-bottom: 0.6rem; }
+.mar-lastrow {
+  display: grid;
+  grid-template-columns: 4.6rem 4.4rem 4.6rem 5rem 1fr auto;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  font-size: 0.86rem;
+  border-top: 1px solid var(--mar-line);
+}
+.mar-lastrow small { color: var(--mar-muted); }
+.mar-lastrow-kind { color: var(--mar-muted); }
+.mar-lastrow-mark { font-weight: 600; color: var(--mar-green); text-align: right; }
+.mar-lastrow.is-fast .mar-lastrow-mark { color: #C98A4B; }
+.mar-lastrow.is-hills .mar-lastrow-mark { color: var(--mar-blue); }
+.mar-lastrow.is-high .mar-lastrow-mark { color: #A8452E; }
+
 /* Graf objemu */
 .mar-chart-wrap {
   overflow-x: auto;
@@ -754,6 +863,9 @@
 .mar-back:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
+  .mar-lastrow { grid-template-columns: 4.4rem 3.8rem 1fr auto; }
+  .mar-lastrow > :nth-child(3), .mar-lastrow-kind { display: none; }
+  .mar-dd-icon { font-size: 0.9rem; }
   .mar-year { grid-template-columns: 2.6rem 1fr 4rem 4rem; }
   .mar-year > :nth-child(3), .mar-year > :nth-child(5), .mar-year > :nth-child(7) { display: none; }
   .mar-logrow { grid-template-columns: 3.4rem 4.4rem 4rem 1fr; }
