@@ -3,6 +3,7 @@ import "./App.css";
 import Tajnicka from "./Tajnicka.jsx";
 import Dovolenka from "./Dovolenka.jsx";
 import Zasadaci from "./Zasadaci.jsx";
+import Fotky from "./Fotky.jsx";
 
 // Sem vlož URL z Apps Script deployu (Deploy → New deployment → Web app).
 // Vyzerá takto: https://script.google.com/macros/s/AKfyc.../exec
@@ -26,6 +27,8 @@ function App() {
   if (hash === "#dovolenka") return <Dovolenka />;
   // Skrytá stránka so zasadacím poriadkom (pre nás a hotel): /#zasadaci
   if (hash === "#zasadaci") return <Zasadaci />;
+  // Nahrávanie fotiek od hostí (QR kód v novinách): /#fotky
+  if (hash === "#fotky") return <Fotky />;
   // Skrytá stránka s tréningovým plánom na maratón: /#maraton
   if (hash === "#maraton")
     return (
