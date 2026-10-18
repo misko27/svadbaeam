@@ -6,11 +6,12 @@ import "./Tajnicka.css";
 // Medzera v slove (napr. "MALÁ FATRA") = prázdne políčko bez rámika.
 // Zmena slov / poradia stačí tu, mriežka sa prepočíta sama.
 const PUZZLES = [
+  // Tajnička: YUSHAN
   [
     { word: "VYŠKOV", key: 1 },
-    { word: "KUNIKOVCI", key: 1 },
+    { word: "PERU", key: 3 },
     { word: "STUDNIČKA", key: 0 },
-    { word: "HOLUBY", key: 0 },
+    { word: "CHAMELEÓN", key: 1 },
     { word: "ANTÓNIA", key: 0 },
     { word: "MINO", key: 2 },
   ],
@@ -22,9 +23,9 @@ const PUZZLES = [
     { word: "ZÁSNUBY", key: 2 },
     { word: "SLAVKOVSKÝ", key: 0 },
     { word: "KRSTNÁ", key: 0 },
-    { word: "KUBÍN", key: 1 },
+    { word: "PERU", key: 3 },
     { word: "PROGRAMÁTOR", key: 3 },
-    { word: "ŠVAGER", key: 4 },
+    { word: "HRADEC KRÁLOVÉ", key: 4 },
     { word: "MALÁ FATRA", key: 2 },
   ],
   // Tajnička: STUBAI
@@ -35,6 +36,29 @@ const PUZZLES = [
     { word: "HOLUBY", key: 4 },
     { word: "HRADEC KRÁLOVÉ", key: 2 },
     { word: "TRIATLON", key: 2 },
+  ],
+  // Tajnička: SLAVKOVSKY
+  [
+    { word: "ZÁSNUBY", key: 2 },
+    { word: "LADCE", key: 0 },
+    { word: "MALÁ FATRA", key: 2 },
+    { word: "VETERINÁRKA", key: 0 },
+    { word: "SKIALPY", key: 1 },
+    { word: "BOB", key: 1 },
+    { word: "VYSOKÉ TATRY", key: 0 }, // návrh
+    { word: "SYN", key: 0 }, // návrh
+    { word: "KÔŇ", key: 0 },
+    { word: "VYŠKOV", key: 1 },
+  ],
+  // Tajnička: TRENČIN
+  [
+    { word: "TAJWAN", key: 0 },
+    { word: "RADO", key: 0 },
+    { word: "CHAMELEÓN", key: 4 },
+    { word: "TANEC", key: 2 }, // návrh
+    { word: "STUDNIČKA", key: 6 },
+    { word: "TRIATLON", key: 2 },
+    { word: "MINO", key: 2 },
   ],
 ];
 
