@@ -88,3 +88,17 @@
   border-width: 2.5px;
 }
 
+
+/* Otázky pod mriežkou */
+.tajnicka-questions {
+  margin: calc(var(--cell) * 0.6) 0 0;
+  padding-left: 1.6em;
+  max-width: calc(var(--cell) * 12);
+  font-size: calc(var(--cell) * 0.32);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.tajnicka-questions .answer {
+  opacity: 0.55;
+}

@@ -8,57 +8,64 @@ import "./Tajnicka.css";
 const PUZZLES = [
   // Tajnička: YUSHAN
   [
-    { word: "VYŠKOV", key: 1 },
-    { word: "PERU", key: 3 },
-    { word: "STUDNIČKA", key: 0 },
-    { word: "CHAMELEÓN", key: 1 },
-    { word: "ANTÓNIA", key: 0 },
-    { word: "MINO", key: 2 },
+    { word: "VYŠKOV", key: 1, q: "V akom meste pracuje nevesta?" },
+    { word: "PERU", key: 3, q: "Kam letíte na svadobnú cestu?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "CHAMELEÓN", key: 1, q: "Aké domáce zviera chovajú novomanželia?" },
+    { word: "ANTÓNIA", key: 0, q: "Meno ženíchovej mamy?" },
+    { word: "MINO", key: 2, q: "Kto vás pozná najdlhšie z kamarátov?" },
   ],
   // Tajnička: WEISSKUGEL
   [
-    { word: "TAJWAN", key: 3 },
-    { word: "TRENČÍN", key: 2 },
-    { word: "TRIATLON", key: 2 },
-    { word: "ZÁSNUBY", key: 2 },
-    { word: "SLAVKOVSKÝ", key: 0 },
-    { word: "KRSTNÁ", key: 0 },
-    { word: "PERU", key: 3 },
-    { word: "PROGRAMÁTOR", key: 3 },
-    { word: "HRADEC KRÁLOVÉ", key: 4 },
-    { word: "MALÁ FATRA", key: 2 },
+    { word: "TAJWAN", key: 3, q: "V ktorej krajine sa novomanželia zasnúbili?" },
+    { word: "TRENČÍN", key: 2, q: "Ženíchovo najobľúbenejšie mesto?" },
+    { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
+    { word: "STAPRO", key: 0, q: "V akej firme pracuje ženích?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "STUDNIČKA", key: 7, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
+    { word: "PERU", key: 3, q: "Kam letíte na svadobnú cestu?" },
+    { word: "PROGRAMÁTOR", key: 3, q: "Aké povolanie má ženích?" },
+    { word: "HRADEC KRÁLOVÉ", key: 4, q: "Kde nevesta predtým pracovala?" },
+    { word: "MALÁ FATRA", key: 2, q: "Nevestino najobľúbenejšie slovenské pohorie?" },
   ],
   // Tajnička: STUBAI
   [
-    { word: "SLAVKOVSKÝ", key: 0 },
-    { word: "TAJWAN", key: 0 },
-    { word: "STUDNIČKA", key: 2 },
-    { word: "HOLUBY", key: 4 },
-    { word: "HRADEC KRÁLOVÉ", key: 2 },
-    { word: "TRIATLON", key: 2 },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "TAJWAN", key: 0, q: "V ktorej krajine sa novomanželia zasnúbili?" },
+    { word: "STUDNIČKA", key: 2, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
+    { word: "BOB", key: 0, q: "Ako sa volá chameleón novomanželov?" },
+    { word: "HRADEC KRÁLOVÉ", key: 2, q: "Kde nevesta predtým pracovala?" },
+    { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
   ],
   // Tajnička: SLAVKOVSKY
   [
-    { word: "ZÁSNUBY", key: 2 },
-    { word: "LADCE", key: 0 },
-    { word: "MALÁ FATRA", key: 2 },
-    { word: "VETERINÁRKA", key: 0 },
-    { word: "SKIALPY", key: 1 },
-    { word: "BOB", key: 1 },
-    { word: "VYSOKÉ TATRY", key: 0 }, // návrh
-    { word: "SYN", key: 0 }, // návrh
-    { word: "KÔŇ", key: 0 },
-    { word: "VYŠKOV", key: 1 },
+    { word: "RYSY", key: 2, q: "Na ktorý tatranský vrchol vynášali novomanželia náklad ako vysokohorskí nosiči?" },
+    { word: "LADCE", key: 0, q: "Odkiaľ pochádza ženích?" },
+    { word: "MALÁ FATRA", key: 1, q: "Nevestino najobľúbenejšie slovenské pohorie?" },
+    { word: "VETERINÁRKA", key: 0, q: "Aké povolanie má nevesta?" },
+    { word: "SKIALPY", key: 1, q: "Aký zimný šport novomanželia spolu robia?" },
+    { word: "BOB", key: 1, q: "Ako sa volá chameleón novomanželov?" },
+    { word: "ORAVA", key: 3, q: "Z akého regiónu pochádza nevesta?" },
+    { word: "YUSHAN", key: 2, q: "Na ktorom vrchu sa novomanželia zasnúbili?" },
+    { word: "KÔŇ", key: 0, q: "Aké je najobľúbenejšie zviera nevesty?" },
+    { word: "VYŠKOV", key: 1, q: "V akom meste pracuje nevesta?" },
   ],
   // Tajnička: TRENČIN
   [
-    { word: "TAJWAN", key: 0 },
-    { word: "RADO", key: 0 },
-    { word: "CHAMELEÓN", key: 4 },
-    { word: "TANEC", key: 2 }, // návrh
-    { word: "STUDNIČKA", key: 6 },
-    { word: "TRIATLON", key: 2 },
-    { word: "MINO", key: 2 },
+    { word: "TAJWAN", key: 0, q: "V ktorej krajine sa novomanželia zasnúbili?" },
+    { word: "RADO", key: 0, q: "Ako sa volá muž, ktorý mal príhovor s nevestinou sestrou?" },
+    { word: "CHAMELEÓN", key: 4, q: "Aké domáce zviera chovajú novomanželia?" },
+    { word: "BRNO", key: 2, q: "V akom meste pracuje ženích?" },
+    { word: "STUDNIČKA", key: 6, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
+    { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
+    { word: "MINO", key: 2, q: "Kto vás pozná najdlhšie z kamarátov?" },
+  ],
+  // Tajnička: RYSY
+  [
+    { word: "STAPRO", key: 4, q: "V akej firme pracuje ženích?" },
+    { word: "YUSHAN", key: 0, q: "Na ktorom taiwanskom vrchole sa novomanželia zasnúbili?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "VYVET", key: 1, q: "Ako sa volá klinika, kde pracuje nevesta?" },
   ],
 ];
 
@@ -111,6 +118,7 @@ export default function Tajnicka() {
   const [showLetters, setShowLetters] = useState(false);
   const [showPaper, setShowPaper] = useState(true);
   const [showNumbers, setShowNumbers] = useState(true);
+  const [showQuestions, setShowQuestions] = useState(false);
 
   return (
     <div className="tajnicka-page">
@@ -134,6 +142,14 @@ export default function Tajnicka() {
         <label>
           <input
             type="checkbox"
+            checked={showQuestions}
+            onChange={(e) => setShowQuestions(e.target.checked)}
+          />
+          Otázky
+        </label>
+        <label>
+          <input
+            type="checkbox"
             checked={showPaper}
             onChange={(e) => setShowPaper(e.target.checked)}
           />
@@ -151,6 +167,16 @@ export default function Tajnicka() {
             showLetters={showLetters}
             showNumbers={showNumbers}
           />
+          {showQuestions && (
+            <ol className="tajnicka-questions">
+              {words.map((w, j) => (
+                <li key={j}>
+                  {w.q || "—"}
+                  {showLetters && <span className="answer"> → {w.word}</span>}
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       ))}
     </div>
