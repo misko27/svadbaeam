@@ -7,6 +7,9 @@ import "./Maraton.css";
 // Dáta z hodiniek: python3 scripts/health-import.py ~/Downloads/export.zip
 // zapíše src/maraton-data.json. Stránka si z nich sama spočíta skutočné km,
 // formu a odporúčania. Bez súboru sa ukáže len plán.
+//
+// Dohody z chatov (prečo sú v pláne testy, Pardubice, pravidlá únavy…) sú v MARATON-POZNAMKY.md.
+// Pred zmenou plánu si ich prečítaj a novú dohodu tam dopíš.
 const DATA =
   Object.values(import.meta.glob("./maraton-data.json", { eager: true, import: "default" }))[0] ?? null;
 
@@ -50,8 +53,8 @@ const WEEKS = [
   [57, 30, "Intervaly 5 × 1,5 km"],
   [44, 21, "Testovací polmaratón → podľa neho spresníme cieľ a tempá", true],
   [60, 32, "Najdlhší beh, posledná tretina v MP"],
-  [62, 28, "Dlhý beh: 12 km v MP"],
-  [60, 32, "Posledný veľký týždeň, generálka"],
+  [62, 30, "Generálka: dlhý beh, posledných 12 km v MP"],
+  [50, 21, "Pardubický polmaratón v sobotu: 15 km v MP, potom voľne rýchlejšie"],
   [46, 22, "Tapering: tempo 2 × 10 min"],
   [34, 14, "Tapering: 5 km v MP"],
   [20, null, "Pár krátkych behov so strides, maratón v nedeľu"],
@@ -70,6 +73,7 @@ const EVENTS = [
   { label: "Svadba", from: "2026-10-30", to: "2026-10-30", note: "svadobný týždeň, behaj len na pohodu" },
   { label: "Peru", from: "2026-11-27", to: "2026-12-13", note: "nadmorská výška: tep bude vyšší, tempo pomalšie, riaď sa pocitom" },
   { label: "Polmaratón", from: "2027-03-15", to: "2027-03-21" },
+  { label: "Pardubice", from: "2027-04-10", to: "2027-04-10" },
 ];
 
 // Tempá v sekundách na km (od – do), tep v % maxima.
@@ -154,8 +158,25 @@ const RULES = [
   ["Návod, nie zákon", "Ak vynecháš týždeň, jednoducho pokračuj, nič sa nedeje."],
 ];
 
+// Vysvetlivky pojmov z plánu – nech je jasné, čo ktorý tréning znamená a načo je.
+const GLOSSARY = [
+  ["Ľahký beh", `Tempo, pri ktorom sa dá rozprávať v celých vetách, tep do ${EASY_HR}. Väčšina objemu. Buduje vytrvalosť, srdce a šľachy bez veľkej únavy.`],
+  ["Dlhý beh", "Najdlhší beh týždňa, pomaly. Učí telo páliť tuky, vydržať čas na nohách a skúšať gély."],
+  ["Strides", "Krátke uvoľnené zrýchlenia na 15–20 s na konci ľahkého behu, s úplným oddychom medzi nimi. Technika a ľahký krok, nie únava."],
+  ["Fartlek", "Súvislý beh so striedaním svižných úsekov a pomalého klusu, bez zastavenia. Mäkší úvod do rýchlejších tréningov."],
+  ["Tempo beh", "20–40 min „komfortne ťažko“ (pár slov, nie celá veta). Posúva hranicu, kde sa začne hromadiť únava (prah)."],
+  ["Intervaly", "Rýchle úseky (napr. 1 km) s klusom medzi nimi. Zlepšujú VO2max a rýchlosť."],
+  ["MP", "Maratónske tempo, ktorým chceš bežať 2. 5. Bloky v MP učia telo a hlavu toto tempo držať."],
+  ["Rozklus / vyklus", "Pár km pomaly pred a po rýchlejšom tréningu. Zahriatie a upokojenie."],
+  ["Test 5 km", "Raz za 6–8 týždňov 5 km naplno. Ukáže, či ide forma hore, a podľa času sa spresnia tempá a cieľ."],
+  ["Odľahčovací týždeň", "Každý 4. týždeň menej km. Telo si tréning vstrebá, forma rastie práve vtedy."],
+  ["Tapering", "Posledné 3 týždne pred maratónom klesá objem, aby si na štart prišiel svieži."],
+  ["HRV a pokojový tep", "Ranné ukazovatele regenerácie. Pokojový tep hore a HRV dole = telo je unavené, deň uber."],
+];
+
 const HISTORY_SECTIONS = [
   ["roky", "Roky"],
+  ["beh-mesiace", "Beh po mesiacoch"],
   ["mesiace", "Mesiace"],
   ["tep", "Tempo a tep"],
   ["zdravie", "Zdravie"],
@@ -167,6 +188,7 @@ const SECTIONS = [
   ["hodnotenie", "Ako sa darí"],
   ["plan", "Plán"],
   ["tempa", "Tempá"],
+  ["pojmy", "Pojmy"],
   ["tyzden", "Štruktúra"],
   ["den-d", "Deň D"],
   ["zasady", "Zásady"],
@@ -296,6 +318,7 @@ export default function Maraton() {
             <Feedback today={today} />
             <Plan current={current} />
             <Paces />
+            <Glossary />
             <WeekStructure today={today} current={current} />
             <RaceDay />
             <Rules />
@@ -412,8 +435,21 @@ function dowOf(iso) {
 }
 
 function eventOn(iso) {
-  return EVENTS.find((e) => e.label !== "Polmaratón" && iso >= e.from && iso <= e.to);
+  return EVENTS.find((e) => !["Polmaratón", "Pardubice"].includes(e.label) && iso >= e.from && iso <= e.to);
 }
+
+// 5 km na plné tempo namiesto štvrtkovej kvality: kontrola formy a podklad pre tempá.
+// Prečo testy: pozri MARATON-POZNAMKY.md. Cieľ prvého testu je odhad z najlepšieho polmaratónu
+// (Riegel), ďalšie testy začínajú tempom predchádzajúceho.
+const TESTS_5K = ["2026-11-05", "2027-01-07", "2027-02-18"];
+const T5_EST = HM_BEST.time * (5 / 21.0975) ** 1.06;
+const T5_PACE = T5_EST / 5;
+const TEST5_TEXT = [
+  `Rozklus 2 km a 4 strides. Potom 5 km na rovine, cieľ okolo ${fmtPace(T5_EST)} (${fmtPace(T5_PACE)}/km), odhad z tvojho polmaratónu.`,
+  `1. km ${fmtPace(T5_PACE + 5)} (zámerne o chlp pomalšie, na začiatku sa to zdá ľahké, nedaj sa nachytať). 2.–4. km drž ${fmtPace(T5_PACE)}. Ak je po 3. km ešte rezerva, pridaj. Posledný km čo dáš.`,
+  "Pri ďalšom teste začni tempom, ktoré si zabehol minule. Tep nesleduj, beží sa podľa tempa a pocitu, na konci býva 170+. Vyklus 2 km.",
+  "Čo z toho vyčítame: z času spresníme všetky tempá (ľahké, MP, tempo, intervaly) a odhad cieľa na maratón. Porovnáme aj s predošlým testom, či ide forma hore.",
+].join(" ");
 
 // Rozpíše týždeň z WEEKS na 7 dní: typ, km a popis. Výsledok sa dá meniť len v dátach hore.
 function planDays(w) {
@@ -457,6 +493,18 @@ function planDays(w) {
     days[3] = { type: "run", km: thu, title: `Ľahký beh ${fmtKm(thu)} km so 4 × 20 s strides`, text: easyText };
     days[6] = { type: "race", km: 21.1, title: "Testovací polmaratón", text: "Preteky alebo samostatne. Prvé 3 km pokojne, potom tempo, ktoré udržíš do konca. Výsledok zadaj do plánu, spresníme cieľ." };
   }
+  // Pardubický polmaratón 3 týždne pred maratónom: nie naplno, ale generálka tempa, jedla a gélov
+  if (w.n === 26) {
+    days[1] = { type: "run", km: 10, title: "Ľahký beh 10 km", text: easyText };
+    days[3] = { type: "run", km: 7, title: "Ľahký beh 7 km so 4 strides", text: easyText };
+    days[4] = { type: "rest", title: "Voľno", text: "Pred pretekmi bez fitka. Normálna večera, nič nové." };
+    days[5] = { type: "race", km: 25, title: "Pardubický polmaratón 🏅", text: `Rozklus 2 km. Prvých 15 km v maratónskom tempe ${fmtPace(PACES[1].from)}–${fmtPace(PACES[1].to)}/km, posledných 6 km voľne rýchlejšie, ak sa cítiš dobre. Nie naplno: o 3 týždne je maratón. Raňajky, topánky a gély ako na maratóne. Vyklus 2 km.` };
+    days[6] = { type: "run", km: 8, title: "Ľahký beh 8 km", text: "Veľmi pomaly, len rozhýbať nohy po pretekoch." };
+  }
+  if (TESTS_5K.includes(addDays(w.start, 3))) {
+    days[3] = { type: "quality", km: 9, title: `Test 5 km naplno · cieľ ~${fmtPace(T5_EST)}`, text: TEST5_TEXT };
+    days[4] = { type: "rest", title: "Voľno", text: "Po teste bez fitka." };
+  }
   if (w.n === 29) {
     days[0] = { type: "rest", title: "Voľno", text: "Posledný týždeň bez fitka." };
     days[1] = { type: "run", km: 7, title: "Ľahký beh 7 km so strides", text: easyText };
@@ -494,6 +542,7 @@ function plannedOn(iso) {
 const TYPE_ICON = { run: "🏃", long: "🏃", quality: "⚡", gym: "🏋", swim: "🏊", rest: "·", race: "🏅" };
 
 // Popis kvalitného tréningu podľa typu – čo presne bežať a akým tempom.
+const FARTLEK_TEXT = "Fartlek (švédsky „hra s rýchlosťou“) = súvislý beh, v ktorom sa striedajú svižné úseky s pomalým klusom, bez zastavenia. Učí telo meniť tempo a je to mäkší úvod do rýchlejších tréningov ako intervaly na dráhe.";
 const STRIDES_TEXT = "Strides = krátke zrýchlenia na 15–20 s: plynulo sa rozbehni na rýchle, ale uvoľnené tempo (asi 4:00–4:30/km, nie šprint), potom 60–90 s pomaly vyklusaj alebo choď, kým nie si úplne oddýchnutý. Tep pri nich nesleduj, sú príliš krátke. Cieľ je technika a ľahký krok, nie únava.";
 
 function qualityDay(key, km) {
@@ -507,7 +556,7 @@ function qualityDay(key, km) {
     title = `Ľahký beh ${fmtKm(km)} km + 4 × 20 s strides`;
     text = `Celý beh ľahko, tep do ${EASY_HR}. Na konci pridaj 4 strides. ${STRIDES_TEXT}`;
   } else if (k.includes("fartlek")) {
-    text = `Rozklus 2 km ľahko. Potom ${key.replace(/fartlek\s*/i, "").replace(/\s*svižne/i, "")} svižne (asi ${tempo}/km, „komfortne ťažko“), medzi úsekmi rovnako dlho pomaly klus. Zvyšok ľahko, posledný km vyklus.`;
+    text = `Rozklus 2 km ľahko. Potom ${key.replace(/fartlek\s*/i, "").replace(/\s*svižne/i, "")} svižne (asi ${tempo}/km, „komfortne ťažko“), medzi úsekmi rovnako dlho pomaly klus. Zvyšok ľahko, posledný km vyklus. ${FARTLEK_TEXT}`;
   } else if (k.includes("interval")) {
     text = `Rozklus 2–3 km ľahko a 4 strides. Úseky v tempe ${intv}/km (tep 92 % a viac), medzi nimi 2–3 min pomalý klus. Potom vyklus do celkových ${fmtKm(km)} km.`;
   } else if (/\bmp\b/.test(k)) {
@@ -923,6 +972,62 @@ function Load({ cols, title, km }) {
   );
 }
 
+// Len behy po mesiacoch jedného roka (prepínač rokov): km v stĺpci, detail (počet, najdlhší, Ø tempo) v title.
+function RunMonths({ years }) {
+  const [year, setYear] = useState(years[0]);
+  const cols = monthCols(`${year}-01-01`, `${year}-12-01`).map((c, i) => ({ ...c, label: MONTHS_SHORT[i] }));
+  const rows = cols.map((c) => {
+    const rs = RUNS.filter((r) => r.d >= c.from && r.d < c.to);
+    const road = rs.filter(isRoadRun);
+    return {
+      ...c,
+      count: rs.length,
+      km: rs.reduce((s, r) => s + r.km, 0),
+      longest: rs.length ? Math.max(...rs.map((r) => r.km)) : 0,
+      pace: road.length ? road.reduce((s, r) => s + r.min * 60, 0) / road.reduce((s, r) => s + r.km, 0) : null,
+    };
+  });
+  const cap = Math.max(50, ...rows.map((r) => r.km));
+  const total = rows.reduce((s, r) => s + r.km, 0);
+  const color = LOAD_KINDS.find(([k]) => k === "run")[2];
+
+  return (
+    <div className="mar-card">
+      <div className="mar-gym-tabs">
+        {years.map((y) => (
+          <button key={y} type="button" className={y === year ? "is-on" : ""} onClick={() => setYear(y)} aria-pressed={y === year}>
+            {y}
+          </button>
+        ))}
+      </div>
+      <h3 className="mar-h3">Kilometre behu mesačne · {year} · spolu {Math.round(total)} km</h3>
+      <div className="mar-chart-wrap">
+        <div className="mar-load" style={{ gridTemplateColumns: "repeat(12, minmax(24px, 1fr))" }}>
+          {rows.map((r) => (
+            <div
+              key={r.from}
+              className="mar-load-col"
+              title={r.count
+                ? `${r.label} ${year}: ${fmtKm(r.km)} km · ${r.count} ${plural(r.count, "beh", "behy", "behov")} · najdlhší ${fmtKm(r.longest)} km${r.pace ? ` · Ø ${fmtPace(r.pace)}/km` : ""}`
+                : `${r.label} ${year}: bez behu`}
+            >
+              <div className="mar-load-bar">
+                {r.km > 0 && <span style={{ height: `${(r.km / cap) * 100}%`, background: color }} />}
+              </div>
+              <span className="mar-load-h">{r.km ? Math.round(r.km) : ""}</span>
+              <span className="mar-load-d">{r.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mar-legend">
+        <span><i style={{ background: color }} />Beh</span>
+        <span>čísla = km</span>
+      </div>
+    </div>
+  );
+}
+
 function weekCols(from, asOf) {
   const cols = [];
   const wd = (new Date(from + "T12:00:00").getDay() + 6) % 7;
@@ -1075,6 +1180,10 @@ function History() {
             ))}
           </div>
         )}
+      </Section>
+
+      <Section id="beh-mesiace" title="Beh po mesiacoch" intro="Len behy, bez ostatných športov. Rok si prepni hore, podrž alebo ťukni na stĺpec pre počet behov, najdlhší beh a priemerné tempo.">
+        <RunMonths years={years} />
       </Section>
 
       <Section id="mesiace" title="Mesiace" intro="Tréningový čas po mesiacoch podľa športu. Podrž alebo ťukni na stĺpec pre detail.">
@@ -1514,6 +1623,21 @@ function RaceDay() {
 }
 
 /* ─── Zásady ─── */
+function Glossary() {
+  return (
+    <Section id="pojmy" title="Pojmy" intro="Čo znamenajú slová v pláne a načo je ktorý tréning.">
+      <dl className="mar-gloss">
+        {GLOSSARY.map(([t, d]) => (
+          <div key={t} className="mar-card">
+            <dt>{t}</dt>
+            <dd>{d}</dd>
+          </div>
+        ))}
+      </dl>
+    </Section>
+  );
+}
+
 function Rules() {
   return (
     <Section id="zasady" title="Dôležité pravidlá">

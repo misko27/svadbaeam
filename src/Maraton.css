@@ -826,6 +826,16 @@
 }
 .mar-splits b { font-size: 1.05rem; }
 
+/* Pojmy */
+.mar-gloss {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+}
+.mar-gloss dt { font-weight: 600; margin-bottom: 0.25rem; }
+.mar-gloss dd { margin: 0; font-size: 0.9rem; color: var(--mar-muted); }
+
 /* Zásady */
 .mar-rules {
   display: grid;
