@@ -9,11 +9,20 @@ const PUZZLES = [
   // Tajnička: YUSHAN
   [
     { word: "VYŠKOV", key: 1, q: "V akom meste pracuje nevesta?" },
-    { word: "PERU", key: 3, q: "Kam letíte na svadobnú cestu?" },
-    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "PERU", key: 3, q: "Do akého štátu letia novomanželia na svadobnú cestu?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom tatranskom štíte sa novomanželia spoznali?" },
     { word: "CHAMELEÓN", key: 1, q: "Aké domáce zviera chovajú novomanželia?" },
     { word: "ANTÓNIA", key: 0, q: "Meno ženíchovej mamy?" },
     { word: "MINO", key: 2, q: "Kto vás pozná najdlhšie z kamarátov?" },
+  ],
+  // Tajnička: STUBAI
+  [
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom tatranskom štíte sa novomanželia spoznali?" },
+    { word: "TAJWAN", key: 0, q: "V ktorej krajine sa novomanželia zasnúbili?" },
+    { word: "STUDNIČKA", key: 2, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
+    { word: "BOB", key: 0, q: "Ako sa volá chameleón novomanželov?" },
+    { word: "HRADEC KRÁLOVÉ", key: 2, q: "Kde nevesta predtým pracovala?" },
+    { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
   ],
   // Tajnička: WEISSKUGEL
   [
@@ -21,21 +30,22 @@ const PUZZLES = [
     { word: "TRENČÍN", key: 2, q: "Ženíchovo najobľúbenejšie mesto?" },
     { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
     { word: "STAPRO", key: 0, q: "V akej firme pracuje ženích?" },
-    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom tatranskom štíte sa novomanželia spoznali?" },
     { word: "STUDNIČKA", key: 7, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
-    { word: "PERU", key: 3, q: "Kam letíte na svadobnú cestu?" },
+    { word: "PERU", key: 3, q: "Do akého štátu letia novomanželia na svadobnú cestu?" },
     { word: "PROGRAMÁTOR", key: 3, q: "Aké povolanie má ženích?" },
     { word: "HRADEC KRÁLOVÉ", key: 4, q: "Kde nevesta predtým pracovala?" },
     { word: "MALÁ FATRA", key: 2, q: "Nevestino najobľúbenejšie slovenské pohorie?" },
   ],
-  // Tajnička: STUBAI
+  // Tajnička: TRENČIN
   [
-    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
     { word: "TAJWAN", key: 0, q: "V ktorej krajine sa novomanželia zasnúbili?" },
-    { word: "STUDNIČKA", key: 2, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
-    { word: "BOB", key: 0, q: "Ako sa volá chameleón novomanželov?" },
-    { word: "HRADEC KRÁLOVÉ", key: 2, q: "Kde nevesta predtým pracovala?" },
+    { word: "PERU", key: 2, q: "Do akého štátu letia novomanželia na svadobnú cestu?" },
+    { word: "CHAMELEÓN", key: 4, q: "Aké domáce zviera chovajú novomanželia?" },
+    { word: "BRNO", key: 2, q: "V akom meste pracuje ženích?" },
+    { word: "STUDNIČKA", key: 6, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
     { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
+    { word: "MINO", key: 2, q: "Kto vás pozná najdlhšie z kamarátov?" },
   ],
   // Tajnička: SLAVKOVSKY
   [
@@ -50,21 +60,11 @@ const PUZZLES = [
     { word: "KÔŇ", key: 0, q: "Aké je najobľúbenejšie zviera nevesty?" },
     { word: "VYŠKOV", key: 1, q: "V akom meste pracuje nevesta?" },
   ],
-  // Tajnička: TRENČIN
-  [
-    { word: "TAJWAN", key: 0, q: "V ktorej krajine sa novomanželia zasnúbili?" },
-    { word: "RADO", key: 0, q: "Ako sa volá muž, ktorý mal príhovor s nevestinou sestrou?" },
-    { word: "CHAMELEÓN", key: 4, q: "Aké domáce zviera chovajú novomanželia?" },
-    { word: "BRNO", key: 2, q: "V akom meste pracuje ženích?" },
-    { word: "STUDNIČKA", key: 6, q: "V akom folklórnom súbore hrá krstná mama nevesty?" },
-    { word: "TRIATLON", key: 2, q: "Aký závod (plávanie, bicykel, beh) absolvovali novomanželia spolu?" },
-    { word: "MINO", key: 2, q: "Kto vás pozná najdlhšie z kamarátov?" },
-  ],
   // Tajnička: RYSY
   [
     { word: "STAPRO", key: 4, q: "V akej firme pracuje ženích?" },
     { word: "YUSHAN", key: 0, q: "Na ktorom taiwanskom vrchole sa novomanželia zasnúbili?" },
-    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom štíte sa novomanželia spoznali?" },
+    { word: "SLAVKOVSKÝ", key: 0, q: "Na ktorom tatranskom štíte sa novomanželia spoznali?" },
     { word: "VYVET", key: 1, q: "Ako sa volá klinika, kde pracuje nevesta?" },
   ],
 ];

@@ -56,7 +56,7 @@
 .row-num {
   font-family: var(--font-heading, 'Cormorant Garamond', serif);
   font-size: calc(var(--cell) * 0.42);
-  color: #8a8178;
+  color: #3f3a35;
   padding-right: calc(var(--cell) * 0.35);
   text-align: right;
   line-height: 1;
