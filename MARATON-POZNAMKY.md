@@ -112,3 +112,8 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   1:46–1:47. Ak to tak vyjde, prehodnotiť MP pre posledných 7 týždňov.
 - **21. 10. 2026:** pribudla sekcia „Kontrolné body“: čo sledovať priebežne a kedy plán
   prehodnotiť. Zatiaľ ideme podľa plánu, ako je.
+- **25. 10. 2026:** import dát (behy 24. 10. 7,5 km 6:09/km tep 145 a 25. 10. 5,1 km
+  6:05/km tep 146). Týždeň 2 má 19,7 km z plánovaných 25, dlhý beh 12 km nebol (v nedeľu
+  len 5,1 km), fitko len pondelok. Ľahké tempo pri tepe 145 sa zlepšuje (6:15 → 6:05).
+  VO2max 49,7. Pokojový tep 59 a HRV 68 ráno 24. 10., 25. 10. HRV späť na 86.
+  Plán sa nemení, svadobný týždeň ostáva ľahký (18 km), dlhý beh nedobiehať.
