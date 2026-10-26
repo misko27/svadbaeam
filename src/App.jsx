@@ -42,10 +42,10 @@ function App() {
       <Hero />
       <Countdown />
       <Venues />
-      <Program />
       <Organization />
       <Transport />
       <Accommodation />
+      <Program />
       <RsvpForm />
       <Footer />
     </div>
@@ -190,17 +190,141 @@ function Venues() {
 }
 
 /* ─── Program ─── */
+// Poradie podľa tlačeného programu na stoloch; čas len tam, kde je pevne daný.
+const PROGRAM = [
+  { title: "Príhovor a prípitok", icon: "toast" },
+  { title: "Svadobná večera", icon: "dinner" },
+  { title: "Prvý tanec novomanželov", icon: "rings" },
+  { title: "Spoločné fotenie", icon: "camera" },
+  { title: "Krájanie svadobnej torty", icon: "cake" },
+  { title: "Hra pre svadobčanov", icon: "chair" },
+  { title: "Svadobný kvíz", icon: "quiz" },
+  { title: "Bufetové stoly", time: "21:00", icon: "buffet" },
+  { title: "Čepčenie", icon: "veil" },
+  { title: "Zábava na parkete do rána bieleho", icon: "party" },
+];
+
 function Program() {
   return (
     <section className="info-section" id="program">
       <FadeIn>
         <h2>Program</h2>
-        <p className="info-text">
-          Podrobný program dňa ešte pripravujeme – doplníme ho sem čoskoro.
-        </p>
-        <p className="info-note">(text doladíme)</p>
+        <p className="program-intro">od 16:00 v Hoteli Park</p>
+        <ol className="program-list">
+          {PROGRAM.map((item) => (
+            <li key={item.title} className="program-item">
+              <span className="program-icon">
+                <ProgramIcon name={item.icon} />
+              </span>
+              <span className="program-title">{item.title}</span>
+              {item.time && <span className="program-time">{item.time}</span>}
+            </li>
+          ))}
+        </ol>
       </FadeIn>
     </section>
+  );
+}
+
+/* Jednoduché čiarové ikonky v štýle tlačeného programu */
+function ProgramIcon({ name }) {
+  const paths = {
+    toast: (
+      <>
+        <path d="M6 4h6l-.6 5a2.6 2.6 0 0 1-4.8 0z" transform="rotate(-14 9 8)" />
+        <path d="M8.6 12.6l-1 6.4M5.4 19.5l4.4.7" />
+        <path d="M20 4h-6l.6 5a2.6 2.6 0 0 0 4.8 0z" transform="rotate(14 17 8)" />
+        <path d="M17.4 12.6l1 6.4M20.6 19.5l-4.4.7" />
+        <path d="M13 1.5v1.5M10.8 2.2l.8 1.2M15.2 2.2l-.8 1.2" />
+      </>
+    ),
+    dinner: (
+      <>
+        <circle cx="12" cy="12" r="6.5" />
+        <circle cx="12" cy="12" r="3.8" />
+        <path d="M2.5 4v4.5a1.3 1.3 0 0 0 2.6 0V4M3.8 4v16" />
+        <path d="M21 20V4c-1.6 1-2.2 3.4-2.2 6.5 0 1 .5 1.5 1.2 1.5H21" />
+      </>
+    ),
+    rings: (
+      <>
+        <circle cx="8.5" cy="14" r="5.5" />
+        <circle cx="15.5" cy="14" r="5.5" />
+        <path d="M6.5 6.5l2-2.5 2 2.5-2 2z" />
+      </>
+    ),
+    camera: (
+      <>
+        <rect x="2.5" y="7" width="19" height="13" rx="2.5" />
+        <path d="M8 7l1.5-2.5h5L16 7" />
+        <circle cx="12" cy="13.5" r="4" />
+        <circle cx="12" cy="13.5" r="1.6" />
+        <path d="M5.5 10h1.5" />
+      </>
+    ),
+    cake: (
+      <>
+        <path d="M3.5 21h17v-5h-17zM5.5 16v-4.5h13V16M8 11.5V7.5h8v4" />
+        <path d="M3.5 18.5c1.4 1 2.8-1 4.2 0s2.8-1 4.3 0 2.8-1 4.3 0 2.8-1 4.2 0" />
+        <path d="M12 7.5V5M12 5c-.8-.8-.8-1.8 0-2.8.8 1 .8 2 0 2.8" />
+      </>
+    ),
+    chair: (
+      <>
+        <path d="M7 12V4.5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2V12" />
+        <path d="M10 3v9M14 3v9" />
+        <path d="M5.5 12h13v2.5h-13z" />
+        <path d="M7 14.5L6.2 21.5M17 14.5l.8 7M9.5 14.5v5M14.5 14.5v5" />
+      </>
+    ),
+    quiz: (
+      <>
+        <path d="M14 3.5a6.5 5.5 0 1 1 3 10.4l-.5 2.6-2.4-2.1" />
+        <path d="M14.8 6.5a1.7 1.7 0 1 1 2.6 1.5c-.7.4-1 .8-1 1.5M16.4 11.3v.1" />
+        <path d="M10 9.5c-4.4 0-7.5 2.4-7.5 5.4 0 1.7 1 3.1 2.5 4.1l-.5 2.8 3.2-1.9c.7.2 1.5.3 2.3.3 4.1 0 7.3-2.4 7.3-5.3S14.1 9.5 10 9.5z" />
+        <path d="M6.6 15h.1M10 15h.1M13.4 15h.1" />
+      </>
+    ),
+    buffet: (
+      <>
+        <path d="M3.5 16.5a8.5 8.5 0 0 1 17 0z" />
+        <path d="M2 16.5h20M3.5 19h17" />
+        <path d="M12 8V6.3M10.6 6.3h2.8" />
+      </>
+    ),
+    veil: (
+      <>
+        <circle cx="12" cy="5.5" r="2.5" />
+        <path d="M9.8 4.2C7 6 6 12 4 21h16c-2-9-3-15-5.8-16.8" />
+        <path d="M9.5 10h5l1.5 11M9.5 10L8 21" />
+        <path d="M10.8 13.5h2.4M11 12.5l1 1.5 1-1.5" />
+      </>
+    ),
+    party: (
+      <>
+        <circle cx="12" cy="6" r="3.8" />
+        <path d="M8.2 6h7.6M12 2.2c-1.5 2.2-1.5 5.4 0 7.6M12 2.2c1.5 2.2 1.5 5.4 0 7.6" />
+        <path d="M5 3l.6 1.2M19 3l-.6 1.2M3.5 7.5h1.3M20.5 7.5h-1.3" />
+        <rect x="3" y="12.5" width="6.5" height="9" rx="1" />
+        <rect x="14.5" y="12.5" width="6.5" height="9" rx="1" />
+        <circle cx="6.25" cy="18.3" r="1.8" />
+        <circle cx="17.75" cy="18.3" r="1.8" />
+        <path d="M6.25 14.6v.1M17.75 14.6v.1" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
   );
 }
 

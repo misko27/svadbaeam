@@ -210,6 +210,110 @@
   margin: 0.8rem 0 0;
 }
 
+/* ─── Program ─── */
+.program-intro {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 0 0 2.2rem;
+}
+
+.program-list {
+  list-style: none;
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+}
+
+/* tenká zvislá čiara, ktorá spája ikonky */
+.program-list::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  bottom: 28px;
+  width: 1px;
+  background: var(--accent-light);
+  opacity: 0.5;
+}
+
+.program-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 0.55rem 0;
+}
+
+.program-icon {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(196, 149, 106, 0.55);
+  background: var(--white);
+  color: var(--text);
+}
+
+.info-section:nth-of-type(even) .program-icon {
+  background: var(--bg);
+}
+
+.program-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.program-title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.program-time {
+  margin-left: auto;
+  padding-left: 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .program-list::before {
+    left: 24px;
+    top: 24px;
+    bottom: 24px;
+  }
+
+  .program-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .program-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .program-item {
+    gap: 1rem;
+  }
+
+  .program-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+  }
+}
+
 /* ─── Miesta: Obrad + Hostina vedľa seba ─── */
 .venue-grid {
   display: flex;
