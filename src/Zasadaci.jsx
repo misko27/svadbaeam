@@ -18,44 +18,44 @@ const CHAIR_GAP = 0.45; // o koľko sú stoličky odsadené od hrany stola
 // x, y = stred stola v metroch; "Upraviť rozloženie" ich dovolí ťahať myšou.
 const TABLES = [
   {
-    id: 1,
+    id: "main",
     shape: "rect",
     name: "Hlavný stôl — mladomanželia + rodičia",
     x: PARKET_X / 2,
     y: 0.9,
     len: 5, // dĺžka stola (m), sedí sa len z jednej strany – tvárou do sály
    
-    guests: ["Mama nevesty", { name: "Nevesta", veg: true }, { name: "Ženích", veg: true }, "Mama ženícha", "Otec ženícha"],
+    guests: ["Otec ženícha", "Mama ženícha", { name: "Ženích", veg: true }, { name: "Nevesta", veg: true }, "Mama nevesty"],
   },
-  { id: 2, x: 4.55, y: 4.9,
-    guests: ["Róbert", "Eva", "Michal", "Žofka", { name: "Julka", nealko: true }, "Miro",
-      { name: "Emma", kid: true, meal: "kid" }, { name: "Dominik", kid: true, meal: "kid" }, "Lenka", "Peťo"] },
-  { id: 3, x: 8.65, y: 4.9,
+  { id: 1, x: 2.5, y: 4.9,
+    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", "Majka",
+      "Danko", "Janka"] },
+  { id: 2, x: 6.6, y: 4.9,
     guests: ["Igor", "Martina", "Andrea", "Dušan", "Ivet", "Majo",
       { name: "Sárka", kid: true, meal: "kid" }, { name: "Sofia", kid: true, meal: "kid" },
       { name: "Dominik", kid: true, meal: "kid" }] },
-  { id: 4, x: 12.75, y: 4.9,
-    guests: [{ name: "Matúško", kid: true, meal: "kid" }, { name: "Alžbetka", kid: true, meal: "kid" }, "Ľubka", "Lukáš", "Majka",
-      "Danko", "Janka"] },
-  { id: 5, x: 2.5, y: 8.6,
+  { id: 3, x: 10.7, y: 4.9,
     guests: ["Krstná", "Krstný", { name: "Vlado", nealko: true }, "Mirka", "Braňo", "Katka", "Janko", "Martina", "Katka", "Miloš"] },
-  { id: 6, x: 6.6, y: 8.6,
-    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Aďo", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baška", veg: true, nealko: true }] },
-  { id: 7, x: 10.7, y: 8.6,
-    guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", { name: "Dávid", nealko: true }, { name: "Nika", nealko: true }, "Rado", "Patrik", "Nelka"] },
-  { id: 8, x: 14.8, y: 8.6,
+  { id: 4, x: 14.8, y: 4.9,
+    guests: ["Róbert", "Eva", "Michal", "Žofka", { name: "Julka", nealko: true }, "Miro",
+      { name: "Emma", kid: true, meal: "kid" }, { name: "Dominik", kid: true, meal: "kid" }, "Lenka", "Peťo"] },
+  { id: 5, x: 4.55, y: 8.6,
     guests: ["Litka", "Janka", "Janko",
       { name: "Sonja", kid: true, meal: "kid" }, { name: "Janko", kid: true, meal: "kid" },
       { name: "Peťko", veg: true, nealko: true }, { name: "Majka", nealko: true },
       { name: "Peťko", kid: true, meal: "kid" }, { name: "Davidko", kid: true, meal: "kid" },
       { name: "Šimonko", kid: true, highChair: true, meal: "kid" }] },
-  { id: 9, x: 4.55, y: 12.3,
-    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Mišo", "Dada", "Paťka", "Andrej", { name: "Viki", nealko: true }, { name: "Evka", diet: "bezlepková", nealko: true }, { name: "Richard", nealko: true }] },
-  { id: 10, x: 8.65, y: 12.3,
-    guests: ["Juraj", "Tina", { name: "Laco", nealko: true }, "Marta", { name: "Tomáš", nealko: true }, { name: "Julka", nealko: true }, "Sandra", "Danka", "Veronika", "Jambi"] },
-  { id: 11, x: 12.75, y: 12.3,
+  { id: 6, x: 12.75, y: 8.6,
+    guests: [{ name: "Lila", diet: "bezlepková", nealko: true }, "Tomáš", { name: "Janka", veg: true }, "Aďo", { name: "Kika", diet: "bezlepková" }, "Mihla", "Pipa", "Kovo", "Tomáš", { name: "Baška", veg: true, nealko: true }] },
+  { id: 7, x: 2.5, y: 12.3,
     guests: [{ name: "Lucia", veg: true, nealko: true }, { name: "Lukáš", nealko: true }, "Mery", { name: "Mára", diet: "bezlepková", nealko: true }, "Sima", { name: "Lenka", veg: true }, "Igor", { name: "Veru", diet: "bezlepková" }, "Lukáš",
       { name: "Alžbetka", kid: true, highChair: true, meal: "none" }] },
+  { id: 8, x: 6.6, y: 12.3,
+    guests: ["Tomáš", "Nika", { name: "Artur", kid: true, highChair: true, meal: "none" }, "Mišo", "Dada", "Paťka", "Andrej", { name: "Viki", nealko: true }, { name: "Evka", diet: "bezlepková", nealko: true }, { name: "Richard", nealko: true }] },
+  { id: 9, x: 10.7, y: 12.3,
+    guests: ["Juraj", "Tina", { name: "Laco", nealko: true }, "Marta", { name: "Tomáš", nealko: true }, { name: "Julka", nealko: true }, "Sandra", "Danka", "Veronika", "Jambi"] },
+  { id: 10, x: 14.8, y: 12.3,
+    guests: ["Boris", "Dominika", "Matúš", "Romi", "Mino", { name: "Dávid", nealko: true }, { name: "Nika", nealko: true }, "Rado", "Patrik", "Nelka"] },
 ];
 
 // Malý stôl pre dodávateľov – hore pri parkete, oproti hlavnému stolu.
@@ -74,7 +74,7 @@ const CREW = {
 };
 
 const CAPACITY = 10;
-const STORAGE_KEY = "zasadaci-pozicie-v2";
+const STORAGE_KEY = "zasadaci-pozicie-v4";
 
 /* ─── Pomocné funkcie ─── */
 const normGuest = (g) => {
@@ -198,9 +198,6 @@ function TableShape({ t, guests, showNames, onPointerDown, editing }) {
         </text>
       ) : t.shape === "rect" ? (
         <>
-          <text className="zs-num" x={0} y={0.25} textAnchor="middle">
-            {t.id}
-          </text>
           <text className="zs-count" x={t.len / 2 + 0.2} y={-0.12}>
             {guests.length} osôb
           </text>
@@ -314,7 +311,7 @@ function TableCard({ t }) {
   return (
     <article className={`zs-card ${over > 0 ? "over" : ""}`}>
       <header>
-        <span className="zs-card-num">{t.id === "crew" ? "DJ" : t.id}</span>
+        <span className="zs-card-num">{t.id === "crew" ? "DJ" : isMain ? "♥" : t.id}</span>
         <div>
           <h3>{t.name ?? `Stôl ${t.id}`}</h3>
           <p className="zs-card-meta">
