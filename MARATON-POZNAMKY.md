@@ -50,6 +50,7 @@ po 3. km pridaj, ak je rezerva, posledný km čo dá. Ďalší test začína tem
 **Výsledky:** (dopĺňať)
 | Dátum | Čas | Tempo | Pozn. |
 |---|---|---|---|
+| 9. 11. 2026 (po) | 24:42 (5,03 km) | 4:55/km | Tep priemer 160 (85 % max), max 167. Nie úplne naplno, nerovnomerné tempo, deň po dlhom behu a turistike. Rozklus 2,1 km s jedným rýchlym kolom navyše, vyklus 1,7 km, uložené ako 3 samostatné behy. |
 
 ## Preteky
 
@@ -92,7 +93,7 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
 **Záznamy z kontrol** (dopĺňať)
 | Dátum | Bod | Čo ukázali dáta | Rozhodnutie |
 |---|---|---|---|
-| 9. 11. 2026 | 1. test 5 km (5. 11.) | Test sa nebežal, 5. 11. bol ľahký beh 8,3 km 6:00/km, tep 142. | Zatiaľ otvorené: test presunúť, alebo nechať až 7. 1. |
+| 9. 11. 2026 | 1. test 5 km (bežaný 9. 11.) | 24:42, 4:55/km pri tepe 160 (85 % max). Pri skutočne maximálnom teste býva na konci 175+, takže je to skôr spodná hranica formy. Riegel: polmaratón ~1:53, maratón ~3:55. | Tempá ani cieľ sa nemenia (3:50–4:00 sedí). Tempo pre fartlek 5:00–5:10 sedí s tým, ako sa beh cítil. Štvrtok v týždni 5 len ľahko so strides. Ďalší test 7. 1.: začať 4:50 a dobehnúť naozaj naplno, rovnomernejšie. |
 
 ## História zmien plánu
 
@@ -129,3 +130,7 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   s textom „pridaj sobotný ľahký beh“ (kľúčový text týždňa nie je tréning). Teraz je vo štvrtok
   týždňa 5 fartlek 6 × 1 min (v týždni 4 ho nahradil test, ktorý sa aj tak nebežal).
   Týždeň 10 („Návrat z výšky“) má vo štvrtok ľahký beh, nie kvalitu.
+- **9. 11. 2026 (večer):** 1. test na 5 km odbehnutý v pondelok 9. 11.: 24:42 (4:55/km, tep 160).
+  Michal ho na hodinkách rozdelil na 3 behy (rozklus, test, vyklus), aby sa k nemu vedel vrátiť.
+  Do budúcna stačí jeden beh a vlastný tréning na hodinkách (zahriatie / práca 5 km / ochladenie).
+  Štvrtok v týždni 5 zmenený z fartleku na ľahký beh so strides.

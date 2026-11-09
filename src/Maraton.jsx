@@ -441,7 +441,8 @@ function eventOn(iso) {
 // 5 km na plné tempo namiesto štvrtkovej kvality: kontrola formy a podklad pre tempá.
 // Prečo testy: pozri MARATON-POZNAMKY.md. Cieľ prvého testu je odhad z najlepšieho polmaratónu
 // (Riegel), ďalšie testy začínajú tempom predchádzajúceho.
-const TESTS_5K = ["2026-11-05", "2027-01-07", "2027-02-18"];
+// 1. test sa bežal až v pondelok 9. 11. (24:42), preto už nie je v pláne.
+const TESTS_5K = ["2027-01-07", "2027-02-18"];
 const T5_EST = HM_BEST.time * (5 / 21.0975) ** 1.06;
 const T5_PACE = T5_EST / 5;
 const TEST5_TEXT = [
@@ -452,8 +453,9 @@ const TEST5_TEXT = [
 ].join(" ");
 
 // Štvrtková kvalita v týždňoch, kde kľúčový text týždňa nie je tréning.
-// Týždeň 5: fartlek 6 × 1 min, lebo v týždni 4 ho nahradil test na 5 km.
-const THU_QUALITY = { 5: "Fartlek 6 × 1 min svižne" };
+// Týždeň 5: test na 5 km bol v pondelok 9. 11., preto vo štvrtok len ľahko so strides
+// (dve rýchle jednotky v jednom týždni by pri ~17 km/týždeň boli priveľa).
+const THU_QUALITY = { 5: "Ľahký beh + 4 × 20 s strides" };
 
 // Rozpíše týždeň z WEEKS na 7 dní: typ, km a popis. Výsledok sa dá meniť len v dátach hore.
 function planDays(w) {
