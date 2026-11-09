@@ -451,6 +451,10 @@ const TEST5_TEXT = [
   "Čo z toho vyčítame: z času spresníme všetky tempá (ľahké, MP, tempo, intervaly) a odhad cieľa na maratón. Porovnáme aj s predošlým testom, či ide forma hore.",
 ].join(" ");
 
+// Štvrtková kvalita v týždňoch, kde kľúčový text týždňa nie je tréning.
+// Týždeň 5: fartlek 6 × 1 min, lebo v týždni 4 ho nahradil test na 5 km.
+const THU_QUALITY = { 5: "Fartlek 6 × 1 min svižne" };
+
 // Rozpíše týždeň z WEEKS na 7 dní: typ, km a popis. Výsledok sa dá meniť len v dátach hore.
 function planDays(w) {
   const base = w.phase.id === "base";
@@ -459,7 +463,11 @@ function planDays(w) {
   const longIsKey = /dlh|Najdlhší|polmarat|generálka/i.test(w.key);
   // keď je kľúčový tréning v dlhom behu, vo štvrtok je kratšia kvalita
   const thuSide = w.phase.id === "spec" ? "3 × 2 km v MP" : w.phase.id === "build" ? "Tempo 20 min" : null;
-  const quality = w.easy || w.n === 1 || w.n === 29 ? null : longIsKey ? thuSide : w.key;
+  // Kľúčový text týždňa nie je vždy tréning (napr. „Pridaj sobotný ľahký beh“, „Návrat z výšky“).
+  // Vtedy je vo štvrtok buď tréning z THU_QUALITY, alebo ľahký beh. Opravené 9. 11. 2026.
+  const isWorkout = /strides|fartlek|interval|tempo|\bmp\b/i.test(w.key);
+  const quality =
+    w.easy || w.n === 1 || w.n === 29 ? null : longIsKey ? thuSide : isWorkout ? w.key : THU_QUALITY[w.n] ?? null;
   const long = w.long;
   const rest = w.km - (long ?? 0);
   const shares = long == null ? [1 / 3, 1 / 3, 0, 1 / 3] : sat ? [0.33, 0.4, 0.27] : [0.5, 0.5];

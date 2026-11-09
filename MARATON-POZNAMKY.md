@@ -125,3 +125,7 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   tepe 142 (pred mesiacom 6:15 pri 145). VO2max 50,0. Pokojový tep 71 v deň svadby,
   potom späť na 48–49, HRV 95–105 cez týždeň 4, čiže dobre zregenerovaný.
   Pozor: turistika 2:41 h deň pred dlhým behom (podobné ako bicykel 17. 10.).
+- **9. 11. 2026:** oprava na stránke: v týždni 5 sa vo štvrtok ukazoval „kvalitný“ tréning
+  s textom „pridaj sobotný ľahký beh“ (kľúčový text týždňa nie je tréning). Teraz je vo štvrtok
+  týždňa 5 fartlek 6 × 1 min (v týždni 4 ho nahradil test, ktorý sa aj tak nebežal).
+  Týždeň 10 („Návrat z výšky“) má vo štvrtok ľahký beh, nie kvalitu.
