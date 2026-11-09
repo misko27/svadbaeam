@@ -92,6 +92,7 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
 **Záznamy z kontrol** (dopĺňať)
 | Dátum | Bod | Čo ukázali dáta | Rozhodnutie |
 |---|---|---|---|
+| 9. 11. 2026 | 1. test 5 km (5. 11.) | Test sa nebežal, 5. 11. bol ľahký beh 8,3 km 6:00/km, tep 142. | Zatiaľ otvorené: test presunúť, alebo nechať až 7. 1. |
 
 ## História zmien plánu
 
@@ -117,3 +118,10 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   len 5,1 km), fitko len pondelok. Ľahké tempo pri tepe 145 sa zlepšuje (6:15 → 6:05).
   VO2max 49,7. Pokojový tep 59 a HRV 68 ráno 24. 10., 25. 10. HRV späť na 86.
   Plán sa nemení, svadobný týždeň ostáva ľahký (18 km), dlhý beh nedobiehať.
+- **9. 11. 2026:** import dát (behy 28. 10. 10,0 km 5:59/km tep 148, 5. 11. 8,3 km 6:00/km
+  tep 142, 8. 11. 8,7 km 6:19/km tep 141 s prevýšením 176 m; fitko 3. a 6. 11.,
+  turistika 7. 11. 2:41 h). Týždeň 3 (svadba) 10 km z 18, týždeň 4 17 km z 28, dlhý beh
+  14 km nebol (8,7 km). Test 5 km 5. 11. sa nebežal. Ľahké tempo ide hore: 6:00/km pri
+  tepe 142 (pred mesiacom 6:15 pri 145). VO2max 50,0. Pokojový tep 71 v deň svadby,
+  potom späť na 48–49, HRV 95–105 cez týždeň 4, čiže dobre zregenerovaný.
+  Pozor: turistika 2:41 h deň pred dlhým behom (podobné ako bicykel 17. 10.).
