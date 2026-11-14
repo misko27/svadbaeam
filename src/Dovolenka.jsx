@@ -19,12 +19,12 @@ const DOCS = [
   { cat: "Lety", title: "Air France · Michal", note: "Elektronická_letenka.pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Lety", title: "Air France · Eva", note: "Elektronická_letenka (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Lety", title: "LATAM · Lima → Cusco", note: "28.11., 8:05 · boarding pass ešte nemáme, bude tu po online check-ine", file: "", url: "https://www.latamairlines.com/uy/en/my-trips" },
-  { cat: "Lety", title: "Arequipa → Lima", note: "10.12. – ešte kúpiť", file: "", url: "" },
+  { cat: "Lety", title: "LATAM · Arequipa → Lima", note: "10.12., 11:25 · LA2124 · boarding pass po online check-ine", file: "", url: "https://www.latamairlines.com/uy/en/my-trips" },
   { cat: "Machu Picchu", title: "1-A Montaña · 7:00 · oboch", note: "Boletos_3106805 (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Machu Picchu", title: "3-B dolná citadela · 12:00 · oboch", note: "Boletos_3106812 (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Vlaky", title: "PeruRail · oba vlaky · oboch", note: "WEB3242904.pdf · Vistadome 30.11. + Expedition 1.12.", file: "", url: DRIVE_FOLDER },
   { cat: "Machu Picchu", title: "Bus Consettur", note: "hore k Machu Picchu", file: "", url: "" },
-  { cat: "Ubytovanie", title: "Lima pri letisku", note: "27.–28.11.", file: "", url: "" },
+  { cat: "Ubytovanie", title: "Lima pri letisku", note: "27.–28.11. · zarezervované, s odvozom z/na letisko", file: "", url: "" },
   { cat: "Ubytovanie", title: "Posvätné údolie", note: "28.–30.11.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Aguas Calientes · Hotel Horizonte", note: "Booking.com_ Potvrdenie.pdf · 30.11.–1.12.", file: "", url: DRIVE_FOLDER },
   { cat: "Ubytovanie", title: "Cusco", note: "1.–4.12.", file: "", url: "" },
@@ -71,9 +71,9 @@ const FLIGHTS = [
     note: "Eva: aktualizovať číslo nového pasu v rezervácii alebo pri check-ine",
   },
   {
-    status: "todo", from: "AQP", to: "LIM", fromCity: "Arequipa", toCity: "Lima",
-    date: "Št 10.12.", time: "", carrier: "LATAM / Sky / JetSMART", via: "",
-    note: "Treba kúpiť. Pri Sky a JetSMART pozrieť poplatky za batožinu.",
+    status: "done", from: "AQP", to: "LIM", fromCity: "Arequipa", toCity: "Lima",
+    date: "Št 10.12.", time: "11:25 → 13:00", carrier: "LATAM", via: "LA2124 · priamy",
+    note: "Tarifa Basic, každý 1× 23 kg do podpalubia, v kabíne len malá vec pod sedadlo. Sedadlá náhodne. Eva: číslo nového pasu pri check-ine.",
   },
   {
     status: "done", from: "LIM", to: "VIE", fromCity: "Lima", toCity: "Viedeň",
@@ -96,7 +96,7 @@ const DAYS = [
   { date: "2026-12-07", label: "Po 7.12.", place: "Colca → Arequipa", text: "Skoro ráno kondory na Cruz del Cóndor, dedinky Yanque a Maca, poobede presun do Arequipy (~3–4 h)." },
   { date: "2026-12-08", label: "Ut 8.12.", place: "Arequipa", text: "Kláštor Santa Catalina, Plaza de Armas, Museo Santuarios Andinos, večer picantería. Sviatok, možné procesie." },
   { date: "2026-12-09", label: "St 9.12.", place: "Arequipa", text: "Oddychový deň: vyhliadka Yanahuara, trh San Camilo, Mundo Alpaca." },
-  { date: "2026-12-10", label: "Št 10.12.", place: "Arequipa → Lima", text: "Let do Limy, poobede Barranco a západ slnka, večer slávnostná večera.", tags: ["✈ AQP → LIM"] },
+  { date: "2026-12-10", label: "Št 10.12.", place: "Arequipa → Lima", text: "Let do Limy, poobede Barranco a západ slnka, večer slávnostná večera.", tags: ["✈ 11:25 AQP → 13:00 LIM"] },
   { date: "2026-12-11", label: "Pi 11.12.", place: "Lima → odlet", text: "Historické centrum a kláštor San Francisco alebo Museo Larco, obed ceviche. Na letisko s rezervou 1,5–2 h, večer odlet.", tags: ["✈ 19:20 LIM"] },
   { date: "2026-12-12", label: "So 12.12.", place: "Viedeň", text: "Prílet 17:25, noc vo Viedni." },
   { date: "2026-12-13", label: "Ne 13.12.", place: "Domov", text: "" },
@@ -108,7 +108,7 @@ const TODO = [
     items: [
       { text: "Dlhé lety Viedeň ⇄ Lima", note: "Air France", done: true },
       { text: "Let Lima → Cusco, 28.11.", note: "LATAM 8:05 → 9:30", done: true },
-      { text: "Let Arequipa → Lima, 10.12." },
+      { text: "Let Arequipa → Lima, 10.12.", note: "LATAM LA2124 11:25 → 13:00", done: true },
     ],
   },
   {
@@ -119,13 +119,22 @@ const TODO = [
       { text: "Vlak Aguas Calientes → Cusco (San Pedro), 1.12.", note: "PeruRail Expedition 32, 16:43 → 21:23", done: true },
       { text: "Bus Consettur hore k Machu Picchu", note: "kúpiť zvlášť" },
       { text: "Veľká batožina z údolia do Cusca", note: "vo vlaku max. 8 kg/os. – spýtať sa hotela v údolí alebo šoféra" },
-      { text: "Opraviť číslo pasu na lístku 3-B (Michal)", note: "má deviatku navyše – napísať na tuboleto@cultura.gob.pe" },
+    ],
+  },
+  {
+    group: "Keď príde Evin nový pas",
+    items: [
+      { text: "Air France: vložiť číslo nového pasu", note: "meno už je nové" },
+      { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine · meno už je nové, kufre 2 × 23 kg máme" },
+      { text: "Tuboleto: jeden e-mail za oboch", note: "Eva nové meno + pas, Michal oprava čísla pasu na 3-B · tuboleto@cultura.gob.pe" },
+      { text: "PeruRail: zmena mena a pasu pre Evu", note: "rezervácia WEB3242904, oba vlaky" },
+      { text: "Vytlačiť sobášny list (aj s prekladom) so sebou", note: "plán B, ak nestihnú odpovedať" },
     ],
   },
   {
     group: "Ubytovanie",
     items: [
-      { text: "Lima pri letisku (27.11.)" },
+      { text: "Lima pri letisku (27.11.)", note: "s odvozom z/na letisko", done: true },
       { text: "Posvätné údolie, 2 noci" },
       { text: "Aguas Calientes, 1 noc (30.11.)", note: "Hotel Horizonte, Booking.com", done: true },
       { text: "Hotel Horizonte: skorý odchod 1.12. ~6:00 a úschova batožiny do vlaku 16:43", note: "odchod je oficiálne 8:00–9:00 – napísať hotelu cez Booking" },
@@ -154,10 +163,10 @@ const TODO = [
       { text: "Vstupenky Machu Picchu 1-A a 3-B", done: true },
       { text: "Lístky PeruRail (oba vlaky)", done: true },
       { text: "Potvrdenie Hotel Horizonte", done: true },
-      { text: "Kópia sobášneho listu", note: "po svadbe 30.10." },
-      { text: "Scany pasov (oba Evine + Michalov)", note: "pre prípad straty" },
+      { text: "Kópia sobášneho listu" },
+      { text: "Scany pasov (Evin nový + Michalov)", note: "pre prípad straty" },
       { text: "Boarding pass LATAM Lima → Cusco", note: "po online check-ine" },
-      { text: "Let Arequipa → Lima", note: "keď kúpime" },
+      { text: "Let Arequipa → Lima", note: "boarding pass po check-ine" },
       { text: "Lístky na bus Consettur", note: "keď kúpime" },
       { text: "Ostatné ubytovania, cestovné poistenie, busy a výlety", note: "priebežne" },
     ],
@@ -413,7 +422,7 @@ function Flights() {
     <Section
       id="lety"
       title="Lety"
-      intro="Spiatočná Viedeň ⇄ Lima s Air France cez Paríž, s 23 kg batožinou pre oboch. Vnútroštátne lety zvlášť."
+      intro="Spiatočná Viedeň ⇄ Lima s Air France cez Paríž, s 23 kg batožinou pre oboch. Vnútroštátne lety s LATAM, tiež s 23 kg."
     >
       <div className="dov-flights">
         {FLIGHTS.map((f) => (
@@ -502,7 +511,7 @@ function MachuPicchu() {
         </div>
         <div className="dov-callout">
           <strong>Evine lístky sú na starý pas a meno Kubačková</strong> – Machu Picchu aj oba vlaky.
-          Požiadať políciu o vrátenie zneplatneného pasu a zobrať starý pas, nový pas a kópiu sobášneho listu.
+          Starý pas jej nevrátia. Keď príde nový, napísať tuboletu aj PeruRailu. So sebou mať nový pas a sobášny list.
         </div>
         <ul className="dov-list">
           <li>Mená a čísla pasov musia presne sedieť.</li>
@@ -584,6 +593,7 @@ function Weather() {
         <li>8.12. je v Peru sviatok Nepoškvrneného počatia Panny Márie, niektoré podniky môžu mať iné otváracie hodiny.</li>
         <li>Oblečenie vo vrstvách a pláštenka, na Titicacu aj teplé veci.</li>
         <li>Doprava v Lime je pomalá, na letisko vždy s rezervou.</li>
+        <li>Letisko v Lime má od júna 2025 nový terminál na západnej strane. Hotely pri ulici Elmer Faucett sú pri starom, k novému sa ide autom okolo letiska. V Callao v noci nechodiť pešo.</li>
       </ul>
     </Section>
   );
