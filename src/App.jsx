@@ -9,6 +9,8 @@ import Fotky from "./Fotky.jsx";
 // Vyzerá takto: https://script.google.com/macros/s/AKfyc.../exec
 // Stránka s maratónom aj s dátami z hodiniek sa načíta až pri otvorení #maraton.
 const Maraton = lazy(() => import("./Maraton.jsx"));
+// Rozpočet je len lokálne (npm run dev) – do buildu pre web sa vôbec nedostane.
+const Rozpocet = import.meta.env.DEV ? lazy(() => import("./Rozpocet.jsx")) : null;
 
 const FORM_URL =
   "https://script.google.com/macros/s/AKfycbxS1iUD7cwccDRbaMxPQvN9yGFYPtGf7aWABF9QJRs4Ayvkc3MSh3QKqZgYO6HBLwnD/exec";
@@ -29,6 +31,13 @@ function App() {
   if (hash === "#zasadaci") return <Zasadaci />;
   // Nahrávanie fotiek od hostí (QR kód v novinách): /#fotky
   if (hash === "#fotky") return <Fotky />;
+  // Lokálna stránka s rozpočtom (výdavky a dary): /#rozpocet
+  if (Rozpocet && hash === "#rozpocet")
+    return (
+      <Suspense fallback={null}>
+        <Rozpocet />
+      </Suspense>
+    );
   // Skrytá stránka s tréningovým plánom na maratón: /#maraton
   if (hash === "#maraton")
     return (

@@ -27,3 +27,6 @@ dist-ssr
 public/dovolenka/*
 !public/dovolenka/README.md
 
+
+# Rozpočet svadby (výdavky a dary) – len lokálne, nikdy necommitovať
+src/rozpocet-data.js

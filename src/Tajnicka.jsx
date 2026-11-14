@@ -53,7 +53,7 @@ const PUZZLES = [
     { word: "LADCE", key: 0, q: "Odkiaľ pochádza ženích?" },
     { word: "MALÁ FATRA", key: 1, q: "Nevestino najobľúbenejšie slovenské pohorie?" },
     { word: "VETERINÁRKA", key: 0, q: "Aké povolanie má nevesta?" },
-    { word: "SKIALPY", key: 1, q: "Aký zimný šport novomanželia spolu robia?" },
+    { word: "SKIALPINIZMUS", key: 1, q: "Aký zimný šport novomanželia spolu robia?" },
     { word: "BOB", key: 1, q: "Ako sa volá chameleón novomanželov?" },
     { word: "ORAVA", key: 3, q: "Z akého regiónu pochádza nevesta?" },
     { word: "YUSHAN", key: 2, q: "Na ktorom vrchu sa novomanželia zasnúbili?" },

@@ -1,0 +1,147 @@
+/* ─── Rozpočet (skrytá stránka #rozpocet) ─── */
+.roz {
+  --roz-card: #FFFDF9;
+  --roz-line: #E4D6C6;
+  --roz-muted: #8A7666;
+  --roz-green: #6E8B5E;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.roz-hero {
+  text-align: center;
+  padding: 3.5rem 1rem 2.5rem;
+  background: linear-gradient(160deg, #F5EDE3 0%, #EFD9C4 55%, #E6C3A5 100%);
+}
+.roz-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.roz-title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.8rem, 14vw, 6.5rem);
+  line-height: 1.1;
+}
+
+.roz-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* Súhrn */
+.roz-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.roz-stat {
+  background: var(--roz-card);
+  border: 1px solid var(--roz-line);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+.roz-stat span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--roz-muted);
+}
+.roz-stat strong {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.roz-balance.is-plus strong { color: var(--roz-green); }
+.roz-balance.is-minus strong { color: var(--accent); }
+
+/* Dva stĺpce: výdavky | dary */
+.roz-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+.roz-col {
+  background: var(--roz-card);
+  border: 1px solid var(--roz-line);
+  border-radius: 16px;
+  padding: 1.2rem 1.2rem 1rem;
+}
+.roz-h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+.roz-empty {
+  color: var(--roz-muted);
+  padding: 0.8rem 0;
+}
+
+.roz-list { list-style: none; }
+.roz-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--roz-line);
+}
+.roz-cat {
+  display: inline-block;
+  margin-right: 0.45rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.roz-name { font-weight: 600; }
+.roz-note {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--roz-muted);
+}
+.roz-amount {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.roz-gift {
+  font-size: 0.85rem;
+  color: var(--roz-muted);
+}
+
+.roz-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.8rem;
+  font-size: 1.1rem;
+}
+.roz-total strong { font-variant-numeric: tabular-nums; }
+
+.roz-back {
+  display: inline-block;
+  margin-top: 3rem;
+  color: var(--roz-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .roz-cols { grid-template-columns: 1fr; }
+  .roz-summary { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .roz-back { display: none; }
+}
