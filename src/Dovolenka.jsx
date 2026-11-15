@@ -33,7 +33,7 @@ const DOCS = [
   { cat: "Ubytovanie", title: "Arequipa", note: "7.–10.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Lima Miraflores / Barranco", note: "10.–11.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Viedeň", note: "12.–13.12.", file: "", url: "" },
-  { cat: "Ostatné", title: "Cestovné poistenie", note: "", file: "", url: "" },
+  { cat: "Ostatné", title: "Cestovné poistenie", note: "uzavreté 15.11.", file: "", url: "" },
   { cat: "Ostatné", title: "Kópia sobášneho listu", note: "k Evinej vstupenke na MP", file: "", url: "" },
 ];
 
@@ -177,7 +177,8 @@ const TODO = [
     group: "Ostatné",
     items: [
       { text: "Rezervácia večere v Lime (10.12.)", note: "ak chceme top reštauráciu" },
-      { text: "Cestovné poistenie" },
+      { text: "Cestovné poistenie", note: "uzavreté 15.11.", done: true },
+      { text: "Poistku nahrať na Drive" },
       { text: "Platnosť pasov" },
       { text: "Chceme skúsiť aj Huayna Picchu?", note: "otázka" },
     ],

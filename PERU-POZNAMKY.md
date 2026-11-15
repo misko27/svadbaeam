@@ -37,7 +37,7 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 1. **Posvätné údolie, 2 noci (28.–30. 11.)**: rozhodnuté **Ollantaytambo** (15. 11.). Spýtať sa na odvoz
    z letiska v Cusku (28. 11. ráno, prílet 9:30) a na prevoz veľkých batohov do Cusca (vlak max. 8 kg/os.).
 2. ~~Cusco, 3 noci~~ hotové: Cusco Bed and Breakfast. Overiť odpoveď na správu (neskorý príchod, úschova batohov).
-3. **Cestovné poistenie**: musí kryť výšku nad 4 000 m a turistiku, ideálne aj storno.
+3. ~~Cestovné poistenie~~ hotové 15. 11. Poistku nahrať na Drive.
 4. **Hotel Horizonte** cez Booking: skorý odchod 1. 12. ~6:00, úschova batožiny do vlaku 16:43.
 5. Potom: Puno (rozhodnúť 2 noci vs. 1 + Amantaní), Chivay, Arequipa, Lima Miraflores/Barranco, Viedeň.
 6. Potom: transfer a šofér v údolí (28.–29. 11.), bus Cusco → Puno, loď Uros + Taquile,
@@ -67,3 +67,4 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   odchod do 9:00. Hodnotenie 9,1. Poslaná správa: príchod ~21:45, úschova batohov pred príchodom, skoré raňajky 4. 12.,
   recepcia 24 h, kúrenie, vyzdvihnutie na stanici San Pedro.
   Batohy: buď ich necháme v Cusku 28. 11. cestou z letiska, alebo ich pošle Picaflor 30. 11. – podľa odpovedí hotelov.
+- **15. 11. 2026:** cestovné poistenie uzavreté.
