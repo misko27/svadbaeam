@@ -29,6 +29,12 @@ Sem sa zapisuje všetko, na čom sme sa dohodli v chate: čo sa v pláne zmenilo
 - **Fitko zapisovať na hodinky** („Silový tréning“). Bez toho ho import nevidí a stránka
   podceňuje únavu (dohodnuté 18. 10. 2026, Michal začne zapisovať).
 - Behové zdravotné dáta (tep, HRV, VO2max) môžu byť na webe verejne.
+- **Zima (dohodnuté 15. 11. 2026):** do jari bude zima a tma, plán sa kvôli tomu nemení.
+  Ľahké behy aj na páse vo fitku (sklon 1 %, riadiť sa časom a tepom, na hodinkách „Beh
+  v interiéri“ a fitko zvlášť ako „Silový tréning“). Keď sa nedá behať, náhradou je
+  **skialp**: počíta sa do únavy aj ako aerobný tréning. Zapisovať ako „Beh na lyžiach“
+  (import ho berie ako lyže). Dlhá túra platí ako ťažký deň, nie deň pred dlhým behom.
+  Ak týždeň nevyjde na plánované km, nedobiehať, radšej pravidelne menej.
 
 ## Testy na 5 km
 
