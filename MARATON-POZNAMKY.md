@@ -144,3 +144,8 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   Pozor: skok zo 17 km (týž. 4) na 37,6 km je veľký. Plán sa nemení, ale týždeň 6 (35 km)
   neprekračovať, sobotu nechať krátku a ľahkú a dlhý beh 16 km radšej po rovine, aby sa dal
   bežať do tepu 150. Dlhé zbehy z kopca zaťažujú stehná viac, než ukáže tep.
+  Rozbor tepu: sobota 14. 11. rovnomerne, tep postupne stúpal 145 → 153 (drift + krátke
+  zrýchlenia v druhej polovici). Nedeľa 15. 11. (kopec u rodičov, Michalov najlepší čas na
+  tejto trase): stúpania 159–175 (5 min priemer 173 na vrchole, 92 % max), pauzy a zbeh
+  135–150. Priemer 153 to zakrýva, 20 % času bolo nad 160. Hodinky merajú správne, len
+  priemer pri kopcoch klame. Michal súhlasí s týždňom 6 podľa plánu; zima a tma to sťažujú.
