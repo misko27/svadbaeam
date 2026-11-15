@@ -134,3 +134,13 @@ alebo cieľ meniť. Keď sa nič nemení, zapíše sa aj to.
   Michal ho na hodinkách rozdelil na 3 behy (rozklus, test, vyklus), aby sa k nemu vedel vrátiť.
   Do budúcna stačí jeden beh a vlastný tréning na hodinkách (zahriatie / práca 5 km / ochladenie).
   Štvrtok v týždni 5 zmenený z fartleku na ľahký beh so strides.
+- **15. 11. 2026:** import dát (behy 11. 11. 7,5 km 5:56/km tep 142, 14. 11. 10,1 km
+  5:46/km tep 148, 15. 11. 11,3 km 6:15/km tep 153 / max 175 s prevýšením 358 m; fitko 12. 11.).
+  Týždeň 5 má 37,6 km z plánovaných 32 (aj s testom a rozklusmi), voľno utorok a piatok.
+  Dlhý beh 15 km nebol: nedeľa bola kopcovitá 11,3 km (km 2–6 hore ~310 m, potom dolu
+  okolo 5:00/km), preto vyšší tep. Sobotný beh mal byť 5 km ľahko, bol 10 km mierne nad
+  hranicou (148). Ľahké tempo ide hore: 5:56/km pri tepe 142 (pred mesiacom 6:15 pri 145).
+  VO2max 50,4. Pokojový tep 48–54, HRV 83–108, regenerácia v poriadku.
+  Pozor: skok zo 17 km (týž. 4) na 37,6 km je veľký. Plán sa nemení, ale týždeň 6 (35 km)
+  neprekračovať, sobotu nechať krátku a ľahkú a dlhý beh 16 km radšej po rovine, aby sa dal
+  bežať do tepu 150. Dlhé zbehy z kopca zaťažujú stehná viac, než ukáže tep.
