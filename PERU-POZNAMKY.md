@@ -31,11 +31,12 @@ Stránka s plánom: `/#dovolenka` (`src/Dovolenka.jsx`).
 
 ## Čo ďalej (stav k 14. 11. 2026)
 
-Hotové: všetky lety, Machu Picchu, oba vlaky, Hotel Horizonte, hotel pri letisku v Lime (27. 11.).
+Hotové: všetky lety, Machu Picchu, oba vlaky, Hotel Horizonte, hotel pri letisku v Lime (27. 11.),
+Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4. 12.).
 
-1. **Posvätné údolie, 2 noci (28.–30. 11.)**: Urubamba alebo Ollantaytambo. Spýtať sa na odvoz
+1. **Posvätné údolie, 2 noci (28.–30. 11.)**: rozhodnuté **Ollantaytambo** (15. 11.). Spýtať sa na odvoz
    z letiska v Cusku (28. 11. ráno, prílet 9:30) a na prevoz veľkých batohov do Cusca (vlak max. 8 kg/os.).
-2. **Cusco, 3 noci (1.–4. 12.)**: príchod 1. 12. o 21:23 vlakom na San Pedro, napísať, že prídeme neskoro.
+2. ~~Cusco, 3 noci~~ hotové: Cusco Bed and Breakfast. Overiť odpoveď na správu (neskorý príchod, úschova batohov).
 3. **Cestovné poistenie**: musí kryť výšku nad 4 000 m a turistiku, ideálne aj storno.
 4. **Hotel Horizonte** cez Booking: skorý odchod 1. 12. ~6:00, úschova batožiny do vlaku 16:43.
 5. Potom: Puno (rozhodnúť 2 noci vs. 1 + Amantaní), Chivay, Arequipa, Lima Miraflores/Barranco, Viedeň.
@@ -55,3 +56,14 @@ Hotové: všetky lety, Machu Picchu, oba vlaky, Hotel Horizonte, hotel pri letis
   spolu 177,82 €. Eva zadaná ako Paska so starým číslom pasu, zmení sa pri check-ine.
 - **14. 11. 2026:** zarezervovaný hotel pri letisku v Lime na 27.–28. 11., vedia zabezpečiť odvoz.
   Pozor: letisko má od júna 2025 nový terminál na západnej strane, hotely pri Faucett sú pri starom.
+- **15. 11. 2026:** rozhodnuté: 2 noci v **Ollantaytambe** (28.–30. 11.), ako v pôvodnom pláne. Zvažovali sme aj
+  1 noc v Cusku + 1 v údolí, ale vyhral nižší štart kvôli aklimatizácii. Vlak 30. 11. ide priamo z Ollantaytamba.
+  Hľadá sa cez Booking. Pri hoteli sa spýtať na transfer z letiska (28. 11., 9:30) a na prevoz veľkých batohov do Cusca.
+- **15. 11. 2026:** zarezervovaný **Picaflor Tambo Guest House**, Ollantaytambo, 28.–30. 11., Booking, **bez možnosti
+  vrátenia peňazí**, check-in od 13:00. Hotel v Lime je *Across from Lima Airport – A y J Familia* (bezplatné zrušenie).
+  Treba ešte poslať hotelu správu: príchod ~12:30, transfer z letiska, šofér 29. 11., batohy do Cusca 30. 11.
+- **15. 11. 2026:** Evin nový pas je v expresnom vybavení, má prísť každú chvíľu.
+- **15. 11. 2026:** zarezervovaný **Cusco Bed and Breakfast**, Calle Unión 140, 1.–4. 12., Booking, check-in od 11:00,
+  odchod do 9:00. Hodnotenie 9,1. Poslaná správa: príchod ~21:45, úschova batohov pred príchodom, skoré raňajky 4. 12.,
+  recepcia 24 h, kúrenie, vyzdvihnutie na stanici San Pedro.
+  Batohy: buď ich necháme v Cusku 28. 11. cestou z letiska, alebo ich pošle Picaflor 30. 11. – podľa odpovedí hotelov.

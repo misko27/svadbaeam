@@ -24,10 +24,10 @@ const DOCS = [
   { cat: "Machu Picchu", title: "3-B dolná citadela · 12:00 · oboch", note: "Boletos_3106812 (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Vlaky", title: "PeruRail · oba vlaky · oboch", note: "WEB3242904.pdf · Vistadome 30.11. + Expedition 1.12.", file: "", url: DRIVE_FOLDER },
   { cat: "Machu Picchu", title: "Bus Consettur", note: "hore k Machu Picchu", file: "", url: "" },
-  { cat: "Ubytovanie", title: "Lima pri letisku", note: "27.–28.11. · zarezervované, s odvozom z/na letisko", file: "", url: "" },
-  { cat: "Ubytovanie", title: "Posvätné údolie", note: "28.–30.11.", file: "", url: "" },
+  { cat: "Ubytovanie", title: "Lima · A y J Familia (oproti letisku)", note: "27.–28.11. · Booking.com, bezplatné zrušenie · s odvozom z/na letisko", file: "", url: "" },
+  { cat: "Ubytovanie", title: "Ollantaytambo · Picaflor Tambo Guest House", note: "28.–30.11. · Booking.com, bez možnosti vrátenia peňazí", file: "", url: "" },
   { cat: "Ubytovanie", title: "Aguas Calientes · Hotel Horizonte", note: "Booking.com_ Potvrdenie.pdf · 30.11.–1.12.", file: "", url: DRIVE_FOLDER },
-  { cat: "Ubytovanie", title: "Cusco", note: "1.–4.12.", file: "", url: "" },
+  { cat: "Ubytovanie", title: "Cusco · Cusco Bed and Breakfast", note: "1.–4.12. · Booking.com · Calle Unión 140", file: "", url: "" },
   { cat: "Ubytovanie", title: "Puno", note: "4.–6.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Chivay", note: "6.–7.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Arequipa", note: "7.–10.12.", file: "", url: "" },
@@ -39,7 +39,7 @@ const DOCS = [
 
 const STOPS = [
   { place: "Lima", sub: "pri letisku", nights: 1, dates: "27.–28.11." },
-  { place: "Posvätné údolie", sub: "Urubamba / Ollantaytambo", nights: 2, dates: "28.–30.11." },
+  { place: "Posvätné údolie", sub: "Ollantaytambo", nights: 2, dates: "28.–30.11.", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
   {
     place: "Aguas Calientes", sub: "Machu Picchu", nights: 1, dates: "30.11.–1.12.",
     hotel: {
@@ -50,7 +50,7 @@ const STOPS = [
       info: "Príchod od 12:00 · raňajky v cene · Booking.com",
     },
   },
-  { place: "Cusco", nights: 3, dates: "1.–4.12." },
+  { place: "Cusco", nights: 3, dates: "1.–4.12.", hotel: { name: "Cusco Bed and Breakfast", address: "Calle Unión 140", maps: "https://www.google.com/maps/search/?api=1&query=Cusco+Bed+and+Breakfast+Calle+Union+140+Cusco", info: "Príchod od 11:00, odchod do 9:00 · Booking.com" } },
   { place: "Puno", sub: "Titicaca", nights: 2, dates: "4.–6.12." },
   { place: "Colca", sub: "Chivay", nights: 1, dates: "6.–7.12." },
   { place: "Arequipa", nights: 3, dates: "7.–10.12." },
@@ -134,11 +134,13 @@ const TODO = [
   {
     group: "Ubytovanie",
     items: [
-      { text: "Lima pri letisku (27.11.)", note: "s odvozom z/na letisko", done: true },
-      { text: "Posvätné údolie, 2 noci" },
+      { text: "Lima pri letisku (27.11.)", note: "A y J Familia · s odvozom z/na letisko", done: true },
+      { text: "Posvätné údolie, 2 noci", note: "Ollantaytambo · Picaflor Tambo Guest House", done: true },
+      { text: "Picaflor Tambo: poslať správu cez Booking", note: "príchod ~12:30, transfer z letiska, šofér 29.11., batohy do Cusca 30.11." },
       { text: "Aguas Calientes, 1 noc (30.11.)", note: "Hotel Horizonte, Booking.com", done: true },
       { text: "Hotel Horizonte: skorý odchod 1.12. ~6:00 a úschova batožiny do vlaku 16:43", note: "odchod je oficiálne 8:00–9:00 – napísať hotelu cez Booking" },
-      { text: "Cusco, 3 noci" },
+      { text: "Cusco, 3 noci", note: "Cusco Bed and Breakfast, Calle Unión 140", done: true },
+      { text: "Cusco B&B: správa cez Booking", note: "príchod 1.12. ~21:45, úschova batohov pred príchodom, raňajky 4.12. skoro, recepcia 24 h, kúrenie, vyzdvihnutie na San Pedro" },
       { text: "Puno, 2 noci", note: "alebo 1 noc Puno + 1 noc Amantaní" },
       { text: "Chivay, 1 noc" },
       { text: "Arequipa, 3 noci" },
@@ -361,11 +363,13 @@ function Route() {
                 <div className="dov-hotel">
                   <strong>🏨 {s.hotel.name}</strong>
                   <span>{s.hotel.info}</span>
-                  <span>
-                    <a href={s.hotel.maps} target="_blank" rel="noreferrer">{s.hotel.address} ↗</a>
-                    {" · "}
-                    <a href={`tel:${s.hotel.phone.replace(/\s/g, "")}`}>{s.hotel.phone}</a>
-                  </span>
+                  {(s.hotel.address || s.hotel.phone) && (
+                    <span>
+                      {s.hotel.address && <a href={s.hotel.maps} target="_blank" rel="noreferrer">{s.hotel.address} ↗</a>}
+                      {s.hotel.address && s.hotel.phone && " · "}
+                      {s.hotel.phone && <a href={`tel:${s.hotel.phone.replace(/\s/g, "")}`}>{s.hotel.phone}</a>}
+                    </span>
+                  )}
                 </div>
               )}
             </div>
