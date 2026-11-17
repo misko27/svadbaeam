@@ -38,7 +38,8 @@ Tri hotely odpísali, že ďalej máme písať **cez WhatsApp**:
   šofér 29. 11. (Chinchero, Moray, Maras), batohy do Cusca 30. 11.
 - **Hotel Horizonte, Aguas Calientes** (30. 11.–1. 12.): odchod 1. 12. ~6:00 a úschova batožiny do vlaku 16:43.
 
-Cusco Bed and Breakfast zatiaľ neodpísal (úschova batohov, príchod ~21:45).
+Cusco Bed and Breakfast: neskorý check-in 1. 12. (22:00–23:00) **schválený** cez Booking. Na úschovu batohov
+ani raňajky 4. 12. zatiaľ neodpovedali (úschova už netreba, batohy berieme so sebou).
 
 ## Čo ďalej (stav k 14. 11. 2026)
 
@@ -91,3 +92,29 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Plán B: na stanici v Ollantaytambe nepustia → batohy späť do Picaflor (je blízko) alebo bezplatná úschova na stanici
   a dohodnúť auto do Cusca. Na stanicu 30. 11. prísť s rezervou. 1. 12. batohy nechať v Hotel Horizonte počas Machu Picchu.
   Transfer z letiska 28. 11. od Picaflor (60 USD) potvrdiť.
+- **17. 11. 2026:** Hotel Horizonte poslal info (sami, my sme ešte nepísali): raňajky **5:00–7:40**, **bez výťahu,
+  8 poschodí** (pozor s veľkými batohmi – poprosiť o nízke poschodie), pri rieke Vilcanota je počuť šum (štuple do uší).
+  Adresa Av. Hermanos Ayar 503, pri autobusovej zastávke, vyhliadka s nápisom „MACHUPICCHU“. WhatsApp +51 902 903 588.
+- **17. 11. 2026:** Cusco B&B schválil neskorý check-in 1. 12. (22–23 h), odpísali „Los esperamos“.
+  Treba ešte: skoré raňajky 4. 12. (čas podľa busu do Puna), prípadne vyzdvihnutie na stanici San Pedro.
+- **17. 11. 2026:** rozhodnuté: **Puno 2 noci v hoteli** (4.–6. 12.), na Amantaní u rodiny **nespíme**.
+  5. 12. jednodňový výlet loďou Uros + Taquile. Ďalej sa rieši turistický bus Cusco → Puno 4. 12.
+- **17. 11. 2026:** kúpený bus **Inka Express Cusco → Puno** („Route of the Sun“, trieda Normal), lístok **#916497**,
+  Pi 4. 12., **zraz 5:40, odchod 6:10**, miesto: **Av. Alameda Pachacútec 499-B** (Wanchaq, ~10 min taxíkom z Calle Unión).
+  Spolu 105 USD za oboch. Obed v potvrdení nie je uvedený – overiť u Inka Express, so sebou mať desiatu.
+  Cusco B&B: raňajky už o ~5:00 nebudú, poprosiť o balíček na cestu.
+- **17. 11. 2026:** zarezervovaný **Sol Plaza Hotel, Puno**, 4.–6. 12., Queen Room with Interior View, ~81 € spolu, Booking.
+  Hotelu sme nepísali, netreba.
+
+## Čo ďalej (stav k 17. 11. 2026)
+
+Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
+
+1. **Výlet loďou Uros + Taquile (5. 12.)** – cez hotel v Pune alebo online, s vyzdvihnutím v hoteli.
+2. **Puno → Colca → Arequipa (6.–7. 12.)** – 2-dňová tour (doprava, Cruz del Cóndor, ideálne aj hotel v Chivay).
+3. **Chivay, 1 noc** – ak nie je v tour.
+4. **Arequipa, 3 noci (7.–10. 12.)**.
+5. **Lima Miraflores/Barranco, 1 noc (10.–11. 12.)** + prípadne večera 10. 12.
+6. **Viedeň, 1 noc (12.–13. 12.)**.
+7. Drobnosti: WhatsApp Lima (odvoz), čakať na Picaflor (transfer 60 USD, šofér 29. 11.) a Horizonte;
+   Cusco B&B balíček na cestu 4. 12.; bus Consettur; keď príde Evin pas – zoznam hore.
