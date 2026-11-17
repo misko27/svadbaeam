@@ -29,6 +29,17 @@ Stránka s plánom: `/#dovolenka` (`src/Dovolenka.jsx`).
 - So sebou mať vytlačený sobášny list, najlepšie s anglickým alebo španielskym prekladom, a nový pas.
 - Situáciu vysvetliť priamo pri vstupe na Machu Picchu a pri nástupe do vlaku.
 
+## Komunikácia s hotelmi (stav k 15. 11. 2026)
+
+Tri hotely odpísali, že ďalej máme písať **cez WhatsApp**:
+
+- **Lima, A y J Familia** (27.–28. 11.), WhatsApp **+51 955 142 101**: odvoz z letiska po prílete 16:55 a ráno 28. 11. na let 8:05.
+- **Picaflor Tambo, Ollantaytambo** (28.–30. 11.): príchod ~12:30, transfer z letiska v Cusku (prílet 9:30),
+  šofér 29. 11. (Chinchero, Moray, Maras), batohy do Cusca 30. 11.
+- **Hotel Horizonte, Aguas Calientes** (30. 11.–1. 12.): odchod 1. 12. ~6:00 a úschova batožiny do vlaku 16:43.
+
+Cusco Bed and Breakfast zatiaľ neodpísal (úschova batohov, príchod ~21:45).
+
 ## Čo ďalej (stav k 14. 11. 2026)
 
 Hotové: všetky lety, Machu Picchu, oba vlaky, Hotel Horizonte, hotel pri letisku v Lime (27. 11.),
@@ -68,3 +79,15 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   recepcia 24 h, kúrenie, vyzdvihnutie na stanici San Pedro.
   Batohy: buď ich necháme v Cusku 28. 11. cestou z letiska, alebo ich pošle Picaflor 30. 11. – podľa odpovedí hotelov.
 - **15. 11. 2026:** cestovné poistenie uzavreté.
+- **15. 11. 2026:** hotel v Lime, Picaflor Tambo a Hotel Horizonte odpísali – pokračovať cez WhatsApp.
+- **16. 11. 2026:** Picaflor Tambo odpísal (Johana): transfer letisko Cusco → Picaflor 28. 11. = **60 USD** za oboch
+  (Mitsubishi Xpander, šofér s menom v hale, platí sa pri check-ine). Prevoz 2 batohov do Cusca 30. 11. = **60 USD**.
+  Alternatíva: batohy nechať u nich, šofér ich privezie a stretne nás na stanici a ide s nami do Cusca.
+  Pýtali sa, či sa vraciame 30. 11. – nie, spíme v Aguas Calientes a 1. 12. ideme vlakom 16:43 priamo do Cusca (San Pedro 21:23).
+  Batohy: limit 8 kg platí v **oboch** vlakoch (30. 11. aj 1. 12.), veľké batohy s nami nikdy vo vlaku nepôjdu.
+  Preferencia: Picaflor ich pošle 30. 11. do Cusco B&B, ak Cusco B&B potvrdí úschovu pred príchodom.
+- **17. 11. 2026:** rozhodnuté: **veľké batohy berieme so sebou do vlakov** (30. 11. aj 1. 12.), prevoz autom neriešime.
+  Oficiálne 8 kg (Vistadome aj 12 kg), v praxi to málokedy kontrolujú, pri kontrole sa dá doplatiť (~15–25 USD/kus).
+  Plán B: na stanici v Ollantaytambe nepustia → batohy späť do Picaflor (je blízko) alebo bezplatná úschova na stanici
+  a dohodnúť auto do Cusca. Na stanicu 30. 11. prísť s rezervou. 1. 12. batohy nechať v Hotel Horizonte počas Machu Picchu.
+  Transfer z letiska 28. 11. od Picaflor (60 USD) potvrdiť.

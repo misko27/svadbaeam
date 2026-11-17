@@ -86,7 +86,7 @@ const DAYS = [
   { date: "2026-11-27", label: "Pi 27.11.", place: "Viedeň → Lima", text: "Odlet, prestup v Paríži, prílet večer. Noc v hoteli pri letisku.", tags: ["✈ 6:15 VIE"] },
   { date: "2026-11-28", label: "So 28.11.", place: "Posvätné údolie", text: "Ráno let do Cusca, taxi rovno dole do údolia (~1,5 h). Pomalý deň na aklimatizáciu, pri dobrom pocite trh a ruiny v Pisacu.", tags: ["✈ 8:05 LATAM"] },
   { date: "2026-11-29", label: "Ne 29.11.", place: "Posvätné údolie", text: "Chinchero (kostol, tkáčske družstvá), Moray (kruhové terasy), soľné polia Maras." },
-  { date: "2026-11-30", label: "Po 30.11.", place: "Aguas Calientes", text: "Dopoludnia pevnosť a mesto Ollantaytambo, potom vlakom do Aguas Calientes. Spíme v Hotel Horizonte. Na stanici do 12:25. Vo vlaku max. 8 kg batožiny na osobu – veľké kufre nechať v údolí / poslať do Cusca.", tags: ["🚆 12:55 → 14:25 Vistadome", "vozeň A · 5, 6"] },
+  { date: "2026-11-30", label: "Po 30.11.", place: "Aguas Calientes", text: "Dopoludnia pevnosť a mesto Ollantaytambo, potom vlakom do Aguas Calientes. Spíme v Hotel Horizonte. Na stanici do 12:25. Veľké batohy berieme so sebou (oficiálne limit 8 kg, prípadne doplatiť), na stanicu s rezervou.", tags: ["🚆 12:55 → 14:25 Vistadome", "vozeň A · 5, 6"] },
   { date: "2026-12-01", label: "Ut 1.12.", place: "Machu Picchu → Cusco", text: "Bus Consettur hore (vyraziť ~6:00). Machu Picchu Mountain, potom dolná citadela. Večer vlakom priamo do Cusca (San Pedro).", tags: ["⛰ 1-A 7:00", "3-B 12:00", "🚆 16:43 → 21:23", "vozeň F · 39, 40"], highlight: true },
   { date: "2026-12-02", label: "St 2.12.", place: "Cusco", text: "Plaza de Armas, katedrála, Qorikancha, štvrť San Blas, trh San Pedro. Večer dobrá reštaurácia." },
   { date: "2026-12-03", label: "Št 3.12.", place: "Cusco", text: "Ráno Sacsayhuamán a okolité ruiny, poobede Museo de Arte Precolombino alebo kurz varenia či čokolády." },
@@ -118,7 +118,7 @@ const TODO = [
       { text: "Vlak Ollantaytambo → Aguas Calientes, 30.11.", note: "PeruRail Vistadome 73P, 12:55 → 14:25", done: true },
       { text: "Vlak Aguas Calientes → Cusco (San Pedro), 1.12.", note: "PeruRail Expedition 32, 16:43 → 21:23", done: true },
       { text: "Bus Consettur hore k Machu Picchu", note: "kúpiť zvlášť" },
-      { text: "Veľká batožina z údolia do Cusca", note: "vo vlaku max. 8 kg/os. – spýtať sa hotela v údolí alebo šoféra" },
+      { text: "Veľká batožina z údolia do Cusca", note: "berieme do vlaku, prípadne doplatíme; plán B: úschova v Picaflor / na stanici", done: true },
     ],
   },
   {
