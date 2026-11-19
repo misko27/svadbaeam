@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Dovolenka.css";
 
 // Svadobná cesta, dve verzie z tých istých dát:
@@ -44,11 +44,12 @@ const DOCS = [
 ];
 
 // `map` = čo sa hľadá v Google Maps (preklik pri každej zastávke, na oboch verziách stránky)
+// `from`/`to` = noc príchodu a deň odchodu; podľa nich sa zvýrazní, kde práve sme.
 const STOPS = [
-  { place: "Lima", sub: "pri letisku", map: "Aeropuerto Internacional Jorge Chávez, Lima, Peru", nights: 1, dates: "27.–28.11." },
-  { place: "Posvätné údolie", sub: "Ollantaytambo", map: "Ollantaytambo, Peru", nights: 2, dates: "28.–30.11.", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
+  { place: "Lima", sub: "pri letisku", map: "Aeropuerto Internacional Jorge Chávez, Lima, Peru", nights: 1, dates: "27.–28.11.", from: "2026-11-27", to: "2026-11-28" },
+  { place: "Posvätné údolie", sub: "Ollantaytambo", map: "Ollantaytambo, Peru", nights: 2, dates: "28.–30.11.", from: "2026-11-28", to: "2026-11-30", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
   {
-    place: "Aguas Calientes", sub: "Machu Picchu", map: "Machu Picchu, Peru", nights: 1, dates: "30.11.–1.12.",
+    place: "Aguas Calientes", sub: "Machu Picchu", map: "Machu Picchu, Peru", nights: 1, dates: "30.11.–1.12.", from: "2026-11-30", to: "2026-12-01",
     hotel: {
       name: "Hotel Horizonte",
       address: "Av. Hermanos Ayar 503-H",
@@ -57,12 +58,12 @@ const STOPS = [
       info: "Príchod od 12:00 · raňajky v cene · Booking.com",
     },
   },
-  { place: "Cusco", map: "Plaza de Armas, Cusco, Peru", nights: 3, dates: "1.–4.12.", hotel: { name: "Cusco Bed and Breakfast", address: "Calle Unión 140", maps: "https://www.google.com/maps/search/?api=1&query=Cusco+Bed+and+Breakfast+Calle+Union+140+Cusco", info: "Príchod od 11:00, odchod do 9:00 · Booking.com" } },
-  { place: "Puno", sub: "Titicaca", map: "Puno, Peru", nights: 2, dates: "4.–6.12.", hotel: { name: "Sol Plaza Hotel", info: "Queen Room · ~81 € za 2 noci · Booking.com" } },
-  { place: "Colca", sub: "Chivay", map: "Cañón del Colca, Peru", nights: 1, dates: "6.–7.12." },
-  { place: "Arequipa", map: "Plaza de Armas, Arequipa, Peru", nights: 3, dates: "7.–10.12." },
-  { place: "Lima", sub: "Miraflores / Barranco", map: "Barranco, Lima, Peru", nights: 1, dates: "10.–11.12." },
-  { place: "Viedeň", map: "Wien, Österreich", nights: 1, dates: "12.–13.12." },
+  { place: "Cusco", map: "Plaza de Armas, Cusco, Peru", nights: 3, dates: "1.–4.12.", from: "2026-12-01", to: "2026-12-04", hotel: { name: "Cusco Bed and Breakfast", address: "Calle Unión 140", maps: "https://www.google.com/maps/search/?api=1&query=Cusco+Bed+and+Breakfast+Calle+Union+140+Cusco", info: "Príchod od 11:00, odchod do 9:00 · Booking.com" } },
+  { place: "Puno", sub: "Titicaca", map: "Puno, Peru", nights: 2, dates: "4.–6.12.", from: "2026-12-04", to: "2026-12-06", hotel: { name: "Sol Plaza Hotel", info: "Queen Room · ~81 € za 2 noci · Booking.com" } },
+  { place: "Colca", sub: "Chivay", map: "Cañón del Colca, Peru", nights: 1, dates: "6.–7.12.", from: "2026-12-06", to: "2026-12-07" },
+  { place: "Arequipa", map: "Plaza de Armas, Arequipa, Peru", nights: 3, dates: "7.–10.12.", from: "2026-12-07", to: "2026-12-10" },
+  { place: "Lima", sub: "Miraflores / Barranco", map: "Barranco, Lima, Peru", nights: 1, dates: "10.–11.12.", from: "2026-12-10", to: "2026-12-11" },
+  { place: "Viedeň", map: "Wien, Österreich", nights: 1, dates: "12.–13.12.", from: "2026-12-12", to: "2026-12-13" },
 ];
 
 const FLIGHTS = [
@@ -228,10 +229,17 @@ const SECTIONS = [
 ];
 
 /* ─── Pomocné ─── */
+// Dnešný dátum podľa času v Peru (keď je u nás 1:00, v Lime je ešte predošlý večer).
+// Na vyskúšanie iného dňa: svadbaeam.sk/?den=2026-12-02#dovolenka
 function todayISO() {
-  const d = new Date();
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const test = new URLSearchParams(window.location.search).get("den");
+  if (test && /^\d{4}-\d{2}-\d{2}$/.test(test)) return test;
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Lima" }).format(new Date());
+}
+
+// Zastávka, kde dnes spíme (od príchodu do rána odchodu).
+function currentStop(today) {
+  return STOPS.find((s) => s.from <= today && today < s.to);
 }
 
 function daysBetween(a, b) {
@@ -250,7 +258,13 @@ function docHref(doc) {
 
 /* ─── Stránka ─── */
 export default function Dovolenka({ full = false }) {
-  const today = todayISO();
+  const [today, setToday] = useState(todayISO);
+
+  // Keď má niekto stránku otvorenú cez polnoc, prepne sa sama.
+  useEffect(() => {
+    const t = setInterval(() => setToday(todayISO()), 60000);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     document.title = "Peru — svadobná cesta";
@@ -266,7 +280,7 @@ export default function Dovolenka({ full = false }) {
       <Nav full={full} />
       <main className="dov-main">
         <Today today={today} full={full} />
-        <Route full={full} />
+        <Route full={full} today={today} />
         {full && <Docs />}
         <Flights full={full} />
         <Itinerary today={today} full={full} />
@@ -344,12 +358,24 @@ function Today({ today, full }) {
   if (!day) return null;
   const text = dayText(day, full);
   const tags = dayTags(day, full);
+  const stop = currentStop(today);
   return (
     <div className="dov-today">
       <span className="dov-today-label">Dnes · {day.label}</span>
       <h3>{day.place}</h3>
       {text && <p>{text}</p>}
       {tags.length > 0 && <Tags tags={tags} />}
+      {stop && (
+        <p className="dov-today-stop">
+          🛏 Dnes spíme: <strong>{stop.place}{stop.sub ? ` · ${stop.sub}` : ""}</strong>
+          {stop.map && (
+            <>
+              {" · "}
+              <a href={mapsHref(stop.map)} target="_blank" rel="noreferrer">📍 na mape ↗</a>
+            </>
+          )}
+        </p>
+      )}
     </div>
   );
 }
@@ -364,7 +390,8 @@ function Tags({ tags }) {
   );
 }
 
-function Route({ full }) {
+function Route({ full, today }) {
+  const now = currentStop(today);
   const nights = STOPS.slice(0, -1).reduce((s, x) => s + x.nights, 0);
   return (
     <Section
@@ -374,9 +401,10 @@ function Route({ full }) {
     >
       <ol className="dov-route-list">
         {STOPS.map((s, i) => (
-          <li key={i}>
+          <li key={i} className={[s === now ? "is-now" : "", s.to <= today ? "is-past" : ""].join(" ")}>
             <span className="dov-route-dot" />
             <div>
+              {s === now && <span className="dov-now-badge">📍 Tu sme teraz</span>}
               <strong>{s.place}</strong>
               {s.sub && <span className="dov-route-sub"> · {s.sub}</span>}
               <div className="dov-route-meta">

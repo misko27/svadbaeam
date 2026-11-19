@@ -114,6 +114,8 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 - **19. 11. 2026:** stránka rozdelená: plná verzia presunutá na **`/#dvl`**, `/#dovolenka` je verejná na poslanie
   bratovi a kamošom – bez dokladov, „Treba vybaviť“, liniek, poznámok k letom (pasy), čísel lístkov a miest vo vlakoch,
   zrazu busu, kontaktov a cien hotelov a vety o práci. Názvy hotelov a časy letov/vlakov ostali.
+- **19. 11. 2026:** na oboch stránkach sa podľa dátumu (čas v Peru) zvýrazní, kde práve sme („Tu sme teraz“,
+  „Dnes spíme“ s mapou), na poslanie rodičom. Test iného dňa: `svadbaeam.sk/?den=2026-12-02#dovolenka`.
 
 ## Čo ďalej (stav k 17. 11. 2026)
 
