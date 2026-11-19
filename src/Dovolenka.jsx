@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import "./Dovolenka.css";
 
-// Skrytá stránka so svadobnou cestou: /#dovolenka
+// Svadobná cesta, dve verzie z tých istých dát:
+//   /#dovolenka – verejná, na poslanie rodine a kamošom (bez dokladov, úloh, čísel lístkov, pasov…)
+//   /#dvl       – plná verzia len pre nás (<Dovolenka full />)
+// Čo je len pre nás: DOCS, TODO, LINKS, poznámky letov (`note`, `note2`),
+//   `privTags` a `privText` pri dňoch, telefón/adresa/info pri hoteloch.
+// Pozor: obe verzie sú v tom istom JS na webe – #dvl je skrytá, nie zaheslovaná.
 // Všetko sa upravuje v dátach nižšie – stránka sa prekreslí sama.
 
 const TRIP_START = "2026-11-27";
@@ -38,11 +43,12 @@ const DOCS = [
   { cat: "Ostatné", title: "Kópia sobášneho listu", note: "k Evinej vstupenke na MP", file: "", url: "" },
 ];
 
+// `map` = čo sa hľadá v Google Maps (preklik pri každej zastávke, na oboch verziách stránky)
 const STOPS = [
-  { place: "Lima", sub: "pri letisku", nights: 1, dates: "27.–28.11." },
-  { place: "Posvätné údolie", sub: "Ollantaytambo", nights: 2, dates: "28.–30.11.", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
+  { place: "Lima", sub: "pri letisku", map: "Aeropuerto Internacional Jorge Chávez, Lima, Peru", nights: 1, dates: "27.–28.11." },
+  { place: "Posvätné údolie", sub: "Ollantaytambo", map: "Ollantaytambo, Peru", nights: 2, dates: "28.–30.11.", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
   {
-    place: "Aguas Calientes", sub: "Machu Picchu", nights: 1, dates: "30.11.–1.12.",
+    place: "Aguas Calientes", sub: "Machu Picchu", map: "Machu Picchu, Peru", nights: 1, dates: "30.11.–1.12.",
     hotel: {
       name: "Hotel Horizonte",
       address: "Av. Hermanos Ayar 503-H",
@@ -51,12 +57,12 @@ const STOPS = [
       info: "Príchod od 12:00 · raňajky v cene · Booking.com",
     },
   },
-  { place: "Cusco", nights: 3, dates: "1.–4.12.", hotel: { name: "Cusco Bed and Breakfast", address: "Calle Unión 140", maps: "https://www.google.com/maps/search/?api=1&query=Cusco+Bed+and+Breakfast+Calle+Union+140+Cusco", info: "Príchod od 11:00, odchod do 9:00 · Booking.com" } },
-  { place: "Puno", sub: "Titicaca", nights: 2, dates: "4.–6.12.", hotel: { name: "Sol Plaza Hotel", info: "Queen Room · ~81 € za 2 noci · Booking.com" } },
-  { place: "Colca", sub: "Chivay", nights: 1, dates: "6.–7.12." },
-  { place: "Arequipa", nights: 3, dates: "7.–10.12." },
-  { place: "Lima", sub: "Miraflores / Barranco", nights: 1, dates: "10.–11.12." },
-  { place: "Viedeň", nights: 1, dates: "12.–13.12." },
+  { place: "Cusco", map: "Plaza de Armas, Cusco, Peru", nights: 3, dates: "1.–4.12.", hotel: { name: "Cusco Bed and Breakfast", address: "Calle Unión 140", maps: "https://www.google.com/maps/search/?api=1&query=Cusco+Bed+and+Breakfast+Calle+Union+140+Cusco", info: "Príchod od 11:00, odchod do 9:00 · Booking.com" } },
+  { place: "Puno", sub: "Titicaca", map: "Puno, Peru", nights: 2, dates: "4.–6.12.", hotel: { name: "Sol Plaza Hotel", info: "Queen Room · ~81 € za 2 noci · Booking.com" } },
+  { place: "Colca", sub: "Chivay", map: "Cañón del Colca, Peru", nights: 1, dates: "6.–7.12." },
+  { place: "Arequipa", map: "Plaza de Armas, Arequipa, Peru", nights: 3, dates: "7.–10.12." },
+  { place: "Lima", sub: "Miraflores / Barranco", map: "Barranco, Lima, Peru", nights: 1, dates: "10.–11.12." },
+  { place: "Viedeň", map: "Wien, Österreich", nights: 1, dates: "12.–13.12." },
 ];
 
 const FLIGHTS = [
@@ -87,11 +93,11 @@ const DAYS = [
   { date: "2026-11-27", label: "Pi 27.11.", place: "Viedeň → Lima", text: "Odlet, prestup v Paríži, prílet večer. Noc v hoteli pri letisku.", tags: ["✈ 6:15 VIE"] },
   { date: "2026-11-28", label: "So 28.11.", place: "Posvätné údolie", text: "Ráno let do Cusca, taxi rovno dole do údolia (~1,5 h). Pomalý deň na aklimatizáciu, pri dobrom pocite trh a ruiny v Pisacu.", tags: ["✈ 8:05 LATAM"] },
   { date: "2026-11-29", label: "Ne 29.11.", place: "Posvätné údolie", text: "Chinchero (kostol, tkáčske družstvá), Moray (kruhové terasy), soľné polia Maras." },
-  { date: "2026-11-30", label: "Po 30.11.", place: "Aguas Calientes", text: "Dopoludnia pevnosť a mesto Ollantaytambo, potom vlakom do Aguas Calientes. Spíme v Hotel Horizonte. Na stanici do 12:25. Veľké batohy berieme so sebou (oficiálne limit 8 kg, prípadne doplatiť), na stanicu s rezervou.", tags: ["🚆 12:55 → 14:25 Vistadome", "vozeň A · 5, 6"] },
-  { date: "2026-12-01", label: "Ut 1.12.", place: "Machu Picchu → Cusco", text: "Bus Consettur hore (vyraziť ~6:00). Machu Picchu Mountain, potom dolná citadela. Večer vlakom priamo do Cusca (San Pedro).", tags: ["⛰ 1-A 7:00", "3-B 12:00", "🚆 16:43 → 21:23", "vozeň F · 39, 40"], highlight: true },
+  { date: "2026-11-30", label: "Po 30.11.", place: "Aguas Calientes", text: "Dopoludnia pevnosť a mesto Ollantaytambo, potom vlakom do Aguas Calientes. Spíme v Hotel Horizonte.", privText: "Na stanici do 12:25. Veľké batohy berieme so sebou (oficiálne limit 8 kg, prípadne doplatiť), na stanicu s rezervou.", tags: ["🚆 12:55 → 14:25 Vistadome"], privTags: ["vozeň A · 5, 6"] },
+  { date: "2026-12-01", label: "Ut 1.12.", place: "Machu Picchu → Cusco", text: "Bus Consettur hore (vyraziť ~6:00). Machu Picchu Mountain, potom dolná citadela. Večer vlakom priamo do Cusca (San Pedro).", tags: ["⛰ 1-A 7:00", "3-B 12:00", "🚆 16:43 → 21:23"], privTags: ["vozeň F · 39, 40"], highlight: true },
   { date: "2026-12-02", label: "St 2.12.", place: "Cusco", text: "Plaza de Armas, katedrála, Qorikancha, štvrť San Blas, trh San Pedro. Večer dobrá reštaurácia." },
   { date: "2026-12-03", label: "Št 3.12.", place: "Cusco", text: "Ráno Sacsayhuamán a okolité ruiny, poobede Museo de Arte Precolombino alebo kurz varenia či čokolády." },
-  { date: "2026-12-04", label: "Pi 4.12.", place: "Cusco → Puno", text: "Turistický bus Inka Express (~10 h) so zastávkami: Andahuaylillas, Raqchi, La Raya, Pukara. Zraz 5:40 na Av. Alameda Pachacútec 499-B (taxíkom z hotela).", tags: ["🚌 6:10 Inka Express", "#916497"] },
+  { date: "2026-12-04", label: "Pi 4.12.", place: "Cusco → Puno", text: "Turistický bus Inka Express (~10 h) so zastávkami: Andahuaylillas, Raqchi, La Raya, Pukara.", privText: "Zraz 5:40 na Av. Alameda Pachacútec 499-B (taxíkom z hotela).", tags: ["🚌 6:10 Inka Express"], privTags: ["#916497"] },
   { date: "2026-12-05", label: "So 5.12.", place: "Titicaca", text: "Loďou na Uros a Taquile, obed u miestnych, večer späť v Pune." },
   { date: "2026-12-06", label: "Ne 6.12.", place: "Puno → Colca", text: "Bus (~6 h) cez náhornú plošinu a priesmyk Patapampa (~4 900 m). Poobede termály La Calera." },
   { date: "2026-12-07", label: "Po 7.12.", place: "Colca → Arequipa", text: "Skoro ráno kondory na Cruz del Cóndor, dedinky Yanque a Maca, poobede presun do Arequipy (~3–4 h)." },
@@ -209,15 +215,16 @@ const LINKS = [
   { title: "LATAM – my trips / boarding pass", sub: "latamairlines.com", url: "https://www.latamairlines.com/uy/en/my-trips" },
 ];
 
+// tretí prvok `true` = sekcia len v plnej verzii (#dvl)
 const SECTIONS = [
   ["prehlad", "Trasa"],
-  ["doklady", "Doklady"],
+  ["doklady", "Doklady", true],
   ["lety", "Lety"],
   ["den-po-dni", "Deň po dni"],
   ["machu-picchu", "Machu Picchu"],
-  ["vybavit", "Treba vybaviť"],
+  ["vybavit", "Treba vybaviť", true],
   ["pocasie", "Počasie"],
-  ["linky", "Linky"],
+  ["linky", "Linky", true],
 ];
 
 /* ─── Pomocné ─── */
@@ -231,6 +238,10 @@ function daysBetween(a, b) {
   return Math.round((new Date(b) - new Date(a)) / 86400000);
 }
 
+function mapsHref(q) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+}
+
 function docHref(doc) {
   if (doc.url) return doc.url;
   if (doc.file) return `${import.meta.env.BASE_URL}dovolenka/${doc.file}`;
@@ -238,7 +249,7 @@ function docHref(doc) {
 }
 
 /* ─── Stránka ─── */
-export default function Dovolenka() {
+export default function Dovolenka({ full = false }) {
   const today = todayISO();
 
   useEffect(() => {
@@ -252,17 +263,17 @@ export default function Dovolenka() {
   return (
     <div className="dov">
       <Header today={today} />
-      <Nav />
+      <Nav full={full} />
       <main className="dov-main">
-        <Today today={today} />
-        <Route />
-        <Docs />
-        <Flights />
-        <Itinerary today={today} />
-        <MachuPicchu />
-        <Todo />
+        <Today today={today} full={full} />
+        <Route full={full} />
+        {full && <Docs />}
+        <Flights full={full} />
+        <Itinerary today={today} full={full} />
+        <MachuPicchu full={full} />
+        {full && <Todo />}
         <Weather />
-        <Links />
+        {full && <Links />}
         <a className="dov-back" href="#">← späť na svadobnú stránku</a>
       </main>
     </div>
@@ -294,10 +305,10 @@ function Header({ today }) {
   );
 }
 
-function Nav() {
+function Nav({ full }) {
   return (
     <nav className="dov-nav" aria-label="Sekcie">
-      {SECTIONS.map(([id, label]) => (
+      {SECTIONS.filter(([, , priv]) => full || !priv).map(([id, label]) => (
         <button
           key={id}
           type="button"
@@ -320,15 +331,25 @@ function Section({ id, title, intro, children }) {
   );
 }
 
-function Today({ today }) {
+function dayText(d, full) {
+  return [d.text, full && d.privText].filter(Boolean).join(" ");
+}
+
+function dayTags(d, full) {
+  return [...(d.tags || []), ...((full && d.privTags) || [])];
+}
+
+function Today({ today, full }) {
   const day = DAYS.find((d) => d.date === today);
   if (!day) return null;
+  const text = dayText(day, full);
+  const tags = dayTags(day, full);
   return (
     <div className="dov-today">
       <span className="dov-today-label">Dnes · {day.label}</span>
       <h3>{day.place}</h3>
-      {day.text && <p>{day.text}</p>}
-      {day.tags && <Tags tags={day.tags} />}
+      {text && <p>{text}</p>}
+      {tags.length > 0 && <Tags tags={tags} />}
     </div>
   );
 }
@@ -343,13 +364,13 @@ function Tags({ tags }) {
   );
 }
 
-function Route() {
+function Route({ full }) {
   const nights = STOPS.slice(0, -1).reduce((s, x) => s + x.nights, 0);
   return (
     <Section
       id="prehlad"
       title="Trasa"
-      intro={`Odlet z Viedne v piatok 27.11., návrat do Viedne v sobotu 12.12., domov v nedeľu 13.12. V Peru máme ${nights} nocí. V práci sme do 26.11. a znova od 14.12.`}
+      intro={`Odlet z Viedne v piatok 27.11., návrat do Viedne v sobotu 12.12., domov v nedeľu 13.12. V Peru máme ${nights} nocí.${full ? " V práci sme do 26.11. a znova od 14.12." : ""}`}
     >
       <ol className="dov-route-list">
         {STOPS.map((s, i) => (
@@ -361,11 +382,16 @@ function Route() {
               <div className="dov-route-meta">
                 {s.dates} · {s.nights} {s.nights === 1 ? "noc" : "noci"}
               </div>
+              {s.map && (
+                <a className="dov-route-map" href={mapsHref(s.map)} target="_blank" rel="noreferrer">
+                  📍 na mape ↗
+                </a>
+              )}
               {s.hotel && (
                 <div className="dov-hotel">
                   <strong>🏨 {s.hotel.name}</strong>
-                  <span>{s.hotel.info}</span>
-                  {(s.hotel.address || s.hotel.phone) && (
+                  {full && <span>{s.hotel.info}</span>}
+                  {full && (s.hotel.address || s.hotel.phone) && (
                     <span>
                       {s.hotel.address && <a href={s.hotel.maps} target="_blank" rel="noreferrer">{s.hotel.address} ↗</a>}
                       {s.hotel.address && s.hotel.phone && " · "}
@@ -423,7 +449,7 @@ function Docs() {
   );
 }
 
-function Flights() {
+function Flights({ full }) {
   return (
     <Section
       id="lety"
@@ -464,8 +490,8 @@ function Flights() {
                 </div>
               )}
             </div>
-            {f.note && <p className="dov-ticket-note">{f.note}</p>}
-            {f.note2 && <p className="dov-ticket-note">{f.note2}</p>}
+            {full && f.note && <p className="dov-ticket-note">{f.note}</p>}
+            {full && f.note2 && <p className="dov-ticket-note">{f.note2}</p>}
           </article>
         ))}
       </div>
@@ -473,7 +499,7 @@ function Flights() {
   );
 }
 
-function Itinerary({ today }) {
+function Itinerary({ today, full }) {
   return (
     <Section
       id="den-po-dni"
@@ -481,7 +507,10 @@ function Itinerary({ today }) {
       intro="Najprv Cusco a Machu Picchu, kým menej prší, na záver suchá Arequipa a letná Lima."
     >
       <ol className="dov-days">
-        {DAYS.map((d) => (
+        {DAYS.map((d) => {
+          const text = dayText(d, full);
+          const tags = dayTags(d, full);
+          return (
           <li
             key={d.date}
             className={[
@@ -494,17 +523,18 @@ function Itinerary({ today }) {
             <div className="dov-day-date">{d.label}</div>
             <div className="dov-day-body">
               <h3>{d.place}</h3>
-              {d.text && <p>{d.text}</p>}
-              {d.tags && <Tags tags={d.tags} />}
+              {text && <p>{text}</p>}
+              {tags.length > 0 && <Tags tags={tags} />}
             </div>
           </li>
-        ))}
+          );
+        })}
       </ol>
     </Section>
   );
 }
 
-function MachuPicchu() {
+function MachuPicchu({ full }) {
   return (
     <Section id="machu-picchu" title="Machu Picchu · 1.12.">
       <div className="dov-mp-card">
@@ -513,17 +543,21 @@ function MachuPicchu() {
           <div><span className="dov-k">7:00</span>1-A Machu Picchu Mountain (na kontrolu Montaña najneskôr do 8:00)</div>
           <div><span className="dov-k">12:00</span>3-B dolná citadela</div>
           <div><span className="dov-k">~14:00</span>Koniec, dole do mesta</div>
-          <div><span className="dov-k">16:43</span>Vlak Expedition 32 → Cusco San Pedro 21:23 (na stanici do 16:13, vozeň F, miesta 39 a 40)</div>
+          <div><span className="dov-k">16:43</span>Vlak Expedition 32 → Cusco San Pedro 21:23{full && " (na stanici do 16:13, vozeň F, miesta 39 a 40)"}</div>
         </div>
-        <div className="dov-callout">
-          <strong>Evine lístky sú na starý pas a meno Kubačková</strong> – Machu Picchu aj oba vlaky.
-          Starý pas jej nevrátia. Keď príde nový, napísať tuboletu aj PeruRailu. So sebou mať nový pas a sobášny list.
-        </div>
-        <ul className="dov-list">
-          <li>Mená a čísla pasov musia presne sedieť.</li>
-          <li>Tolerancia pri vstupe je 30 minút oproti času na lístku.</li>
-          <li>Spätný vlak s rezervou aspoň 2–3 h po konci návštevy.</li>
-        </ul>
+        {full && (
+          <>
+            <div className="dov-callout">
+              <strong>Evine lístky sú na starý pas a meno Kubačková</strong> – Machu Picchu aj oba vlaky.
+              Starý pas jej nevrátia. Keď príde nový, napísať tuboletu aj PeruRailu. So sebou mať nový pas a sobášny list.
+            </div>
+            <ul className="dov-list">
+              <li>Mená a čísla pasov musia presne sedieť.</li>
+              <li>Tolerancia pri vstupe je 30 minút oproti času na lístku.</li>
+              <li>Spätný vlak s rezervou aspoň 2–3 h po konci návštevy.</li>
+            </ul>
+          </>
+        )}
       </div>
       <details className="dov-details">
         <summary>Okruhy na Machu Picchu</summary>

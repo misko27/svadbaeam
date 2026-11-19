@@ -25,8 +25,10 @@ function App() {
 
   // Skrytá stránka s tajničkou do svadobných novín: /#tajnicka
   if (hash === "#tajnicka") return <Tajnicka />;
-  // Skrytá stránka so svadobnou cestou do Peru: /#dovolenka
+  // Svadobná cesta do Peru – verejná verzia pre rodinu a kamošov: /#dovolenka
   if (hash === "#dovolenka") return <Dovolenka />;
+  // Plná verzia len pre nás (doklady, treba vybaviť, čísla lístkov, pasy): /#dvl
+  if (hash === "#dvl") return <Dovolenka full />;
   // Skrytá stránka so zasadacím poriadkom (pre nás a hotel): /#zasadaci
   if (hash === "#zasadaci") return <Zasadaci />;
   // Nahrávanie fotiek od hostí (QR kód v novinách): /#fotky

@@ -198,6 +198,14 @@
 .dov-route-dot::before { content: counter(stop); }
 .dov-route-sub { color: var(--dov-muted); font-size: 0.85rem; }
 .dov-route-meta { font-size: 0.82rem; color: var(--dov-muted); }
+.dov-route-map {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+.dov-route-map:hover { text-decoration: underline; }
 .dov-hotel {
   display: flex;
   flex-direction: column;

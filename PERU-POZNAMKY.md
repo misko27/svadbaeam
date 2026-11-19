@@ -1,7 +1,7 @@
 # Peru – poznámky
 
 Rozhodnutia a veci z chatu k svadobnej ceste (27. 11. – 13. 12. 2026).
-Stránka s plánom: `/#dovolenka` (`src/Dovolenka.jsx`).
+Stránka s plánom: `/#dvl` = plná verzia pre nás, `/#dovolenka` = verejná verzia pre rodinu a kamošov (obe `src/Dovolenka.jsx`).
 
 ## Evin nový pas (stav k 9. 11. 2026)
 
@@ -105,6 +105,15 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Cusco B&B: raňajky už o ~5:00 nebudú, poprosiť o balíček na cestu.
 - **17. 11. 2026:** zarezervovaný **Sol Plaza Hotel, Puno**, 4.–6. 12., Queen Room with Interior View, ~81 € spolu, Booking.
   Hotelu sme nepísali, netreba.
+
+- **18. 11. 2026:** hotel v Lime (A y J Familia) odpísal na WhatsApp: transfer letisko → hostel + hostel → letisko,
+  oba taxíky spolu **55 soles** (~13–14 €), chcú potvrdenie. Pozor: v popise na Bookingu majú **odvoz z letiska zadarmo**
+  (10:00–21:00, my prilietame 16:55), platený je len odvoz späť. Odpoveď: zdvorilo sa spýtať, či 55 soles nie je len za cestu späť,
+  ale nehádať sa, aj 55 soles je v poriadku. Potvrdiť čas vyzdvihnutia 28. 11. (~5:30, na letisku 6:15, nový terminál),
+  miesto stretnutia v hale, platiť v hotovosti v soles (karta +5 %).
+- **19. 11. 2026:** stránka rozdelená: plná verzia presunutá na **`/#dvl`**, `/#dovolenka` je verejná na poslanie
+  bratovi a kamošom – bez dokladov, „Treba vybaviť“, liniek, poznámok k letom (pasy), čísel lístkov a miest vo vlakoch,
+  zrazu busu, kontaktov a cien hotelov a vety o práci. Názvy hotelov a časy letov/vlakov ostali.
 
 ## Čo ďalej (stav k 17. 11. 2026)
 
