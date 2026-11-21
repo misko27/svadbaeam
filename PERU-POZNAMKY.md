@@ -159,6 +159,9 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Vyhýbať sa predajcom (napr. busconsettur.com za 35 USD). Rozhodnutie: kúpiť **30. 11. poobede na pokladni**
   na Av. Hermanos Ayar (tá istá ulica ako Hotel Horizonte), spiatočný, Eva s novým pasom. Na rad 1. 12. ~5:30.
 
+- **21. 11. 2026:** zvyšok (Colca tour, hotely Arequipa / Lima / Viedeň, výlet 29. 11., balíček Cusco B&B) – Michal sa najprv
+  dohodne s Evou, potom pokračujeme.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
