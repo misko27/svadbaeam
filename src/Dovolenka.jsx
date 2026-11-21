@@ -29,7 +29,7 @@ const DOCS = [
   { cat: "Machu Picchu", title: "3-B dolná citadela · 12:00 · oboch", note: "Boletos_3106812 (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Vlaky", title: "PeruRail · oba vlaky · oboch", note: "WEB3242904.pdf · Vistadome 30.11. + Expedition 1.12.", file: "", url: DRIVE_FOLDER },
   { cat: "Machu Picchu", title: "Bus Consettur", note: "hore k Machu Picchu", file: "", url: "" },
-  { cat: "Presuny", title: "Inka Express · Cusco → Puno", note: "4.12., 6:10 · #916497 · e-mail s lístkom", file: "", url: "" },
+  { cat: "Presuny", title: "Inka Express · Cusco → Puno", note: "potvrdené · Pi 4.12., zraz 5:40, odchod 6:10 · Av. Alameda Pachacútec 499-B · #916497 · lístok v e-maile", file: "", url: "" },
   { cat: "Ubytovanie", title: "Lima · A y J Familia (oproti letisku)", note: "27.–28.11. · Booking.com, bezplatné zrušenie · s odvozom z/na letisko", file: "", url: "" },
   { cat: "Ubytovanie", title: "Ollantaytambo · Picaflor Tambo Guest House", note: "28.–30.11. · Booking.com, bez možnosti vrátenia peňazí", file: "", url: "" },
   { cat: "Ubytovanie", title: "Aguas Calientes · Hotel Horizonte", note: "Booking.com_ Potvrdenie.pdf · 30.11.–1.12.", file: "", url: DRIVE_FOLDER },
@@ -49,7 +49,16 @@ const DOCS = [
 // `map` = čo sa hľadá v Google Maps (preklik pri každej zastávke, na oboch verziách stránky)
 // `from`/`to` = noc príchodu a deň odchodu; podľa nich sa zvýrazní, kde práve sme.
 const STOPS = [
-  { place: "Lima", sub: "pri letisku", map: "Aeropuerto Internacional Jorge Chávez, Lima, Peru", nights: 1, dates: "27.–28.11.", from: "2026-11-27", to: "2026-11-28" },
+  {
+    place: "Lima", sub: "pri letisku", map: "Aeropuerto Internacional Jorge Chávez, Lima, Peru", nights: 1, dates: "27.–28.11.", from: "2026-11-27", to: "2026-11-28",
+    hotel: {
+      name: "Across from Lima Airport – A y J Familia",
+      address: "Manzana G 60, Lote 1, Sector 5, Urb. Bocanegra, Callao",
+      phone: "+51 955 142 101",
+      maps: "https://www.google.com/maps/search/?api=1&query=Across+from+Lima+Airport+A+y+J+Familia+Bocanegra+Callao",
+      info: "Príchod 11:00–24:00, odchod do 10:00 · odvoz z/na letisko (taxi) · Booking.com",
+    },
+  },
   { place: "Posvätné údolie", sub: "Ollantaytambo", map: "Ollantaytambo, Peru", nights: 2, dates: "28.–30.11.", from: "2026-11-28", to: "2026-11-30", hotel: { name: "Picaflor Tambo Guest House", info: "Príchod od 13:00 · Booking.com" } },
   {
     place: "Aguas Calientes", sub: "Machu Picchu", map: "Machu Picchu, Peru", nights: 1, dates: "30.11.–1.12.", from: "2026-11-30", to: "2026-12-01",
@@ -190,6 +199,7 @@ const TODO = [
       { text: "Rezervácia večere v Lime (10.12.)", note: "ak chceme top reštauráciu" },
       { text: "Cestovné poistenie", note: "uzavreté 15.11.", done: true },
       { text: "Poistku nahrať na Drive", note: "asistenčná karta", done: true },
+      { text: "Predĺžiť poistenie do 13.12.", note: "teraz platí len 27.11.–11.12., domov 12.12. + noc vo Viedni · overiť, či je poistená aj Eva" },
       { text: "Platnosť pasov" },
       { text: "Chceme skúsiť aj Huayna Picchu?", note: "otázka" },
     ],
@@ -208,6 +218,21 @@ const WEATHER = [
   { place: "Colca", sky: "Zväčša v pohode, dažde slabšie ako v Cuscu", temp: "chladné noci", icon: "🌤" },
   { place: "Arequipa", sky: "Takmer stále slnko a sucho", temp: "teplo", icon: "☀️" },
   { place: "Lima", sky: "Začína leto, sucho", temp: "~22–25 °C", icon: "☀️" },
+];
+
+// Núdzové kontakty (len #dvl). `tel` = číslo na vytočenie, `wa` = WhatsApp.
+const EMERGENCY = [
+  { title: "Poistenie Union – asistenčná služba (24 h, po slovensky)", sub: "Eurocross Assistance · číslo zmluvy na asistenčnej karte (Drive) · platí 27.11.–11.12.", tel: "+420 2 9633 9644" },
+  { title: "Poistenie Union – asistencia cez WhatsApp", sub: "Eurocross Assistance", wa: "+420 608 038 490" },
+  { title: "Infolinka Union zo zahraničia", sub: "nie pre akútne prípady", tel: "+421 2 2081 1811" },
+  { title: "Núdzová linka MZV SR (24 h)", sub: "úmrtie, hospitalizácia, zadržanie, vážne ohrozenie", tel: "+421 2 5978 5978" },
+  { title: "Veľvyslanectvo SR v Buenos Aires – pohotovosť", sub: "akreditované pre Peru · mimo úradných hodín, aj strata pasu", tel: "+54 9 11 3894 6931" },
+  { title: "Veľvyslanectvo SR v Buenos Aires", sub: "cons.buenosaires@mzv.sk · Po–Pi 9–14 h (Argentína = Peru +2 h)", tel: "+54 11 4801 3917" },
+  { title: "Honorárny konzul SR v Lime", sub: "Víctor Andrés Belaunde Gutiérrez · kontakt cez veľvyslanectvo v Buenos Aires", tel: "" },
+  { title: "Veľvyslanectvo ČR v Lime (pomoc občanom EÚ)", sub: "Baltazar la Torre 398, San Isidro · lima.consulate@mzv.gov.cz", tel: "+51 908 918 578" },
+  { title: "Peru – polícia", sub: "Policía Nacional", tel: "105" },
+  { title: "Peru – záchranka (SAMU)", sub: "", tel: "106" },
+  { title: "Peru – hasiči", sub: "", tel: "116" },
 ];
 
 const LINKS = [
@@ -229,6 +254,7 @@ const SECTIONS = [
   ["vybavit", "Treba vybaviť", true],
   ["pocasie", "Počasie"],
   ["linky", "Linky", true],
+  ["nudza", "Núdza", true],
 ];
 
 /* ─── Pomocné ─── */
@@ -291,6 +317,7 @@ export default function Dovolenka({ full = false }) {
         {full && <Todo />}
         <Weather />
         {full && <Links />}
+        {full && <Emergency />}
         <a className="dov-back" href="#">← späť na svadobnú stránku</a>
       </main>
     </div>
@@ -666,6 +693,30 @@ function Weather() {
         <li>Doprava v Lime je pomalá, na letisko vždy s rezervou.</li>
         <li>Letisko v Lime má od júna 2025 nový terminál na západnej strane. Hotely pri ulici Elmer Faucett sú pri starom, k novému sa ide autom okolo letiska. V Callao v noci nechodiť pešo.</li>
       </ul>
+    </Section>
+  );
+}
+
+function Emergency() {
+  return (
+    <Section id="nudza" title="Núdzové kontakty" intro="Pri úraze alebo v nemocnici najprv volať asistenčnú službu poisťovne – hovoria po slovensky a zariadia platbu.">
+      <div className="dov-links">
+        {EMERGENCY.map((e) => {
+          const num = e.tel || e.wa;
+          const href = e.wa ? `https://wa.me/${e.wa.replace(/\D/g, "")}` : e.tel ? `tel:${e.tel.replace(/\s/g, "")}` : null;
+          const inner = (
+            <>
+              <strong>{e.title}</strong>
+              <span>{[num && (e.wa ? `WhatsApp ${num}` : num), e.sub].filter(Boolean).join(" · ")}</span>
+            </>
+          );
+          return href ? (
+            <a key={e.title} href={href} target="_blank" rel="noreferrer" className="dov-link">{inner}</a>
+          ) : (
+            <div key={e.title} className="dov-link">{inner}</div>
+          );
+        })}
+      </div>
     </Section>
   );
 }

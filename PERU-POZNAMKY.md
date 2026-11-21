@@ -162,6 +162,13 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 - **21. 11. 2026:** zvyšok (Colca tour, hotely Arequipa / Lima / Viedeň, výlet 29. 11., balíček Cusco B&B) – Michal sa najprv
   dohodne s Evou, potom pokračujeme.
 
+- **21. 11. 2026:** na `/#dvl` pridané: hotel v Lime (adresa, WhatsApp, príchod 11–24 h, odchod do 10:00), Inka Express potvrdené,
+  nová sekcia **Núdzové kontakty** (asistencia Union/Eurocross +420 2 9633 9644, WhatsApp +420 608 038 490; MZV SR 24 h
+  +421 2 5978 5978; SR je pre Peru akreditovaná z **Buenos Aires**, pohotovosť +54 9 11 3894 6931; honorárny konzul v Lime
+  Víctor Andrés Belaunde Gutiérrez; ČR Lima +51 908 918 578; Peru polícia 105, SAMU 106, hasiči 116).
+  ⚠️ **Poistenie (Union UniTravel) platí len 27. 11. – 11. 12.**, ale domov priletíme 12. 12. a 12.–13. 12. spíme vo Viedni →
+  predĺžiť do 13. 12. Na karte je len **Michal Paška** – overiť, či je poistená aj Eva.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
