@@ -128,7 +128,7 @@ const TODO = [
       { text: "Vstupenky na Machu Picchu, 1.12.", note: "1-A Montaña 7:00 a 3-B 12:00, 2 osoby", done: true },
       { text: "Vlak Ollantaytambo → Aguas Calientes, 30.11.", note: "PeruRail Vistadome 73P, 12:55 → 14:25", done: true },
       { text: "Vlak Aguas Calientes → Cusco (San Pedro), 1.12.", note: "PeruRail Expedition 32, 16:43 → 21:23", done: true },
-      { text: "Bus Consettur hore k Machu Picchu", note: "kúpiť zvlášť" },
+      { text: "Bus Consettur hore k Machu Picchu", note: "kúpiť 30.11. poobede na pokladni v Aguas Calientes (Av. Hermanos Ayar, pri Horizonte) · spiatočný ~24 USD/os. · s pasom" },
       { text: "Veľká batožina z údolia do Cusca", note: "berieme do vlaku, prípadne doplatíme; plán B: úschova v Picaflor / na stanici", done: true },
     ],
   },
@@ -214,7 +214,7 @@ const LINKS = [
   { title: "Vstupenky Machu Picchu", sub: "tuboleto.cultura.pe", url: "https://tuboleto.cultura.pe" },
   { title: "PeruRail", sub: "perurail.com", url: "https://www.perurail.com" },
   { title: "Inca Rail", sub: "incarail.com", url: "https://incarail.com" },
-  { title: "Consettur (bus na MP)", sub: "consettur.com", url: "https://consettur.com" },
+  { title: "Consettur / Camino a la Maravilla (bus na MP)", sub: "comprar.caminoalamaravilla.com", url: "https://comprar.caminoalamaravilla.com" },
   { title: "Air France – moje rezervácie", sub: "airfrance.sk", url: "https://wwws.airfrance.sk/trip" },
   { title: "LATAM – my trips / boarding pass", sub: "latamairlines.com", url: "https://www.latamairlines.com/uy/en/my-trips" },
 ];

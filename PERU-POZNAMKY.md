@@ -153,6 +153,12 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 - **21. 11. 2026:** ✅ na Drive nahraté: pasy (Evin nový, Michalov), Michalov občiansky, sobášny list, asistenčná karta poistenia. Na `/#dvl` v Dokladoch
   nová skupina „Doklady totožnosti“ – zatiaľ odkaz na celý priečinok (priame linky na súbory môže Michal poslať).
 
+- **21. 11. 2026:** **Bus na Machu Picchu:** trasu jazdia provizórne dve firmy – Consettur (teraz aj pod menom „Camino a la Maravilla“,
+  comprar.caminoalamaravilla.com) a San Antonio de Torontoy (torontoy.com). Cena ~12 USD jedna cesta / **24 USD spiatočný** na osobu
+  (Torontoy ~11/22). Spiatočný lístok platí len u firmy, ktorá ho vydala. Lístok nemá pevný čas, prvý bus ~5:30.
+  Vyhýbať sa predajcom (napr. busconsettur.com za 35 USD). Rozhodnutie: kúpiť **30. 11. poobede na pokladni**
+  na Av. Hermanos Ayar (tá istá ulica ako Hotel Horizonte), spiatočný, Eva s novým pasom. Na rad 1. 12. ~5:30.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
