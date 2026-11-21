@@ -3,7 +3,9 @@
 Rozhodnutia a veci z chatu k svadobnej ceste (27. 11. – 13. 12. 2026).
 Stránka s plánom: `/#dvl` = plná verzia pre nás, `/#dovolenka` = verejná verzia pre rodinu a kamošov (obe `src/Dovolenka.jsx`).
 
-## Evin nový pas (stav k 9. 11. 2026)
+## Evin nový pas (stav k 20. 11. 2026)
+
+**20. 11. 2026: nový pas je doma.** Ideme postupne podľa zoznamu nižšie.
 
 - Eva má po svadbe (30. 10.) nové priezvisko. Nový pas je **objednaný, zatiaľ ho nemá**.
 - Starý pas (na meno Kubačková) jej polícia **nevráti**. Bez nového pasu nemôže odletieť.
@@ -116,6 +118,40 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   zrazu busu, kontaktov a cien hotelov a vety o práci. Názvy hotelov a časy letov/vlakov ostali.
 - **19. 11. 2026:** na oboch stránkach sa podľa dátumu (čas v Peru) zvýrazní, kde práve sme („Tu sme teraz“,
   „Dnes spíme“ s mapou), na poslanie rodičom. Test iného dňa: `svadbaeam.sk/?den=2026-12-02#dovolenka`.
+
+- **20. 11. 2026:** Picaflor Tambo (Johana) potvrdil transfer z letiska Cusco 28. 11. (prílet 9:30, 60 USD),
+  chcú **číslo letu LATAM** Lima → Cusco: **LA2130** (8:05 → 9:30). Prevoz batohov zrušený, OK.
+  Výlet 29. 11. Chinchero + Moray + Maras, súkromne: **šofér 120 USD** za oboch (základná angličtina, ide s nami po miestach)
+  alebo **šofér + profesionálny sprievodca 210 USD**. Vstupy zvlášť: Boleto Turístico parcial **70 soles/os.**
+  (Chinchero + Moray), Maras **20 soles/os.**; obed ~1 h, odporúčajú Inkasal, 40–60 soles/os.
+  Odporúčanie: šofér za 120 USD. **Odpísané 20. 11.:** poslali sme číslo letu, o výlete sa ešte dohodneme a ozveme sa.
+
+- **20. 11. 2026:** výlet 29. 11. (šofér 120 USD vs. so sprievodcom 210 USD) – **ešte sa rozhodneme**, potom napísať Picaflor.
+- **20. 11. 2026:** Eva má **nový pas**. Poradie: 1. Air France (najbližší let 27. 11.), 2. e-maily Tuboleto a PeruRail
+  ešte dnes (čakanie na odpoveď), 3. LATAM pri online check-ine (otvára sa 48 h pred letom → od 26. 11. 8:05 peruánskeho času),
+  4. sken pasu a sobášneho listu na Drive.
+
+- **20. 11. 2026:** ✅ **Air France:** nový Evin pas zadaný v rezervácii (platí pre tam aj späť, overiť ešte pri check-ine 25. 11.).
+  Tuboleto: posielame len stranu pasu s fotkou, s vodoznakom „Len pre Tuboleto – zmena mena, 11/2026“, na oficiálnu adresu.
+
+- **21. 11. 2026:** Tuboleto odpísal: **meno na lístku zmeniť nejde** (RM 000334-2026-MC, čl. 15 a 17), Eva to má vysvetliť
+  pri vstupe s **oboma pasmi**. Číslo pasu opravia (raz), chcú **fotky oboch pasov**. Problém: starý Evin pas má polícia.
+  Odpovedáme: fotka Michalovho pasu + nového Evinho (+ kópia starého, ak ju máme), prosba prepísať Evin lístok na nové číslo,
+  vysvetliť, že starý pas zadržala polícia. Na vstup mať: nový pas, sobášny list (s prekladom), kópiu starého pasu, ich e-mail vytlačený.
+
+- **21. 11. 2026:** fotku starého Evinho pasu asi nemáme, skúsime zohnať starý pas (polícia) alebo aspoň kópiu/potvrdenie.
+  Tuboleto zatiaľ neodpísané, čaká sa na to.
+
+- **21. 11. 2026:** Michal zisťuje, či sa dá zohnať starý Evin pas (alebo aspoň kópia), zatiaľ nevieme.
+  Ďalší krok s pasom: **PeruRail** (WEB3242904). Michal má na lístkoch správne číslo, meniť sa má len Eva:
+  lístky B216-01328269 (Vistadome 30. 11.) a B216-01328271 (Expedition 1. 12.). Zmeny najneskôr 24 h pred odchodom vlaku.
+
+- **21. 11. 2026:** ✅ e-mail **PeruRail** odoslaný (zmena mena a pasu pre Evu), čaká sa na odpoveď.
+  LATAM: v rezervácii sa pas pridať nedá, až pri online check-ine – LA2130 od **26. 11. 14:05 nášho času** (8:05 v Lime),
+  LA2124 od 8. 12. 11:25 peruánskeho času. Skeny pasu a sobášneho listu na Drive nahráva Michal sám.
+
+- **21. 11. 2026:** ✅ na Drive nahraté: pasy (Evin nový, Michalov), Michalov občiansky, sobášny list, asistenčná karta poistenia. Na `/#dvl` v Dokladoch
+  nová skupina „Doklady totožnosti“ – zatiaľ odkaz na celý priečinok (priame linky na súbory môže Michal poslať).
 
 ## Čo ďalej (stav k 17. 11. 2026)
 

@@ -23,7 +23,7 @@ const DRIVE_FOLDER = "https://drive.google.com/drive/folders/1_V2MJ83ogQaJXQ1D1M
 const DOCS = [
   { cat: "Lety", title: "Air France · Michal", note: "Elektronická_letenka.pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Lety", title: "Air France · Eva", note: "Elektronická_letenka (1).pdf", file: "", url: DRIVE_FOLDER },
-  { cat: "Lety", title: "LATAM · Lima → Cusco", note: "28.11., 8:05 · boarding pass ešte nemáme, bude tu po online check-ine", file: "", url: "https://www.latamairlines.com/uy/en/my-trips" },
+  { cat: "Lety", title: "LATAM · Lima → Cusco", note: "28.11., 8:05 · LA2130 · boarding pass ešte nemáme, bude tu po online check-ine", file: "", url: "https://www.latamairlines.com/uy/en/my-trips" },
   { cat: "Lety", title: "LATAM · Arequipa → Lima", note: "10.12., 11:25 · LA2124 · boarding pass po online check-ine", file: "", url: "https://www.latamairlines.com/uy/en/my-trips" },
   { cat: "Machu Picchu", title: "1-A Montaña · 7:00 · oboch", note: "Boletos_3106805 (1).pdf", file: "", url: DRIVE_FOLDER },
   { cat: "Machu Picchu", title: "3-B dolná citadela · 12:00 · oboch", note: "Boletos_3106812 (1).pdf", file: "", url: DRIVE_FOLDER },
@@ -39,8 +39,11 @@ const DOCS = [
   { cat: "Ubytovanie", title: "Arequipa", note: "7.–10.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Lima Miraflores / Barranco", note: "10.–11.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Viedeň", note: "12.–13.12.", file: "", url: "" },
-  { cat: "Ostatné", title: "Cestovné poistenie", note: "uzavreté 15.11.", file: "", url: "" },
-  { cat: "Ostatné", title: "Kópia sobášneho listu", note: "k Evinej vstupenke na MP", file: "", url: "" },
+  { cat: "Ostatné", title: "Cestovné poistenie · asistenčná karta", note: "uzavreté 15.11. · číslo na asistenčnú službu pri úraze/chorobe", file: "", url: DRIVE_FOLDER },
+  { cat: "Doklady totožnosti", title: "Sobášny list", note: "k Eviným lístkom na MP a vlaky (sú na meno Kubačková)", file: "", url: DRIVE_FOLDER },
+  { cat: "Doklady totožnosti", title: "Pas · Eva (nový)", note: "sken, pre prípad straty", file: "", url: DRIVE_FOLDER },
+  { cat: "Doklady totožnosti", title: "Pas · Michal", note: "sken, pre prípad straty", file: "", url: DRIVE_FOLDER },
+  { cat: "Doklady totožnosti", title: "Občiansky · Michal", note: "sken", file: "", url: DRIVE_FOLDER },
 ];
 
 // `map` = čo sa hľadá v Google Maps (preklik pri každej zastávke, na oboch verziách stránky)
@@ -74,7 +77,7 @@ const FLIGHTS = [
   },
   {
     status: "done", from: "LIM", to: "CUZ", fromCity: "Lima", toCity: "Cusco",
-    date: "So 28.11.", time: "8:05 → 9:30", carrier: "LATAM", via: "priamy",
+    date: "So 28.11.", time: "8:05 → 9:30", carrier: "LATAM", via: "LA2130 · priamy",
     note2: "Boarding pass zatiaľ nemáme – nájdeš ho v LATAM „My trips“ po online check-ine.",
     note: "Eva: aktualizovať číslo nového pasu v rezervácii alebo pri check-ine",
   },
@@ -115,7 +118,7 @@ const TODO = [
     group: "Lety",
     items: [
       { text: "Dlhé lety Viedeň ⇄ Lima", note: "Air France", done: true },
-      { text: "Let Lima → Cusco, 28.11.", note: "LATAM 8:05 → 9:30", done: true },
+      { text: "Let Lima → Cusco, 28.11.", note: "LATAM LA2130 8:05 → 9:30", done: true },
       { text: "Let Arequipa → Lima, 10.12.", note: "LATAM LA2124 11:25 → 13:00", done: true },
     ],
   },
@@ -132,10 +135,10 @@ const TODO = [
   {
     group: "Keď príde Evin nový pas",
     items: [
-      { text: "Air France: vložiť číslo nového pasu", note: "meno už je nové" },
-      { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine · meno už je nové, kufre 2 × 23 kg máme" },
-      { text: "Tuboleto: jeden e-mail za oboch", note: "Eva nové meno + pas, Michal oprava čísla pasu na 3-B · tuboleto@cultura.gob.pe" },
-      { text: "PeruRail: zmena mena a pasu pre Evu", note: "rezervácia WEB3242904, oba vlaky" },
+      { text: "Air France: vložiť číslo nového pasu", note: "hotové 20.11., overiť pri check-ine 25.11.", done: true },
+      { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine: LA2130 od 26.11. 14:05 nášho času, LA2124 od 8.12. 11:25 v Peru" },
+      { text: "Tuboleto: jeden e-mail za oboch", note: "meno nezmenia, číslo pasu opravia – poslať fotky pasov · Eva vysvetlí pri vstupe", done: true },
+      { text: "PeruRail: zmena mena a pasu pre Evu", note: "odoslané 21.11., čakáme na odpoveď", done: true },
       { text: "Vytlačiť sobášny list (aj s prekladom) so sebou", note: "plán B, ak nestihnú odpovedať" },
     ],
   },
@@ -173,8 +176,8 @@ const TODO = [
       { text: "Vstupenky Machu Picchu 1-A a 3-B", done: true },
       { text: "Lístky PeruRail (oba vlaky)", done: true },
       { text: "Potvrdenie Hotel Horizonte", done: true },
-      { text: "Kópia sobášneho listu" },
-      { text: "Scany pasov (Evin nový + Michalov)", note: "pre prípad straty" },
+      { text: "Kópia sobášneho listu", done: true },
+      { text: "Scany pasov (Evin nový + Michalov) a Michalov občiansky", note: "pre prípad straty", done: true },
       { text: "Boarding pass LATAM Lima → Cusco", note: "po online check-ine" },
       { text: "Let Arequipa → Lima", note: "boarding pass po check-ine" },
       { text: "Lístky na bus Consettur", note: "keď kúpime" },
@@ -186,7 +189,7 @@ const TODO = [
     items: [
       { text: "Rezervácia večere v Lime (10.12.)", note: "ak chceme top reštauráciu" },
       { text: "Cestovné poistenie", note: "uzavreté 15.11.", done: true },
-      { text: "Poistku nahrať na Drive" },
+      { text: "Poistku nahrať na Drive", note: "asistenčná karta", done: true },
       { text: "Platnosť pasov" },
       { text: "Chceme skúsiť aj Huayna Picchu?", note: "otázka" },
     ],
@@ -577,7 +580,7 @@ function MachuPicchu({ full }) {
           <>
             <div className="dov-callout">
               <strong>Evine lístky sú na starý pas a meno Kubačková</strong> – Machu Picchu aj oba vlaky.
-              Starý pas jej nevrátia. Keď príde nový, napísať tuboletu aj PeruRailu. So sebou mať nový pas a sobášny list.
+              Tuboleto meno nezmení, Eva to vysvetlí pri vstupe. So sebou mať nový pas, vytlačený sobášny list (ideálne aj starý pas alebo jeho kópiu) a e-maily s Tuboleto.
             </div>
             <ul className="dov-list">
               <li>Mená a čísla pasov musia presne sedieť.</li>
