@@ -197,12 +197,12 @@ const TODO = [
   {
     group: "Ostatné",
     items: [
-      { text: "Rezervácia večere v Lime (10.12.)", note: "ak chceme top reštauráciu" },
+      { text: "Rezervácia večere v Lime (10.12.)", note: "nerezervujeme, vyberieme na mieste", done: true },
       { text: "Cestovné poistenie", note: "uzavreté 15.11.", done: true },
       { text: "Poistku nahrať na Drive", note: "asistenčná karta", done: true },
       { text: "Poistenie – rozsah a dátumy", note: "poistení sme obaja spolu, platnosť do 11.12. je v poriadku", done: true },
-      { text: "Platnosť pasov" },
-      { text: "Chceme skúsiť aj Huayna Picchu?", note: "otázka" },
+      { text: "Platnosť pasov", note: "v poriadku", done: true },
+      { text: "Chceme skúsiť aj Huayna Picchu?", note: "nie, máme Montaña (1-A)", done: true },
     ],
   },
 ];

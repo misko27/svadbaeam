@@ -211,6 +211,8 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 
 - **22. 11. 2026:** ✅ nové PDF PeruRail na Drive, starý zmazaný. ✅ Sobášny list, žiadosť z polície a e-maily s Tuboleto Michal vytlačí.
 
+- **22. 11. 2026:** večeru v Lime 10. 12. **nerezervujeme**. Platnosť pasov OK, Huayna Picchu neriešime (máme Montaña 1-A).
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
