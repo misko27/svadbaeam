@@ -196,6 +196,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   (potom na vlak 16:43, na stanici do 16:13). Ďalej im netreba písať.
   Hotel v Lime na potvrdenie odvozu neodpísal – Michalovi to nevadí, neriešime (prípadne taxík na mieste).
 
+- **22. 11. 2026:** balíček na 4. 12. v Cusco B&B dohodneme osobne na mieste (sme tam 3 noci), vopred nepíšeme.
+  Poistenie: odlet z Limy 11. 12. 19:20 = **12. 12. 1:20 slovenského času** → poistka do 11. 12. nekryje už ani odlet z Limy,
+  ani let, prestup v Paríži, Viedeň. Odporúčanie: dokúpiť/predĺžiť do 13. 12. (stojí pár eur), overiť, či je poistená aj Eva.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.

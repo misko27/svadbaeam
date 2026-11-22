@@ -161,7 +161,7 @@ const TODO = [
       { text: "Hotel Horizonte: skorý odchod 1.12. a úschova batožiny", note: "potvrdené: check-out o 5:30, batohy u nich do 15:30", done: true },
       { text: "Cusco, 3 noci", note: "Cusco Bed and Breakfast, Calle Unión 140", done: true },
       { text: "Cusco B&B: správa cez Booking", note: "neskorý check-in 1.12. schválený", done: true },
-      { text: "Cusco B&B: balíček na cestu 4.12.", note: "bus Inka Express, zraz 5:40 – raňajky nestihneme" },
+      { text: "Cusco B&B: balíček na cestu 4.12.", note: "dohodneme sa osobne na mieste (zraz 5:40)" },
       { text: "Puno, 2 noci", note: "Sol Plaza Hotel · obe noci v Pune, nie Amantaní", done: true },
       { text: "Chivay, 1 noc" },
       { text: "Arequipa, 3 noci" },
