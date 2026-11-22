@@ -169,6 +169,13 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   ⚠️ **Poistenie (Union UniTravel) platí len 27. 11. – 11. 12.**, ale domov priletíme 12. 12. a 12.–13. 12. spíme vo Viedni →
   predĺžiť do 13. 12. Na karte je len **Michal Paška** – overiť, či je poistená aj Eva.
 
+- **22. 11. 2026:** ✅ **PeruRail** (Yessenia Bedoya) prepísal Evine lístky na **Eva Paska** s novým pasom, nové e-tickety prišli e-mailom
+  (stačí v mobile). Treba: pas pri nástupe, na stanici 30 min pred odchodom. Nové PDF nahrať na Drive.
+  Batožina: 1 batoh do 8 kg (100 cm súčet rozmerov) alebo príručná do 12 kg (115 cm). Navyše: úschova na staniciach Ollantaytambo
+  a Aguas Calientes **zadarmo**, alebo doplatok – trasa z/do Ollantaytamba **5 USD** (do 12 kg) / **10 USD** (do 23 kg),
+  trasa Machu Picchu ↔ Cusco **15 USD** / **25 USD**. Pre nás: 30. 11. ~10 USD/batoh, 1. 12. ~25 USD/batoh → spolu ~70 USD za oba
+  veľké batohy (ak budú nad 12 kg). Info: perurail.com/es/equipaje.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
