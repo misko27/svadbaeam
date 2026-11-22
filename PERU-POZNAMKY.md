@@ -203,6 +203,12 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 - **22. 11. 2026:** **Viedeň 12.–13. 12.: spíme u rodiny**, hotel netreba. Poistenie: Viedeň stačí s európskym preukazom (EHIC),
   ale odlet z Limy, let a prestup v Paríži (12. 12.) poistka do 11. 12. nekryje → predĺžiť aspoň do 12. 12.; overiť Evu.
 
+- **22. 11. 2026:** **Poistenie OK** – Michal a Eva sú poistení spolu na jednej zmluve, predlžovať nebudeme (Michalovo rozhodnutie).
+  Uzavreté dnes: Air France pas, PeruRail (nové lístky), Tuboleto (odoslané, čaká sa), Horizonte (check-out 5:30, batohy do 15:30),
+  Lima hotel (bez odpovede, OK), Viedeň u rodiny, balíček v Cusku osobne, doklady + poistenie na Drive, núdzové kontakty na webe.
+  Otvorené: LATAM check-in 26. 11. 14:05, výlet 29. 11. (Picaflor), Colca tour, Chivay, Arequipa, Lima 10.–11. 12., loď Uros/Taquile,
+  bus Consettur na mieste 30. 11., nahrať nové PDF PeruRail, vytlačiť doklady na Machu Picchu.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
