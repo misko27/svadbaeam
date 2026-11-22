@@ -148,7 +148,7 @@ const TODO = [
       { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine: LA2130 od 26.11. 14:05 nášho času, LA2124 od 8.12. 11:25 v Peru" },
       { text: "Tuboleto: jeden e-mail za oboch", note: "meno nezmenia, číslo pasu opravia – poslať fotky pasov · Eva vysvetlí pri vstupe", done: true },
       { text: "PeruRail: zmena mena a pasu pre Evu", note: "hotovo 22.11. – nové lístky na Eva Paska prišli e-mailom", done: true },
-      { text: "Vytlačiť sobášny list (aj s prekladom) so sebou", note: "plán B, ak nestihnú odpovedať" },
+      { text: "Vytlačiť na Machu Picchu", note: "sobášny list, žiadosť o nový pas z polície (číslo starého pasu), korešpondencia s Tuboleto" },
     ],
   },
   {
@@ -156,11 +156,12 @@ const TODO = [
     items: [
       { text: "Lima pri letisku (27.11.)", note: "A y J Familia · s odvozom z/na letisko", done: true },
       { text: "Posvätné údolie, 2 noci", note: "Ollantaytambo · Picaflor Tambo Guest House", done: true },
-      { text: "Picaflor Tambo: poslať správu cez Booking", note: "príchod ~12:30, transfer z letiska, šofér 29.11., batohy do Cusca 30.11." },
+      { text: "Picaflor Tambo: správa (WhatsApp)", note: "transfer potvrdený, batohy berieme sami · ostáva odpísať výber výletu 29.11.", done: true },
       { text: "Aguas Calientes, 1 noc (30.11.)", note: "Hotel Horizonte, Booking.com", done: true },
       { text: "Hotel Horizonte: skorý odchod 1.12. ~6:00 a úschova batožiny do vlaku 16:43", note: "odchod je oficiálne 8:00–9:00 – napísať hotelu cez Booking" },
       { text: "Cusco, 3 noci", note: "Cusco Bed and Breakfast, Calle Unión 140", done: true },
-      { text: "Cusco B&B: správa cez Booking", note: "príchod 1.12. ~21:45, úschova batohov pred príchodom, raňajky 4.12. skoro, recepcia 24 h, kúrenie, vyzdvihnutie na San Pedro" },
+      { text: "Cusco B&B: správa cez Booking", note: "neskorý check-in 1.12. schválený", done: true },
+      { text: "Cusco B&B: balíček na cestu 4.12.", note: "bus Inka Express, zraz 5:40 – raňajky nestihneme" },
       { text: "Puno, 2 noci", note: "Sol Plaza Hotel · obe noci v Pune, nie Amantaní", done: true },
       { text: "Chivay, 1 noc" },
       { text: "Arequipa, 3 noci" },
@@ -171,8 +172,8 @@ const TODO = [
   {
     group: "Presuny a výlety",
     items: [
-      { text: "Transfer Cusco letisko → Posvätné údolie (28.11.)" },
-      { text: "Šofér na výlet Chinchero, Moray, Maras (29.11.)" },
+      { text: "Transfer Cusco letisko → Posvätné údolie (28.11.)", note: "Picaflor, 60 USD, platí sa pri check-ine · LA2130", done: true },
+      { text: "Šofér na výlet Chinchero, Moray, Maras (29.11.)", note: "Picaflor: šofér 120 USD alebo so sprievodcom 210 USD – rozhodnúť a odpísať" },
       { text: "Turistický bus Cusco → Puno (4.12.)", note: "Inka Express #916497 · zraz 5:40, odchod 6:10 · Av. Alameda Pachacútec 499-B", done: true },
       { text: "Výlet loďou Uros + Taquile (5.12.)" },
       { text: "Bus / tour Puno → Colca → Arequipa (6.–7.12.)" },

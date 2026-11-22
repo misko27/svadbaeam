@@ -188,6 +188,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 - **22. 11. 2026:** Tuboleto odpoveď – prílohy: fotky oboch pasov + **žiadosť o vydanie nového pasu z polície** (je tam číslo starého pasu).
   Sobášny list mali v predošlom e-maile. Žiadosť z polície vytlačiť a zobrať aj na vstup na Machu Picchu.
 
+- **22. 11. 2026:** ✅ odpoveď Tuboleto odoslaná (fotky pasov, žiadosť z polície). Všetky správy k pasu vybavené, čaká sa na Tuboleto.
+  Otvorené správy: Picaflor (výber výletu 29. 11.), Hotel Horizonte (nízke poschodie, skorý odchod 1. 12., úschova batohov do 16:43),
+  Cusco B&B (balíček na 4. 12.), hotel v Lime (potvrdiť odvoz 55 soles a čas ~5:30 28. 11. – ak ešte nie je).
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
