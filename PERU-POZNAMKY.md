@@ -176,6 +176,11 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   trasa Machu Picchu ↔ Cusco **15 USD** / **25 USD**. Pre nás: 30. 11. ~10 USD/batoh, 1. 12. ~25 USD/batoh → spolu ~70 USD za oba
   veľké batohy (ak budú nad 12 kg). Info: perurail.com/es/equipaje.
 
+- **22. 11. 2026:** nové lístky PeruRail skontrolované: Eva = **PASKA EVA**, nový pas, rovnaké vlaky a miesta (A6, F40),
+  nové čísla lístkov **B217-00246817** (Vistadome) a **B217-00246818** (Expedition). Staré Evine lístky B216-01328269/71 sú stornované
+  (nota de crédito = len účtovné storno, nič sa nevracia ani nedopláca). Michalove lístky (B216-01328268/70) ostávajú zo starého PDF.
+  Claude spojil platné lístky do **~/Downloads/PeruRail_WEB3242904_aktualne.pdf** (8 strán) – tento nahrať na Drive, starý zmazať.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
