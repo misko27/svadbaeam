@@ -181,6 +181,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   (nota de crédito = len účtovné storno, nič sa nevracia ani nedopláca). Michalove lístky (B216-01328268/70) ostávajú zo starého PDF.
   Claude spojil platné lístky do **~/Downloads/PeruRail_WEB3242904_aktualne.pdf** (8 strán) – tento nahrať na Drive, starý zmazať.
 
+- **22. 11. 2026:** starý Evin pas **nemáme** (ani kópiu). Odpoveď Tuboleto: fotky pasov (Michal + Evin nový), prosba prepísať
+  na oboch lístkoch Evino číslo pasu na nové, vysvetlenie, že starý pas zadržala polícia. Na vstup: nový pas, sobášny list,
+  vytlačená korešpondencia s Tuboleto, ideálne potvrdenie z polície o zneplatnení starého pasu.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
