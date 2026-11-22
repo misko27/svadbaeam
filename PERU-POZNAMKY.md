@@ -213,6 +213,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
 
 - **22. 11. 2026:** večeru v Lime 10. 12. **nerezervujeme**. Platnosť pasov OK, Huayna Picchu neriešime (máme Montaña 1-A).
 
+- **23. 11. 2026:** ✅ **Tuboleto** odpísal: lístky sú v systéme aktualizované, stiahnuť ich v „Mis compras“ na tuboleto.cultura.pe.
+  Skontrolovať: 3-B Michal = správne číslo pasu, Eva na oboch = nový pas (meno ostáva EVA KUBACKOVA). Nové PDF na Drive, staré zmazať.
+  Na otázku, či stačí sobášny list + žiadosť z polície, neodpovedali – doklady aj tak zobrať. Nová tel. linka Tuboleto: 01 321 5555 (8–22 h).
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.

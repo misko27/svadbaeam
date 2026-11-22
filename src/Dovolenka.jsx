@@ -145,7 +145,8 @@ const TODO = [
     items: [
       { text: "Air France: vložiť číslo nového pasu", note: "hotové 20.11., overiť pri check-ine 25.11.", done: true },
       { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine: LA2130 od 26.11. 14:05 nášho času, LA2124 od 8.12. 11:25 v Peru" },
-      { text: "Tuboleto: jeden e-mail za oboch", note: "meno nezmenia, číslo pasu opravia – poslať fotky pasov · Eva vysvetlí pri vstupe", done: true },
+      { text: "Tuboleto: jeden e-mail za oboch", note: "čísla pasov opravené v systéme, meno ostáva Kubackova – Eva vysvetlí pri vstupe", done: true },
+      { text: "Stiahnuť nové lístky Machu Picchu", note: "tuboleto.cultura.pe → Mis compras · skontrolovať čísla pasov, nahradiť staré PDF na Drive" },
       { text: "PeruRail: zmena mena a pasu pre Evu", note: "hotovo 22.11. – nové lístky na Eva Paska prišli e-mailom", done: true },
       { text: "Vytlačiť na Machu Picchu", note: "sobášny list, žiadosť o nový pas z polície (číslo starého pasu), korešpondencia s Tuboleto", done: true },
     ],
