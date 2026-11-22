@@ -147,7 +147,7 @@ const TODO = [
       { text: "LATAM (oba lety): nové číslo pasu", note: "pri online check-ine: LA2130 od 26.11. 14:05 nášho času, LA2124 od 8.12. 11:25 v Peru" },
       { text: "Tuboleto: jeden e-mail za oboch", note: "meno nezmenia, číslo pasu opravia – poslať fotky pasov · Eva vysvetlí pri vstupe", done: true },
       { text: "PeruRail: zmena mena a pasu pre Evu", note: "hotovo 22.11. – nové lístky na Eva Paska prišli e-mailom", done: true },
-      { text: "Vytlačiť na Machu Picchu", note: "sobášny list, žiadosť o nový pas z polície (číslo starého pasu), korešpondencia s Tuboleto" },
+      { text: "Vytlačiť na Machu Picchu", note: "sobášny list, žiadosť o nový pas z polície (číslo starého pasu), korešpondencia s Tuboleto", done: true },
     ],
   },
   {
@@ -184,7 +184,7 @@ const TODO = [
       { text: "E-letenky Air France (oboch)", done: true },
       { text: "Vstupenky Machu Picchu 1-A a 3-B", done: true },
       { text: "Lístky PeruRail (oba vlaky)", done: true },
-      { text: "Nové lístky PeruRail (Eva Paska, 22.11.)", note: "nahrať PeruRail_WEB3242904_aktualne.pdf, starý WEB3242904.pdf z Drive zmazať" },
+      { text: "Nové lístky PeruRail (Eva Paska, 22.11.)", note: "PeruRail_WEB3242904_aktualne.pdf na Drive, starý zmazaný", done: true },
       { text: "Potvrdenie Hotel Horizonte", done: true },
       { text: "Kópia sobášneho listu", done: true },
       { text: "Scany pasov (Evin nový + Michalov) a Michalov občiansky", note: "pre prípad straty", done: true },

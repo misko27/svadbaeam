@@ -209,6 +209,8 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Otvorené: LATAM check-in 26. 11. 14:05, výlet 29. 11. (Picaflor), Colca tour, Chivay, Arequipa, Lima 10.–11. 12., loď Uros/Taquile,
   bus Consettur na mieste 30. 11., nahrať nové PDF PeruRail, vytlačiť doklady na Machu Picchu.
 
+- **22. 11. 2026:** ✅ nové PDF PeruRail na Drive, starý zmazaný. ✅ Sobášny list, žiadosť z polície a e-maily s Tuboleto Michal vytlačí.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
