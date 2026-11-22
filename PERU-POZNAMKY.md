@@ -217,6 +217,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Skontrolovať: 3-B Michal = správne číslo pasu, Eva na oboch = nový pas (meno ostáva EVA KUBACKOVA). Nové PDF na Drive, staré zmazať.
   Na otázku, či stačí sobášny list + žiadosť z polície, neodpovedali – doklady aj tak zobrať. Nová tel. linka Tuboleto: 01 321 5555 (8–22 h).
 
+- **23. 11. 2026:** nové lístky Machu Picchu skontrolované (vytlačené 22. 11.): **Michal** na oboch so správnym pasom (3-B opravené),
+  **Eva** na oboch ako EVA KUBACKOVA s **novým pasom**. Časy, okruhy aj ceny bez zmeny. Súbory: `Boletos_3106805 (3).pdf`,
+  `Boletos_3106812 (2).pdf` v Downloads → na Drive, staré zmazať.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
