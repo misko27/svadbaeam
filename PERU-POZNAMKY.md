@@ -185,6 +185,9 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   na oboch lístkoch Evino číslo pasu na nové, vysvetlenie, že starý pas zadržala polícia. Na vstup: nový pas, sobášny list,
   vytlačená korešpondencia s Tuboleto, ideálne potvrdenie z polície o zneplatnení starého pasu.
 
+- **22. 11. 2026:** Tuboleto odpoveď – prílohy: fotky oboch pasov + **žiadosť o vydanie nového pasu z polície** (je tam číslo starého pasu).
+  Sobášny list mali v predošlom e-maile. Žiadosť z polície vytlačiť a zobrať aj na vstup na Machu Picchu.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
