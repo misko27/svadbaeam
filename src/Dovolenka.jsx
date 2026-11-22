@@ -38,7 +38,6 @@ const DOCS = [
   { cat: "Ubytovanie", title: "Chivay", note: "6.–7.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Arequipa", note: "7.–10.12.", file: "", url: "" },
   { cat: "Ubytovanie", title: "Lima Miraflores / Barranco", note: "10.–11.12.", file: "", url: "" },
-  { cat: "Ubytovanie", title: "Viedeň", note: "12.–13.12.", file: "", url: "" },
   { cat: "Ostatné", title: "Cestovné poistenie · asistenčná karta", note: "uzavreté 15.11. · číslo na asistenčnú službu pri úraze/chorobe", file: "", url: DRIVE_FOLDER },
   { cat: "Doklady totožnosti", title: "Sobášny list", note: "k Eviným lístkom na MP a vlaky (sú na meno Kubačková)", file: "", url: DRIVE_FOLDER },
   { cat: "Doklady totožnosti", title: "Pas · Eva (nový)", note: "sken, pre prípad straty", file: "", url: DRIVE_FOLDER },
@@ -75,7 +74,7 @@ const STOPS = [
   { place: "Colca", sub: "Chivay", map: "Cañón del Colca, Peru", nights: 1, dates: "6.–7.12.", from: "2026-12-06", to: "2026-12-07" },
   { place: "Arequipa", map: "Plaza de Armas, Arequipa, Peru", nights: 3, dates: "7.–10.12.", from: "2026-12-07", to: "2026-12-10" },
   { place: "Lima", sub: "Miraflores / Barranco", map: "Barranco, Lima, Peru", nights: 1, dates: "10.–11.12.", from: "2026-12-10", to: "2026-12-11" },
-  { place: "Viedeň", map: "Wien, Österreich", nights: 1, dates: "12.–13.12.", from: "2026-12-12", to: "2026-12-13" },
+  { place: "Viedeň", sub: "u rodiny", map: "Wien, Österreich", nights: 1, dates: "12.–13.12.", from: "2026-12-12", to: "2026-12-13" },
 ];
 
 const FLIGHTS = [
@@ -118,7 +117,7 @@ const DAYS = [
   { date: "2026-12-09", label: "St 9.12.", place: "Arequipa", text: "Oddychový deň: vyhliadka Yanahuara, trh San Camilo, Mundo Alpaca." },
   { date: "2026-12-10", label: "Št 10.12.", place: "Arequipa → Lima", text: "Let do Limy, poobede Barranco a západ slnka, večer slávnostná večera.", tags: ["✈ 11:25 AQP → 13:00 LIM"] },
   { date: "2026-12-11", label: "Pi 11.12.", place: "Lima → odlet", text: "Historické centrum a kláštor San Francisco alebo Museo Larco, obed ceviche. Na letisko s rezervou 1,5–2 h, večer odlet.", tags: ["✈ 19:20 LIM"] },
-  { date: "2026-12-12", label: "So 12.12.", place: "Viedeň", text: "Prílet 17:25, noc vo Viedni." },
+  { date: "2026-12-12", label: "So 12.12.", place: "Viedeň", text: "Prílet 17:25, noc vo Viedni u rodiny." },
   { date: "2026-12-13", label: "Ne 13.12.", place: "Domov", text: "" },
 ];
 
@@ -166,7 +165,7 @@ const TODO = [
       { text: "Chivay, 1 noc" },
       { text: "Arequipa, 3 noci" },
       { text: "Lima Miraflores / Barranco, 1 noc" },
-      { text: "Viedeň, 1 noc (12.12.)" },
+      { text: "Viedeň, 1 noc (12.12.)", note: "spíme u rodiny", done: true },
     ],
   },
   {
@@ -201,7 +200,7 @@ const TODO = [
       { text: "Rezervácia večere v Lime (10.12.)", note: "ak chceme top reštauráciu" },
       { text: "Cestovné poistenie", note: "uzavreté 15.11.", done: true },
       { text: "Poistku nahrať na Drive", note: "asistenčná karta", done: true },
-      { text: "Predĺžiť poistenie do 13.12.", note: "teraz platí len 27.11.–11.12., domov 12.12. + noc vo Viedni · overiť, či je poistená aj Eva" },
+      { text: "Predĺžiť poistenie aspoň do 12.12.", note: "teraz do 11.12. – odlet z Limy je už 12.12. 1:20 nášho času · stačí do 12.12. · overiť, či je poistená aj Eva" },
       { text: "Platnosť pasov" },
       { text: "Chceme skúsiť aj Huayna Picchu?", note: "otázka" },
     ],

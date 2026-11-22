@@ -200,6 +200,9 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Poistenie: odlet z Limy 11. 12. 19:20 = **12. 12. 1:20 slovenského času** → poistka do 11. 12. nekryje už ani odlet z Limy,
   ani let, prestup v Paríži, Viedeň. Odporúčanie: dokúpiť/predĺžiť do 13. 12. (stojí pár eur), overiť, či je poistená aj Eva.
 
+- **22. 11. 2026:** **Viedeň 12.–13. 12.: spíme u rodiny**, hotel netreba. Poistenie: Viedeň stačí s európskym preukazom (EHIC),
+  ale odlet z Limy, let a prestup v Paríži (12. 12.) poistka do 11. 12. nekryje → predĺžiť aspoň do 12. 12.; overiť Evu.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
