@@ -221,6 +221,8 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   **Eva** na oboch ako EVA KUBACKOVA s **novým pasom**. Časy, okruhy aj ceny bez zmeny. Súbory: `Boletos_3106805 (3).pdf`,
   `Boletos_3106812 (2).pdf` v Downloads → na Drive, staré zmazať.
 
+- **23. 11. 2026:** ✅ nové lístky Machu Picchu na Drive. Všetko okolo Evinho pasu vybavené, ostáva len LATAM check-in 26. 11.
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
