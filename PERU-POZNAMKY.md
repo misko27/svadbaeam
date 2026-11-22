@@ -192,6 +192,10 @@ Picaflor Tambo v Ollantaytambe (28.–30. 11.), Cusco Bed and Breakfast (1.–4.
   Otvorené správy: Picaflor (výber výletu 29. 11.), Hotel Horizonte (nízke poschodie, skorý odchod 1. 12., úschova batohov do 16:43),
   Cusco B&B (balíček na 4. 12.), hotel v Lime (potvrdiť odvoz 55 soles a čas ~5:30 28. 11. – ak ešte nie je).
 
+- **22. 11. 2026:** ✅ **Hotel Horizonte** odpísal: check-out 1. 12. o **5:30** OK, batohy môžeme nechať v hoteli **do 15:30**
+  (potom na vlak 16:43, na stanici do 16:13). Ďalej im netreba písať.
+  Hotel v Lime na potvrdenie odvozu neodpísal – Michalovi to nevadí, neriešime (prípadne taxík na mieste).
+
 ## Čo ďalej (stav k 17. 11. 2026)
 
 Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cusco → Puno, cestovné poistenie.
