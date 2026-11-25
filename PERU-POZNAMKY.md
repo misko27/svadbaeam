@@ -247,3 +247,8 @@ Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cus
   čo zbaliť, odkaz na aktuálnu predpoveď, zvýrazní sa aktuálne miesto; aj Viedeň po návrate), nová sekcia **Čas** (živé hodiny
   Peru vs. Slovensko, rozdiel 6 h, prevodová tabuľka) a sekcia **Španielčina** (~200 fráz a slovíčok v skupinách, výslovnosť
   po slovensky, vyhľadávanie, aj peruánsky slang a pár slov v kečuánčine). Všetko v `src/Dovolenka.jsx` (WEATHER, PHRASES).
+
+- **25. 11. 2026:** Air France check-in: otvára sa **30 h pred odletom** → AF1239 (Pi 27.11. 6:15) od **Št 26.11. 0:15**.
+  Miesta sme vopred nevyberali – pri check-ine sa dajú vybrať štandardné miesta zadarmo, preto check-in čím skôr, aby sme sedeli spolu
+  (dlhý let CDG → LIM má rad 3-3-3, ideálne okno + stred). Pri check-ine overiť Evin nový pas. Spiatočný let: check-in od 10.12. 13:20 v Lime.
+  V ten istý deň (26.11.) od 14:05 aj LATAM LA2130.
