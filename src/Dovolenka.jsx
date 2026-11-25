@@ -214,12 +214,315 @@ const CIRCUITS = [
   { name: "3 – Royalty", what: "Dolná časť citadely bez pohľadu zhora; 3-A je strmý výstup na Huayna Picchu.", us: "Máme 3-B o 12:00" },
 ];
 
+// Počasie po zastávkach – orientačne (predpoveď k 23.11. + bežné hodnoty pre december).
+// `from`/`to` ako pri STOPS – podľa nich sa zvýrazní karta, kde práve sme. `q` = čo hľadať pri „aktuálna predpoveď“.
 const WEATHER = [
-  { place: "Cusco, údolie, Machu Picchu", sky: "Poobedňajšie prehánky, Machu Picchu ráno často v hmle", temp: "~18–20 °C cez deň, v noci chladno", icon: "🌦" },
-  { place: "Puno / Titicaca", alt: "3 800 m", sky: "Slnečné rána, poobede občas búrky", temp: "v noci okolo 0 °C", icon: "⛅" },
-  { place: "Colca", sky: "Zväčša v pohode, dažde slabšie ako v Cuscu", temp: "chladné noci", icon: "🌤" },
-  { place: "Arequipa", sky: "Takmer stále slnko a sucho", temp: "teplo", icon: "☀️" },
-  { place: "Lima", sky: "Začína leto, sucho", temp: "~22–25 °C", icon: "☀️" },
+  { place: "Lima", sub: "pri letisku", dates: "27.–28.11.", from: "2026-11-27", to: "2026-11-28", alt: "pri mori", icon: "⛅", day: "~23 °C", night: "~18 °C", q: "Lima", sky: "Sucho, často zamračené, neprší.", tip: "Tričko a mikina na večer." },
+  { place: "Posvätné údolie", sub: "Ollantaytambo", dates: "28.–30.11.", from: "2026-11-28", to: "2026-11-30", alt: "2 800 m", icon: "🌦", day: "~22 °C", night: "~8 °C", q: "Ollantaytambo", sky: "Začína obdobie dažďov: dopoludnia slnko, poobede prehánky.", tip: "Pláštenka v batohu, slnko je vo výške ostré." },
+  { place: "Aguas Calientes", sub: "Machu Picchu", dates: "30.11.–1.12.", from: "2026-11-30", to: "2026-12-01", alt: "2 040 m (MP 2 430 m)", icon: "🌧", day: "~22 °C", night: "~13 °C", q: "Aguas Calientes", sky: "Teplo a vlhko, dážď takmer isto. Ráno býva nad ruinami hmla, ktorá sa často zdvihne.", tip: "Pončo, repelent s DEET (piesočné mušky), topánky na mokré kamenné schody." },
+  { place: "Cusco", dates: "1.–4.12.", from: "2026-12-01", to: "2026-12-04", alt: "3 400 m", icon: "🌦", day: "~19 °C", night: "~6 °C", q: "Cusco", sky: "Prehánky striedané slnkom. Večery a noci chladné, izby často bez kúrenia.", tip: "Fleece alebo páperovka na večer." },
+  { place: "Puno", sub: "Titicaca", dates: "4.–6.12.", from: "2026-12-04", to: "2026-12-06", alt: "3 830 m", icon: "⛅", day: "~17 °C", night: "~1 °C", q: "Puno", sky: "Cez deň ostré slnko, poobede občas búrka. Na jazere studený vietor.", tip: "Čiapka, bunda na loď, krém 50+ (UV až 11)." },
+  { place: "Colca", sub: "Chivay", dates: "6.–7.12.", from: "2026-12-06", to: "2026-12-07", alt: "3 630 m (priesmyk 4 900 m)", icon: "🌤", day: "~20 °C", night: "~2 °C", q: "Chivay", sky: "Zväčša sucho. Na priesmyku Patapampa okolo nuly, môžu byť krúpy alebo sneh. Ráno na kondoroch zima.", tip: "Vrstvy, rukavice a plavky na termály La Calera." },
+  { place: "Arequipa", dates: "7.–10.12.", from: "2026-12-07", to: "2026-12-10", alt: "2 330 m", icon: "☀️", day: "~24 °C", night: "~10 °C", q: "Arequipa", sky: "Takmer stále slnko a sucho.", tip: "Klobúk, okuliare, krém." },
+  { place: "Lima", sub: "Miraflores / Barranco", dates: "10.–11.12.", from: "2026-12-10", to: "2026-12-12", alt: "pri mori", icon: "☀️", day: "~25 °C", night: "~19 °C", q: "Lima", sky: "Začína leto, poobede slnko, večer od mora chladnejšie.", tip: "Ľahké oblečenie, mikina k moru." },
+  { place: "Viedeň", sub: "návrat", dates: "12.–13.12.", from: "2026-12-12", to: "2026-12-14", icon: "❄️", day: "~3 °C", night: "~−1 °C", q: "Wien", sky: "Doma je zima – pri odlete 27.11. aj po návrate.", tip: "Zimnú bundu mať po ruke v batohu na prílet." },
+];
+
+// Časové pásma: Peru (bez letného času, UTC−5) vs. Slovensko (v zime UTC+1).
+const TZ_PERU = "America/Lima";
+const TZ_HOME = "Europe/Bratislava";
+
+// Španielčina. Výslovnosť po slovensky, VEĽKÉ písmená = prízvučná slabika.
+const PHRASES = [
+  {
+    group: "Základ",
+    icon: "👋",
+    items: [
+      ["Hola", "OLA", "ahoj"],
+      ["Buenos días", "BUE-nos DI-as", "dobré ráno / dobrý deň (do obeda)"],
+      ["Buenas tardes", "BUE-nas TAR-des", "dobrý deň (poobede)"],
+      ["Buenas noches", "BUE-nas NO-čes", "dobrý večer / dobrú noc"],
+      ["Chau / Adiós", "ČAU / a-DJOS", "ahoj, dovidenia"],
+      ["Hasta luego", "AS-ta LUE-go", "dovidenia, uvidíme sa"],
+      ["Por favor", "por fa-BOR", "prosím (pri žiadosti)"],
+      ["Gracias", "GRA-sjas", "ďakujem"],
+      ["Muchas gracias", "MU-čas GRA-sjas", "ďakujem veľmi pekne"],
+      ["De nada", "de NA-da", "nie je začo"],
+      ["Sí / No", "SI / NO", "áno / nie"],
+      ["Disculpe", "dis-KUL-pe", "prepáčte (oslovenie)"],
+      ["Perdón", "per-DON", "pardon, prepáčte"],
+      ["Con permiso", "kon per-MI-so", "s dovolením (keď sa pretláčaš)"],
+      ["Lo siento", "lo SJEN-to", "je mi to ľúto"],
+      ["Mucho gusto", "MU-čo GUS-to", "teší ma"],
+      ["¿Cómo está?", "KO-mo es-TA", "ako sa máte?"],
+      ["Bien, gracias, ¿y usted?", "BJEN GRA-sjas i us-TED", "dobre, ďakujem, a vy?"],
+      ["Me llamo Michal / Eva", "me JA-mo …", "volám sa…"],
+      ["Somos de Eslovaquia", "SO-mos de es-lo-BA-kia", "sme zo Slovenska"],
+      ["Estamos de luna de miel", "es-TA-mos de LU-na de MJEL", "sme na svadobnej ceste"],
+      ["Somos recién casados", "SO-mos re-SJEN ka-SA-dos", "sme novomanželia"],
+      ["Mi esposo / mi esposa", "mi es-PO-so / es-PO-sa", "môj manžel / moja manželka"],
+      ["Está bien / Vale / Ya", "es-TA BJEN / JA", "dobre, OK (v Peru hlavne „ya“)"],
+    ],
+  },
+  {
+    group: "Keď nerozumieme",
+    icon: "🤷",
+    items: [
+      ["No entiendo", "no en-TJEN-do", "nerozumiem"],
+      ["No hablo bien español", "no A-blo BJEN es-pa-ŇOL", "nehovorím dobre po španielsky"],
+      ["Hablo un poquito", "A-blo un po-KI-to", "hovorím trošku"],
+      ["¿Habla inglés?", "A-bla in-GLES", "hovoríte po anglicky?"],
+      ["Más despacio, por favor", "MAS des-PA-sjo por fa-BOR", "pomalšie, prosím"],
+      ["¿Puede repetir?", "PUE-de re-pe-TIR", "môžete zopakovať?"],
+      ["¿Puede escribirlo?", "PUE-de es-kri-BIR-lo", "môžete to napísať?"],
+      ["¿Qué significa…?", "KE sig-ni-FI-ka", "čo znamená…?"],
+      ["¿Cómo se dice…?", "KO-mo se DI-se", "ako sa povie…?"],
+    ],
+  },
+  {
+    group: "Otázky",
+    icon: "❓",
+    items: [
+      ["¿Dónde está…?", "DON-de es-TA", "kde je…?"],
+      ["¿Dónde está el baño?", "DON-de es-TA el BA-ňo", "kde je záchod?"],
+      ["¿Cuánto cuesta?", "KUAN-to KUES-ta", "koľko to stojí?"],
+      ["¿Qué es esto?", "KE es ES-to", "čo je to?"],
+      ["¿A qué hora…?", "a KE O-ra", "o koľkej…?"],
+      ["¿Hay…?", "AJ", "je tu / máte…?"],
+      ["¿Tiene…?", "TJE-ne", "máte…?"],
+      ["¿Se puede…?", "se PUE-de", "dá sa / môže sa…?"],
+      ["¿Puedo tomar una foto?", "PUE-do to-MAR U-na FO-to", "môžem odfotiť?"],
+      ["¿Cuándo? / ¿Cuál? / ¿Quién?", "KUAN-do / KUAL / KJEN", "kedy? / ktorý? / kto?"],
+      ["¿Cómo? / ¿Por qué?", "KO-mo / por KE", "ako? / prečo?"],
+      ["¿Está lejos / cerca?", "es-TA LE-chos / SER-ka", "je to ďaleko / blízko?"],
+    ],
+  },
+  {
+    group: "Reštaurácia",
+    icon: "🍽",
+    items: [
+      ["Una mesa para dos, por favor", "U-na ME-sa PA-ra DOS", "stôl pre dvoch, prosím"],
+      ["La carta, por favor", "la KAR-ta", "jedálny lístok, prosím"],
+      ["¿Qué nos recomienda?", "KE nos re-ko-MJEN-da", "čo nám odporučíte?"],
+      ["Quisiera…", "ki-SJE-ra", "chcel/a by som…"],
+      ["Para mí…", "PA-ra MI", "pre mňa…"],
+      ["Lo mismo, por favor", "lo MIS-mo", "to isté, prosím"],
+      ["El menú del día", "el me-NU del DI-a", "denné menu (lacný obed)"],
+      ["Sin picante / poco picante", "sin pi-KAN-te / PO-ko", "bez pálivého / málo pálivé"],
+      ["Soy vegetariano / vegetariana", "SOJ be-che-ta-RJA-no", "som vegetarián/ka"],
+      ["Agua sin gas / con gas", "A-gua sin GAS / kon GAS", "voda neperlivá / perlivá"],
+      ["Sin hielo, por favor", "sin JE-lo", "bez ľadu, prosím"],
+      ["Una cerveza bien helada", "U-na ser-BE-sa BJEN e-LA-da", "poriadne vychladené pivo"],
+      ["Dos pisco sour", "DOS PIS-ko SAU-er", "dve pisco sour"],
+      ["Una copa de vino tinto / blanco", "KO-pa de BI-no TIN-to / BLAN-ko", "pohár červeného / bieleho vína"],
+      ["Un mate de coca", "un MA-te de KO-ka", "čaj z koky (proti výške)"],
+      ["¡Está muy rico!", "es-TA MUJ RI-ko", "je to veľmi chutné!"],
+      ["La cuenta, por favor", "la KUEN-ta", "účet, prosím"],
+      ["¿Aceptan tarjeta?", "a-SEP-tan tar-CHE-ta", "berete kartu?"],
+      ["¿Está incluida la propina?", "es-TA in-klu-I-da la pro-PI-na", "je v tom prepitné?"],
+      ["¡Salud!", "sa-LUD", "na zdravie! (prípitok)"],
+      ["¡Buen provecho!", "BUEN pro-BE-čo", "dobrú chuť!"],
+      ["Desayuno / almuerzo / cena", "de-sa-JU-no / al-MUER-so / SE-na", "raňajky / obed / večera"],
+    ],
+  },
+  {
+    group: "Jedlo a pitie",
+    icon: "🥘",
+    items: [
+      ["pollo", "PO-jo", "kura"],
+      ["carne / res", "KAR-ne / RES", "mäso / hovädzie"],
+      ["cerdo / chancho", "SER-do / ČAN-čo", "bravčové"],
+      ["pescado", "pes-KA-do", "ryba"],
+      ["mariscos", "ma-RIS-kos", "morské plody"],
+      ["trucha", "TRU-ča", "pstruh (Titicaca)"],
+      ["cuy", "KUJ", "morča (pečené, tradícia)"],
+      ["alpaca", "al-PA-ka", "alpaka (mäso je chudé, dobré)"],
+      ["arroz", "a-ROS", "ryža"],
+      ["papa", "PA-pa", "zemiak (v Peru stovky druhov)"],
+      ["choclo", "ČO-klo", "veľká andská kukurica"],
+      ["palta", "PAL-ta", "avokádo (v Peru nie „aguacate“)"],
+      ["huevo", "UE-bo", "vajce"],
+      ["queso", "KE-so", "syr"],
+      ["pan", "PAN", "chlieb"],
+      ["sopa / caldo", "SO-pa / KAL-do", "polievka / vývar"],
+      ["ensalada", "en-sa-LA-da", "šalát"],
+      ["ají / rocoto", "a-CHI / ro-KO-to", "čili papričky (rocoto páli veľmi!)"],
+      ["limón", "li-MON", "limetka"],
+      ["postre", "POS-tre", "dezert"],
+      ["fruta / jugo", "FRU-ta / CHU-go", "ovocie / džús"],
+      ["leche / azúcar / sal", "LE-če / a-SU-kar / SAL", "mlieko / cukor / soľ"],
+      ["café / té", "ka-FE / TE", "káva / čaj"],
+      ["ceviche", "se-BI-če", "surová ryba v limetke – národné jedlo"],
+      ["lomo saltado", "LO-mo sal-TA-do", "hovädzie s cibuľou, paradajkami a hranolkami"],
+      ["ají de gallina", "a-CHI de ga-JI-na", "kura v krémovej omáčke zo žltého čili"],
+      ["rocoto relleno", "ro-KO-to re-JE-no", "plnená paprika (Arequipa)"],
+      ["causa", "KAU-sa", "studená zemiaková „torta“ s plnkou"],
+      ["anticuchos", "an-ti-KU-čos", "grilované hovädzie srdce na špajli"],
+      ["chicha morada", "ČI-ča mo-RA-da", "sladký nápoj z fialovej kukurice"],
+      ["Inca Kola", "IN-ka KO-la", "žltá limonáda, chutí ako žuvačka"],
+      ["picantería", "pi-kan-te-RI-a", "tradičná reštaurácia (Arequipa)"],
+    ],
+  },
+  {
+    group: "Ubytovanie",
+    icon: "🏨",
+    items: [
+      ["Tengo una reserva", "TEN-go U-na re-SER-ba", "mám rezerváciu"],
+      ["A nombre de Paska", "a NOM-bre de PAS-ka", "na meno Paska"],
+      ["La habitación", "la a-bi-ta-SJON", "izba"],
+      ["La llave", "la JA-be", "kľúč"],
+      ["¿A qué hora es el desayuno?", "a KE O-ra es el de-sa-JU-no", "o koľkej sú raňajky?"],
+      ["¿Hay agua caliente?", "AJ A-gua ka-LJEN-te", "je teplá voda?"],
+      ["No funciona…", "no fun-SJO-na", "nefunguje…"],
+      ["la calefacción / la ducha", "ka-le-fak-SJON / DU-ča", "kúrenie / sprcha"],
+      ["una manta más", "U-na MAN-ta MAS", "deka navyše"],
+      ["la toalla / papel higiénico", "to-A-ja / pa-PEL i-CHJE-ni-ko", "uterák / toaletný papier"],
+      ["¿Cuál es la clave del wifi?", "KUAL es la KLA-be del UAJ-fi", "aké je heslo na wifi?"],
+      ["¿Podemos dejar las mochilas?", "po-DE-mos de-CHAR las mo-ČI-las", "môžeme tu nechať batohy?"],
+      ["Salimos mañana muy temprano", "sa-LI-mos ma-ŇA-na MUJ tem-PRA-no", "zajtra odchádzame veľmi skoro"],
+      ["¿Nos puede preparar un desayuno para llevar?", "… pa-RA je-BAR", "pripravíte nám raňajky so sebou?"],
+      ["¿Nos puede pedir un taxi?", "nos PUE-de pe-DIR un TAK-si", "zavoláte nám taxík?"],
+    ],
+  },
+  {
+    group: "Doprava a smer",
+    icon: "🚕",
+    items: [
+      ["¿Cuánto cuesta hasta…?", "KUAN-to KUES-ta AS-ta", "koľko stojí cesta do…?"],
+      ["Al aeropuerto", "al a-e-ro-PUER-to", "na letisko"],
+      ["A la estación de tren", "a la es-ta-SJON de TREN", "na vlakovú stanicu"],
+      ["Al centro / a la plaza", "al SEN-tro / a la PLA-sa", "do centra / na námestie"],
+      ["Aquí, por favor / Pare aquí", "a-KI / PA-re a-KI", "tu, prosím / zastavte tu"],
+      ["Más despacio, por favor", "MAS des-PA-sjo", "pomalšie, prosím (šoférovi)"],
+      ["A la derecha / izquierda", "a la de-RE-ča / is-KJER-da", "doprava / doľava"],
+      ["Todo recto / derecho", "TO-do REK-to / de-RE-čo", "rovno"],
+      ["la cuadra", "KUA-dra", "blok (o dve cuadras = o dva bloky)"],
+      ["¿Este bus va a…?", "ES-te BUS ba a", "ide tento autobus do…?"],
+      ["¿A qué hora sale / llega?", "a KE O-ra SA-le / JE-ga", "o koľkej odchádza / prichádza?"],
+      ["¿Dónde compro el boleto?", "DON-de KOM-pro el bo-LE-to", "kde kúpim lístok?"],
+      ["ida y vuelta", "I-da i BUEL-ta", "spiatočný"],
+      ["el tren / el bus / el avión", "TREN / BUS / a-BJON", "vlak / autobus / lietadlo"],
+      ["la salida / la entrada", "sa-LI-da / en-TRA-da", "východ, odchod / vchod"],
+      ["el andén", "an-DEN", "nástupište"],
+      ["la mochila / la maleta", "mo-ČI-la / ma-LE-ta", "batoh / kufor"],
+      ["la parada", "pa-RA-da", "zastávka"],
+    ],
+  },
+  {
+    group: "Nákupy a trh",
+    icon: "🛍",
+    items: [
+      ["¿Cuánto es?", "KUAN-to ES", "koľko to robí?"],
+      ["Es muy caro", "es MUJ KA-ro", "to je veľmi drahé"],
+      ["¿Me hace una rebajita?", "me A-se U-na re-ba-CHI-ta", "spravíte mi zľavu? (na trhu sa zjednáva)"],
+      ["¿Y si llevo dos?", "i si JE-bo DOS", "a keď zoberiem dva?"],
+      ["Solo estoy mirando", "SO-lo es-TOJ mi-RAN-do", "len sa pozerám"],
+      ["Me lo llevo", "me lo JE-bo", "beriem to"],
+      ["¿Es de alpaca? ¿Baby alpaca?", "es de al-PA-ka", "je to z alpaky? (často je to akryl)"],
+      ["efectivo / tarjeta", "e-fek-TI-bo / tar-CHE-ta", "hotovosť / karta"],
+      ["¿Tiene sencillo / cambio?", "TJE-ne sen-SI-jo / KAM-bjo", "máte drobné / výdavok?"],
+      ["el cajero", "ka-CHE-ro", "bankomat"],
+      ["soles / céntimos", "SO-les / SEN-ti-mos", "peruánska mena"],
+      ["una bolsa", "U-na BOL-sa", "taška"],
+      ["más grande / más pequeño", "MAS GRAN-de / MAS pe-KE-ňo", "väčšie / menšie"],
+      ["abierto / cerrado", "a-BJER-to / se-RA-do", "otvorené / zatvorené"],
+    ],
+  },
+  {
+    group: "Zdravie a núdza",
+    icon: "🩺",
+    items: [
+      ["¡Ayuda!", "a-JU-da", "pomoc!"],
+      ["Llame a una ambulancia", "JA-me a U-na am-bu-LAN-sja", "zavolajte sanitku"],
+      ["Necesito un médico", "ne-se-SI-to un ME-di-ko", "potrebujem lekára"],
+      ["Me siento mal", "me SJEN-to MAL", "je mi zle"],
+      ["Tengo soroche", "TEN-go so-RO-če", "mám výškovú chorobu"],
+      ["Me duele la cabeza / el estómago", "me DUE-le la ka-BE-sa / el es-TO-ma-go", "bolí ma hlava / žalúdok"],
+      ["Tengo fiebre / diarrea", "TEN-go FJE-bre / dja-RE-a", "mám horúčku / hnačku"],
+      ["Necesito oxígeno", "ne-se-SI-to ok-SI-che-no", "potrebujem kyslík"],
+      ["Soy alérgico / alérgica a…", "SOJ a-LER-chi-ko a", "som alergický/á na…"],
+      ["la farmacia / el hospital", "far-MA-sja / os-pi-TAL", "lekáreň / nemocnica"],
+      ["Me robaron", "me ro-BA-ron", "okradli ma"],
+      ["Perdí mi pasaporte", "per-DI mi pa-sa-POR-te", "stratil/a som pas"],
+      ["¿Dónde está la comisaría?", "DON-de es-TA la ko-mi-sa-RI-a", "kde je policajná stanica?"],
+      ["Tenemos seguro de viaje", "te-NE-mos se-GU-ro de BJA-che", "máme cestovné poistenie"],
+    ],
+  },
+  {
+    group: "Čísla",
+    icon: "🔢",
+    items: [
+      ["uno, dos, tres", "U-no, DOS, TRES", "1, 2, 3"],
+      ["cuatro, cinco, seis", "KUA-tro, SIN-ko, SEJS", "4, 5, 6"],
+      ["siete, ocho, nueve, diez", "SJE-te, O-čo, NUE-be, DJES", "7, 8, 9, 10"],
+      ["once, doce, quince", "ON-se, DO-se, KIN-se", "11, 12, 15"],
+      ["veinte, treinta, cuarenta", "BEJN-te, TREJN-ta, kua-REN-ta", "20, 30, 40"],
+      ["cincuenta, cien", "sin-KUEN-ta, SJEN", "50, 100"],
+      ["doscientos, quinientos", "do-SJEN-tos, ki-NJEN-tos", "200, 500"],
+      ["mil", "MIL", "1 000"],
+      ["medio / la mitad", "ME-djo / mi-TAD", "pol / polovica"],
+      ["primero, segundo", "pri-ME-ro, se-GUN-do", "prvý, druhý"],
+    ],
+  },
+  {
+    group: "Čas a dni",
+    icon: "🕐",
+    items: [
+      ["hoy / mañana / ayer", "OJ / ma-ŇA-na / a-JER", "dnes / zajtra / včera"],
+      ["ahora / ahorita", "a-O-ra / a-o-RI-ta", "teraz / hneď (v Peru to môže byť aj o hodinu 🙂)"],
+      ["más tarde / temprano", "MAS TAR-de / tem-PRA-no", "neskôr / skoro"],
+      ["la mañana / la tarde / la noche", "ma-ŇA-na / TAR-de / NO-če", "ráno / poobedie / noc"],
+      ["¿Qué hora es?", "KE O-ra ES", "koľko je hodín?"],
+      ["Son las tres y media", "son las TRES i ME-dja", "je pol štvrtej (3:30)"],
+      ["lunes, martes, miércoles", "LU-nes, MAR-tes, MJER-ko-les", "pondelok, utorok, streda"],
+      ["jueves, viernes", "CHUE-bes, BJER-nes", "štvrtok, piatok"],
+      ["sábado, domingo", "SA-ba-do, do-MIN-go", "sobota, nedeľa"],
+    ],
+  },
+  {
+    group: "Užitočné slovíčka",
+    icon: "📝",
+    items: [
+      ["agua", "A-gua", "voda"],
+      ["baño", "BA-ňo", "záchod, kúpeľňa"],
+      ["caliente / frío", "ka-LJEN-te / FRI-o", "teplý / studený"],
+      ["grande / pequeño", "GRAN-de / pe-KE-ňo", "veľký / malý"],
+      ["bueno / malo", "BUE-no / MA-lo", "dobrý / zlý"],
+      ["mucho / poco", "MU-čo / PO-ko", "veľa / málo"],
+      ["aquí / allí", "a-KI / a-JI", "tu / tam"],
+      ["la calle / la plaza", "KA-je / PLA-sa", "ulica / námestie"],
+      ["la iglesia / el mercado", "i-GLE-sja / mer-KA-do", "kostol / trh"],
+      ["el mirador", "mi-ra-DOR", "vyhliadka"],
+      ["la montaña / el cerro", "mon-TA-ňa / SE-ro", "hora / kopec"],
+      ["el lago / el río", "LA-go / RI-o", "jazero / rieka"],
+      ["la lluvia / el sol", "JU-bja / SOL", "dážď / slnko"],
+      ["el paraguas / el poncho", "pa-RA-guas / PON-čo", "dáždnik / pončo"],
+      ["la entrada / el boleto", "en-TRA-da / bo-LE-to", "vstupenka / lístok"],
+      ["el pasaporte", "pa-sa-POR-te", "pas"],
+      ["lindo / hermoso", "LIN-do / er-MO-so", "pekný / prekrásny"],
+      ["cansado / cansada", "kan-SA-do", "unavený/á"],
+      ["tengo hambre / sed / frío", "TEN-go AM-bre / SED / FRI-o", "som hladný / smädný / je mi zima"],
+    ],
+  },
+  {
+    group: "Po peruánsky a v kečuánčine",
+    icon: "🦙",
+    items: [
+      ["¡Qué chévere!", "KE ČE-be-re", "to je super!"],
+      ["Ya", "JA", "OK, dobre, jasné (Peruánci ho hovoria stále)"],
+      ["Al toque", "al TO-ke", "hneď, okamžite"],
+      ["¿Qué tal?", "KE TAL", "ako je?"],
+      ["Bacán", "ba-KAN", "výborné, paráda"],
+      ["Causa / pata", "KAU-sa / PA-ta", "kamoš"],
+      ["Joven / señorita", "CHO-ben / se-ňo-RI-ta", "oslovenie čašníka / čašníčky"],
+      ["Casero / casera", "ka-SE-ro / ka-SE-ra", "oslovenie predavača na trhu"],
+      ["Allillanchu", "a-ji-JAN-ču", "ahoj, ako sa máš? (kečuánsky)"],
+      ["Sulpayki / Añay", "sul-PAJ-ki / a-ŇAJ", "ďakujem (kečuánsky)"],
+      ["Ari / Mana", "A-ri / MA-na", "áno / nie (kečuánsky)"],
+      ["Tupananchiskama", "tu-pa-nan-čis-KA-ma", "dovidenia, kým sa znova stretneme"],
+      ["Pachamama", "pa-ča-MA-ma", "Matka Zem"],
+    ],
+  },
 ];
 
 // Núdzové kontakty (len #dvl). `tel` = číslo na vytočenie, `wa` = WhatsApp.
@@ -249,12 +552,14 @@ const LINKS = [
 // tretí prvok `true` = sekcia len v plnej verzii (#dvl)
 const SECTIONS = [
   ["prehlad", "Trasa"],
+  ["cas", "Čas"],
   ["doklady", "Doklady", true],
   ["lety", "Lety"],
   ["den-po-dni", "Deň po dni"],
   ["machu-picchu", "Machu Picchu"],
   ["vybavit", "Treba vybaviť", true],
   ["pocasie", "Počasie"],
+  ["spanielcina", "Španielčina", true],
   ["linky", "Linky", true],
   ["nudza", "Núdza", true],
 ];
@@ -312,12 +617,14 @@ export default function Dovolenka({ full = false }) {
       <main className="dov-main">
         <Today today={today} full={full} />
         <Route full={full} today={today} />
+        <Clocks />
         {full && <Docs />}
         <Flights full={full} />
         <Itinerary today={today} full={full} />
         <MachuPicchu full={full} />
         {full && <Todo />}
-        <Weather />
+        <Weather today={today} />
+        {full && <Spanish />}
         {full && <Links />}
         {full && <Emergency />}
         <a className="dov-back" href="#">← späť na svadobnú stránku</a>
@@ -670,31 +977,183 @@ function Todo() {
   );
 }
 
-function Weather() {
+function Weather({ today }) {
   return (
     <Section
       id="pocasie"
       title="Počasie a praktické veci"
-      intro="V Andách začína obdobie dažďov: rána bývajú jasné, poobede prehánky. December je o niečo vlhkejší ako november."
+      intro="V Andách začína obdobie dažďov: rána bývajú jasné, poobede prehánky. Vo výške je veľký rozdiel medzi dňom a nocou a slnko páli aj cez mraky. Teploty sú orientačné – aktuálnu predpoveď otvorí odkaz pri každom mieste."
     >
       <div className="dov-weather">
         {WEATHER.map((w) => (
-          <div key={w.place} className="dov-weather-card">
+          <div
+            key={w.place + w.dates}
+            className={[
+              "dov-weather-card",
+              w.from <= today && today < w.to ? "is-now" : "",
+              w.to <= today ? "is-past" : "",
+            ].join(" ")}
+          >
             <span className="dov-weather-icon" aria-hidden="true">{w.icon}</span>
-            <strong>{w.place}</strong>
-            {w.alt && <span className="dov-k">{w.alt}</span>}
+            <strong>
+              {w.place}
+              {w.sub && <span className="dov-route-sub"> · {w.sub}</span>}
+            </strong>
+            <span className="dov-k">{[w.dates, w.alt].filter(Boolean).join(" · ")}</span>
+            <div className="dov-weather-temps">
+              <span title="cez deň">☀ {w.day}</span>
+              <span title="v noci">☾ {w.night}</span>
+            </div>
             <p>{w.sky}</p>
-            <span className="dov-weather-temp">{w.temp}</span>
+            <p className="dov-weather-tip">👜 {w.tip}</p>
+            <a
+              className="dov-weather-link"
+              href={`https://www.google.com/search?q=${encodeURIComponent("počasie " + w.q)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              aktuálna predpoveď ↗
+            </a>
           </div>
         ))}
       </div>
       <ul className="dov-list">
         <li>Prvý deň vo výške brať pomaly, preto hneď z Cusca dole do údolia (~2 800 m).</li>
         <li>8.12. je v Peru sviatok Nepoškvrneného počatia Panny Márie, niektoré podniky môžu mať iné otváracie hodiny.</li>
-        <li>Oblečenie vo vrstvách a pláštenka, na Titicacu aj teplé veci.</li>
+        <li>Oblečenie vo vrstvách (termo tričko, fleece, tenká páperovka), nepremokavá bunda a pončo, trekové topánky.</li>
+        <li>Krém 50+, klobúk a okuliare na celú cestu, repelent s DEET na Machu Picchu, čiapka a rukavice na Titicacu a Colcu.</li>
         <li>Doprava v Lime je pomalá, na letisko vždy s rezervou.</li>
         <li>Letisko v Lime má od júna 2025 nový terminál na západnej strane. Hotely pri ulici Elmer Faucett sú pri starom, k novému sa ide autom okolo letiska. V Callao v noci nechodiť pešo.</li>
       </ul>
+    </Section>
+  );
+}
+
+/* ─── Čas v Peru a doma ─── */
+function zoneParts(tz, d) {
+  const p = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
+    }).formatToParts(d).map((x) => [x.type, x.value]),
+  );
+  return { y: +p.year, mo: +p.month, d: +p.day, h: +p.hour, mi: +p.minute };
+}
+
+// Posun pásma oproti UTC v minútach (Lima −300, Bratislava v zime +60).
+function zoneOffset(tz, d) {
+  const p = zoneParts(tz, d);
+  return (Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi) - Math.floor(d.getTime() / 60000) * 60000) / 60000;
+}
+
+function fmtTime(tz, d) {
+  return new Intl.DateTimeFormat("sk-SK", { timeZone: tz, hour: "2-digit", minute: "2-digit" }).format(d);
+}
+
+function fmtDay(tz, d) {
+  return new Intl.DateTimeFormat("sk-SK", { timeZone: tz, weekday: "long", day: "numeric", month: "numeric" }).format(d);
+}
+
+const CLOCK_HOURS = [6, 8, 10, 12, 14, 16, 18, 20, 22];
+
+function Clocks() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 20000);
+    return () => clearInterval(t);
+  }, []);
+
+  const diff = (zoneOffset(TZ_HOME, now) - zoneOffset(TZ_PERU, now)) / 60;
+  const homeHour = (h) => {
+    const x = h + diff;
+    return { h: ((x % 24) + 24) % 24, next: x >= 24 };
+  };
+
+  return (
+    <Section
+      id="cas"
+      title="Čas"
+      intro={`Peru je o ${diff} hodín za nami a letný čas nemá. Keď u nás svitá, oni ešte spia – a keď je u nich večer, my už spíme.`}
+    >
+      <div className="dov-clocks">
+        <div className="dov-clock">
+          <span className="dov-k">🇵🇪 V Peru</span>
+          <span className="dov-clock-time">{fmtTime(TZ_PERU, now)}</span>
+          <span className="dov-clock-day">{fmtDay(TZ_PERU, now)}</span>
+        </div>
+        <div className="dov-clock-diff" aria-hidden="true">−{diff} h</div>
+        <div className="dov-clock">
+          <span className="dov-k">🇸🇰 Doma na Slovensku</span>
+          <span className="dov-clock-time">{fmtTime(TZ_HOME, now)}</span>
+          <span className="dov-clock-day">{fmtDay(TZ_HOME, now)}</span>
+        </div>
+      </div>
+      <div className="dov-clock-table" role="table" aria-label="Prevod času Peru → Slovensko">
+        {CLOCK_HOURS.map((h) => {
+          const x = homeHour(h);
+          return (
+            <div key={h} role="row">
+              <span role="cell">{h}:00</span>
+              <span role="cell" aria-hidden="true">→</span>
+              <span role="cell">
+                {x.h}:00{x.next && <small> (+1 deň)</small>}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p className="dov-clock-note">
+        Vľavo čas v Peru, vpravo u nás. Na volanie domov je najlepšie peruánske ráno až skoré poobedie –
+        doma je vtedy poobede až večer (napr. 9:00 v Cusku = {homeHour(9).h}:00 doma).
+      </p>
+    </Section>
+  );
+}
+
+/* ─── Španielčina ─── */
+function Spanish() {
+  const [q, setQ] = useState("");
+  const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  const needle = norm(q.trim());
+  const groups = needle
+    ? PHRASES.map((g) => ({ ...g, items: g.items.filter((it) => norm(it[0] + " " + it[2]).includes(needle)) })).filter((g) => g.items.length)
+    : PHRASES;
+  const count = PHRASES.reduce((s, g) => s + g.items.length, 0);
+
+  return (
+    <Section
+      id="spanielcina"
+      title="Španielčina"
+      intro={`${count} fráz a slovíčok na cestu. Výslovnosť je písaná po slovensky, VEĽKÉ písmená = prízvuk.`}
+    >
+      <div className="dov-callout">
+        <strong>Výslovnosť v Peru:</strong> c (pred e, i) a z = <b>s</b> · ll a y = <b>j</b> · j a g (pred e, i) = <b>ch</b> ·
+        ñ = <b>ň</b> · ch = <b>č</b> · qu = <b>k</b> · v = <b>b</b> · h sa nevyslovuje. Peruánci hovoria pomerne pomaly a zreteľne.
+      </div>
+      <input
+        className="dov-search"
+        type="search"
+        placeholder="Hľadať (po slovensky aj po španielsky)…"
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        aria-label="Hľadať frázu"
+      />
+      {groups.length === 0 && <p className="dov-intro">Nič sa nenašlo.</p>}
+      {groups.map((g, gi) => (
+        <details key={g.group} className="dov-details dov-phrases" open={needle ? true : gi === 0}>
+          <summary>
+            <span aria-hidden="true">{g.icon}</span> {g.group} <span className="dov-phrases-count">{g.items.length}</span>
+          </summary>
+          <dl>
+            {g.items.map(([es, pron, sk]) => (
+              <div key={es} className="dov-phrase">
+                <dt>{es}</dt>
+                <dd className="dov-phrase-pron">{pron}</dd>
+                <dd className="dov-phrase-sk">{sk}</dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+      ))}
     </Section>
   );
 }

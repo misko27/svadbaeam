@@ -235,3 +235,15 @@ Hotové navyše: Picaflor Tambo, Cusco B&B, Sol Plaza Puno, bus Inka Express Cus
 6. **Viedeň, 1 noc (12.–13. 12.)**.
 7. Drobnosti: WhatsApp Lima (odvoz), čakať na Picaflor (transfer 60 USD, šofér 29. 11.) a Horizonte;
    Cusco B&B balíček na cestu 4. 12.; bus Consettur; keď príde Evin pas – zoznam hore.
+
+- **23. 11. 2026:** **Počasie a balenie** (Claude, predpoveď Open-Meteo do 8. 12. + bežné hodnoty pre december):
+  Lima ~18–25 °C, sucho, často zamračené. Posvätné údolie / Aguas Calientes ~10–23 °C, **začiatok obdobia dažďov**, dážď takmer každý deň
+  (prehánky hlavne poobede). Cusco ~6–19 °C, prehánky, noci chladné. Puno / Titicaca ~2–18 °C, noci okolo nuly, cez deň slnko,
+  **UV 11**. Colca: Chivay ~3–21 °C, priesmyk Patapampa (~4 900 m) okolo nuly, možné krúpy/sneh, Cruz del Cóndor ráno zima.
+  Arequipa ~10–24 °C, sucho, silné slnko. Balenie: vrstvy (termo tričko, fleece, tenká páperovka), nepremokavá bunda + pončo,
+  trekové topánky, opaľovací krém 50+, klobúk, okuliare, repelent s DEET (Aguas Calientes – piesočné mušky), čiapka na Puno/Colcu.
+
+- **23. 11. 2026:** na stránku (obe verzie, `/#dvl` aj `/#dovolenka`) pridané: **Počasie** po zastávkach (deň/noc, výška, čo čakať,
+  čo zbaliť, odkaz na aktuálnu predpoveď, zvýrazní sa aktuálne miesto; aj Viedeň po návrate), nová sekcia **Čas** (živé hodiny
+  Peru vs. Slovensko, rozdiel 6 h, prevodová tabuľka) a sekcia **Španielčina** (~200 fráz a slovíčok v skupinách, výslovnosť
+  po slovensky, vyhľadávanie, aj peruánsky slang a pár slov v kečuánčine). Všetko v `src/Dovolenka.jsx` (WEATHER, PHRASES).
